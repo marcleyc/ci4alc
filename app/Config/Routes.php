@@ -1,0 +1,139 @@
+<?php
+namespace Config;
+
+// Create a new instance of our RouteCollection class.
+$routes = Services::routes();
+
+/*
+ * --------------------------------------------------------------------
+ * Router Setup
+ * --------------------------------------------------------------------
+ */
+
+$routes->setDefaultNamespace('App\Controllers');
+$routes->setDefaultController('Home');
+$routes->setDefaultMethod('index');
+$routes->setTranslateURIDashes(false);
+$routes->set404Override();
+
+//$routes->setAutoRoute(true);
+
+/*
+ * --------------------------------------------------------------------
+ * Route Definitions
+ * --------------------------------------------------------------------
+ */
+
+$routes->get('/', 'Home::index');
+// --------- C O N T R O L L E R   C O N T A T O S
+$routes->get('contatos', 'ContatosController::index'); // list
+$routes->get('contatosf/(:num)', 'ClientesController::porfamilia/$1'); // contato unico
+$routes->get('contatosc', 'ContatosController::create'); // add page contato
+$routes->post('contatoss', 'ContatosController::store'); // store
+$routes->get('contatose/(:num)', 'ContatosController::singleUser/$1'); // edit page
+$routes->post('contatosu', 'ContatosController::update'); // update
+$routes->get('contatosd/(:num)', 'ContatosController::delete/$1'); // delete
+
+$routes->get('contatosl', 'ContatosController::lab'); // lab test
+
+// --------- C O N T R O L L E R   C L I E N T E S
+$routes->get('clientes', 'ClientesController::index'); // list clientes
+$routes->get('clientesa/(:num)', 'ClientesController::create/$1'); // unique clientes
+$routes->post('clientess', 'ClientesController::store'); // store cliente
+$routes->get('clientese/(:num)', 'ClientesController::edit/$1'); // edit page
+$routes->post('clientesu', 'ClientesController::update'); // update
+$routes->get('clientesd/(:num)', 'ClientesController::delete/$1'); // delete cliente
+
+$routes->get('clientes1', 'ClientesController::index1'); // datatable
+$routes->get('clientes2', 'ClientesController::index2'); // vuetify
+
+// --------- C O N T R O L L E R   R E C I B O S
+$routes->get('recibos', 'RecibosController::index'); // list recibos
+$routes->get('recibo/(:num)', 'RecibosController::recibo/$1'); // unique page recibo
+$routes->get('reciboadd', 'RecibosController::reciboadd'); // add page recibo
+$routes->post('recibostore', 'RecibosController::recibostore'); // store recibo
+$routes->get('reciboe/(:num)', 'RecibosController::reciboe/$1'); //edit page recibo
+$routes->post('reciboedt', 'RecibosController::reciboedt'); // update recibo
+// - RECIBOSUB
+$routes->get('recibosub/(:num)/(:num)', 'RecibosController::recibosub/$1/$2'); // add page recibosub
+$routes->post('recibosubstore', 'RecibosController::recibosubstore'); // store recibosub
+$routes->get('recibosube/(:num)/(:num)', 'RecibosController::recibosube/$1/$2'); //edit page recibosub
+$routes->post('recibosubedt', 'RecibosController::recibosubedt'); // update recibosub
+$routes->get('recibosubdel/(:num)/(:num)', 'RecibosController::recibosubdel/$1/$2'); // delete recibosub
+// - TRAMITANDO
+$routes->get('/processos', 'RecibosController::processos');
+$routes->get('/tramitando', 'RecibosController::tramitando');
+$routes->get('tramitandoet/(:num)', 'RecibosController::tramitandoet/$1'); //edit page tramitando
+
+$routes->get('/tramitando1', 'RecibosController::tramitando1'); // em teste
+$routes->get('/tramitando2', 'RecibosController::tramitando2'); // em teste
+$routes->get('/tramitando3', 'RecibosController::tramitando3'); // em teste
+// - REPORTS
+$routes->get('recibos1', 'RecibosController::index1');
+$routes->get('recibos2', 'RecibosController::index2');
+$routes->add('recibos3', 'RecibosController::index3');
+$routes->add('jsonapi', 'RecibosController::jsonapi');
+
+// --------- C O N T R O L L E R   S E R V I Ç O S
+$routes->get('servicos', 'RecibosController::servicos');
+
+// --------- C O N T R O L L E R   F I N A N C E I R O
+$routes->get('financeiro', 'FinanceiroController::index');
+$routes->get('financeiroc', 'FinanceiroController::create'); //create
+$routes->post('financeiros', 'FinanceiroController::store'); //submit store
+$routes->get('financeiroe/(:num)', 'FinanceiroController::singleUser/$1'); //edit
+$routes->post('financeirou', 'FinanceiroController::update'); //update
+$routes->get('financeirod/(:num)', 'FinanceiroController::delete/$1'); //delete
+
+// --------- C O N T R O L L E R   L A B 
+$routes->get('lab', 'Lab::index');
+$routes->get('contatosx', 'Lab::contatos');
+$routes->add('labs', 'Lab::cadastro');
+$routes->add('labsc', 'Lab::clientes');
+$routes->add('vuetify', 'Lab::vuetify');
+$routes->add('clijson', 'Lab::clijson');
+$routes->add('fatura', 'Lab::fatura');
+$routes->get('tramitando2', 'Lab::tramitando2');
+$routes->get('recibovue/(:num)', 'Lab::phpvue/$1');
+$routes->get('reciboajax/(:num)', 'Lab::reciboajax/$1');
+$routes->get('recibolab/(:num)', 'Lab::recibo/$1');
+$routes->get('recibolabb/(:num)', 'Lab::recibob/$1');
+$routes->add('pastas', 'Lab::pastas');
+$routes->get('boottable', 'Lab::xboottable');
+$routes->get('boottablej', 'Lab::xboottablej');
+$routes->get('boottable2', 'Lab::xboottable2');
+
+// --------- C O N T R O L L E R   A P I
+$routes->get('contatosapi', 'Api::index');
+$routes->get('contatosapix/(:num)', 'Api::show/$1');
+$routes->get('contatosapi2', 'ControllerApi::index');
+$routes->get('contatosapix2/(:num)', 'ControllerApi::show/$1');
+$routes->get('clientesapix2/(:num)', 'ControllerApi::showcli/$1');
+
+// --------- C R U D    R E S T f u l  https://www.positronx.io/codeigniter-crud-with-bootstrap-and-mysql-example/
+$routes->get('users-list', 'CrudController::index');
+$routes->get('user-form', 'CrudController::create');
+$routes->post('submit-form', 'CrudController::store');
+$routes->get('edit-view/(:num)', 'CrudController::singleUser/$1');
+$routes->post('update', 'CrudController::update');
+$routes->get('delete/(:num)', 'CrudController::delete/$1');
+
+/*
+ * --------------------------------------------------------------------
+ * Additional Routing
+ * --------------------------------------------------------------------
+ *
+ * There will often be times that you need additional routing and you
+ * need it to be able to override any defaults in this file. Environment
+ * based routes is one such time. require() additional route files here
+ * to make that happen.
+ *
+ * You will have access to the $routes object within that file without
+ * needing to reload it.
+ */
+
+if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
+    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+}
+
+// alterado no M1 às 23hs

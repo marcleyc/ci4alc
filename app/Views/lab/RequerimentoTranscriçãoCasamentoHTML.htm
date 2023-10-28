@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>.flex-container{display: flex;}  </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app" style="top:0px;width:670px;height:auto;border-style:1;overflow:hidden;margin:auto;font-family:Calibri;font-size:10.0pt">  
+
+<h2 style='text-align:center'><b>REQUERIMENTO PARA TRANSCRIÇÃO DE CASAMENTO</b></h2>
+
+<fieldset style="border-radius: 10px">
+    <legend>Requerente: ANDRÉA LEVINDO CARVALHO</legend><br>
+    <label>Residência habitual em: Urbanização Quinta Nova nº 4, 1º dto, 3150-195, Condeixa-a-Nova</label><br>
+    <label>Titular da cédula profissional n.º 57281C</label><br>
+    <label>E-mail:<i>andrealevindo@gmail.com</i> - Telemóvel: 911.992.069</label><br>
+    <label>Vem  requerer a V. Exª na qualidade de: advogada/procuradora</label><br>
+</fieldset>
+<br>
+<fieldset style="border-radius: 10px">
+<legend>O 1º Nubente: {{nubente1}}</legend><br>
+<label>Data de nascimento: {{nasc1}},  Estado Civil (à data do casamento): {{estCivil1}}</label><br>
+<label>Naturalidade de: {{naturalidade1}}</label><br>
+<label>Filiação: {{pai1}} e {{mae1}}</label><br>
+<label>Residência à data do casamento: {{residencia1}}</label><br>
+</fieldset>
+<br>
+<fieldset style="border-radius: 10px">
+<legend>O 2º Nubente: {{nubente2}}</legend><br>
+<label>Data de nascimento: {{nasc2}},  Estado Civil (à data do casamento): {{estCivil2}}</label><br>
+<label>Naturalidade de: {{naturalidade2}}</label><br>
+<label>Filiação: {{pai2}} e {{mae2}}</label><br>
+<label>Residência à data do casamento: {{residencia2}}</label><br>
+</fieldset>
+<br>
+<h3 align="center">Dados relativos à celebração do casamento</h3>
+
+<fieldset style="border-radius: 10px">
+<legend>Nacionalidade dos nubentes à data do casamento:</legend><br>	
+<label>Nacionalidade do 1º nubente: {{nacionalidade1}}</label><br>
+<label>Nacionalidade do 2º nubente: {{nacionalidade2}}</label><br>
+<label>Primeira residência conjugal: {{residenciaConjugal}}</label><br>
+<label>Hora: {{horaCasamento}}        Data do casamento: {{dataCasamento}}</label><br>
+<label>Lugar da celebração: {{lugarCelebracao}}</label><br>
+<label>Celebrante: {{celebrante}}</label><br>
+<label>Celebração de convenção antenupcial: {{pactoAntenupcial}}</label><br>
+<label>Casamento: {{casamentoTipo}} </label><br>
+<label>Processo preliminar de publicações para casamento (perante autoridades portuguesas):</label><br>
+<label>SIM [ ]        NÃO [X]</label><br>
+<label>Nome da nubente após o casamento: {{nomeNubenteApos}}</label><br>
+</fieldset>
+<br>
+<h3 style='text-align:center'>SÓ PARA: Casamentos celebrados após 29 de janeiro de 2019 </h3>
+<fieldset style="border-radius: 10px">
+<label>-Houve acordo de escolha da Lei nos termos do Regulamento (EU) 2019/1103 de 24 de Junho</label><br>
+<label>  SIM [ ]      NÃO [ ]</label><br>
+<label>-Se houve acordo/convenção – juntar o respetivo documento</label><br>
+</fieldset>
+<br>
+<p>Data: ____ / ____ / ________</p>
+<br>
+<p>Assinatura: _______________________________________________</p>
+
+</div>
+</body>
+<script>
+new Vue({
+        el:'#app',
+        data:{
+        	id:134,
+            nubente1:'RICARDO SILVA BAPTISTA',
+            nasc1:'09/07/1963',
+            estCivil1:'divorciado',
+            naturalidade1:'Niterói-RJ',
+            nacionalidade1:'brasileira',
+            pai1:'Renato Ludgero Ferreira Baptista',
+            mae1:'Sonia Silva Baptista',
+            residencia1:'Rua Guarani, lt.21, qd.26, Maricá-RJ',
+            nubente2:'CLAUDIA ANDRÉA OLIVEIRA DE CARVALHO',
+            nasc2:'20/08/1966',
+            estCivil2:'solteira',
+            naturalidade2:'Rio de Janeiro',
+            nacionalidade2:'brasileira',
+            pai2:'Paulo Carlos de Carvalho ',
+            mae2:'Cléia Oliveira de Carvalho',
+            residencia2:'Rua Guarani, lt.21, qd.26, Maricá-RJ',
+            residenciaConjugal:'',
+            dataCasamento:'10/11/1992',
+            horaCasamento:'10:00hs',
+            lugarCelebracao:'RCPN do 1º Distrito de Maricá',
+            celebrante:'Juiz de Paz',
+            pactoAntenupcial:'SIM [ ] --- NÃO [X]',
+            casamentoTipo:'Civil [X] --- Católico [ ] --- Religioso Não Católico [ ]',
+            nomeNubenteApos:'CLAUDIA ANDRÉA CARVALHO BAPTISTA'
+            },
+        })
+</script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <!-- Site made with Mobirise Website Builder v4.12.2, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v4.12.2, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo-final-158x157.png" type="image/x-icon">
+  <meta name="description" content="Notícias">
+  
+  <title>blog</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>  
+  
+</head>
+<body>
+
+<h2>Order Details </h2>
+<table class="table">
+    <tbody>
+    <tr>
+        <td colspan="2">
+            <h4 style="text-align: center;">Summery</h4>
+        </td>
+    </tr>
+    <tr>
+        <th>Order ID</th>
+        <td>{{ order.id }}</td>
+    </tr>
+    <tr>
+        <th>Creation Date</th>
+        <td>{{ order.createdAt }}</td>
+    </tr>
+    <tr>
+        <th>Total price</th>
+        <td>{{ order.total }}</td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>{{ order.status }}</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <h4 style="text-align: center;">Item details</h4>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in order.items %}
+                <tr>
+                    <td>{{ i.product.title }}</td>
+                    <td>{{ i.quantity }}</td>
+                    <td>{{ i.unitPrice }}</td>
+                    <td>{{ i.total }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+</html>

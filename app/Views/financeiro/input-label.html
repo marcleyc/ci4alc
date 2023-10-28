@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    
+    
+    <title>Input Label</title>
+</head>
+
+<body>
+
+  <h2>Input Label</h2>
+
+  <div class="container">
+  <form>
+
+    <div class="material-textfield">
+      <input placeholder="placeholder" type="number" value="" />
+      <label> ID</label>
+    </div>
+
+    <div class="material-textfield">
+      <input placeholder="placeholder" type="text" />
+      <label>nome</label>
+    </div>
+
+    <div class="material-textfield">
+      <input placeholder="placeholder" type="date" />
+      <label>data</label>
+    </div>
+
+    <div class="material-textfield">
+      <input placeholder="placeholder" type="text" />
+      <label>tipo</label>
+    </div>
+  
+  </form>  
+
+  </div>
+
+<style>
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .material-textfield {  
+    position: relative;
+    margin: 0.7rem 0.3rem;
+    }
+
+    label {
+    position: absolute;
+    font-size: 1rem;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: gray;
+    padding: 0 0.3rem;
+    margin: 0 0.5rem;
+    transition: 0.1s ease-out;
+    transform-origin: left top;
+    pointer-events: none;
+    }
+
+    input {  
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 1rem 0.7rem;
+    color: gray;
+    transition: 0.1s ease-out;
+    }
+
+    input:focus {
+    border-color: #6200ee;
+    }
+
+    input:focus + label {
+    color: #6200ee;
+    top: 0;
+    transform: translateY(-10%) scale(0.9) !important;
+    }
+
+    input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%) scale(0.9) !important;
+    }
+
+    input:empty + label {
+    transform: translateY(75%);
+    font-weight: bold;
+    }
+
+    input:empty:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%) scale(0.9) !important;
+    }
+
+    input:empty::-webkit-input-placeholder {
+    opacity: 0;
+    }
+
+</style>
+
+<script>
+ 
+</script>
+
+
+</body>
+</html>
