@@ -8,6 +8,10 @@
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table-locale-all.min.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
 
+  <!-- Fonts and icons -->
+  <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
+
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
   <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
 </svg>
@@ -16,13 +20,8 @@
 <center> <h3>BootTable json 4 - Financeiro</h3> </center>
 
 <style>
-  .select,
-  #locale {
-    width: 100%;
-  }
-  .like {
-    margin-right: 10px;
-  }
+  .select, #locale {width: 100%;}
+  .like {margin-right: 10px;}
 </style>
 
 <div class="select">
@@ -102,7 +101,7 @@
   data-page-list="[10, 25, 50, 100, all]"
   data-show-footer="true"
   data-side-pagination="server"
-  data-url="https://examples.wenzhixin.net.cn/examples/bootstrap_table/data"
+  data-url="<?= base_url('financeiroj/');?>"
   data-response-handler="responseHandler">
 </table>
 
@@ -126,9 +125,7 @@
 
   function detailFormatter(index, row) {
     var html = []
-    $.each(row, function (key, value) {
-      html.push('<p><b>' + key + ':</b> ' + value + '</p>')
-    })
+    $.each(row, function (key, value) {html.push('<p><b>' + key + ':</b> ' + value + '</p>')})
     return html.join('')
   }
 
@@ -148,28 +145,17 @@
       alert('You click like action, row: ' + JSON.stringify(row))
     },
     'click .remove': function (e, value, row, index) {
-      $table.bootstrapTable('remove', {
-        field: 'id',
-        values: [row.id]
-      })
+      $table.bootstrapTable('remove', {field: 'id', values: [row.id]})
     }
   }
 
-  function totalTextFormatter(data) {
-    return 'Total'
-  }
+  function totalTextFormatter(data) {return 'Total'}
 
-  function totalNameFormatter(data) {
-    return data.length
-  }
+  function totalNameFormatter(data) {return data.length}
 
   function totalPriceFormatter(data) {
     var field = this.field
-    return '$' + data.map(function (row) {
-      return +row[field].substring(1)
-    }).reduce(function (sum, i) {
-      return sum + i
-    }, 0)
+    return '$' + data.map(function (row) {return +row[field].substring(1)}).reduce(function (sum, i) {return sum + i  }, 0)
   }
 
   function initTable() {
@@ -177,52 +163,65 @@
       height: 550,
       locale: $('#locale').val(),
       columns: [
-        [{
-          field: 'state',
-          checkbox: true,
-          rowspan: 2,
-          align: 'center',
-          valign: 'middle'
-        }, {
-          title: 'Item ID',
+        {
           field: 'id',
-          rowspan: 2,
-          align: 'center',
-          valign: 'middle',
-          sortable: true,
-          footerFormatter: totalTextFormatter
-        }, {
-          title: 'Item Detail',
-          colspan: 3,
-          align: 'center'
-        }],
-        [{
-          field: 'name',
-          title: 'Item Name',
+          title: 'ID',
           sortable: true,
           footerFormatter: totalNameFormatter,
           align: 'center'
-        }, {
-          field: 'price',
-          title: 'Item Price',
+        }, 
+        {
+          field: 'dataf',
+          title: 'Data',
           sortable: true,
           align: 'center',
           footerFormatter: totalPriceFormatter
-        }, {
-          field: 'operate',
-          title: 'Item Operate',
+        }, 
+        {
+          field: 'banco',
+          title: 'Banco',
           align: 'center',
           clickToSelect: false,
           events: window.operateEvents,
           formatter: operateFormatter
-        }]
+        },
+        {
+          field: 'tipo',
+          title: 'Tipo',
+          align: 'center',
+          clickToSelect: false,
+          events: window.operateEvents,
+          formatter: operateFormatter
+        },
+        {
+          field: 'historico',
+          title: 'Historico',
+          align: 'center',
+          clickToSelect: false,
+          events: window.operateEvents,
+          formatter: operateFormatter
+        },
+        {
+          field: 'numero',
+          title: 'Numero',
+          align: 'center',
+          clickToSelect: false,
+          events: window.operateEvents,
+          formatter: operateFormatter
+        },
+        {
+          field: 'valor',
+          title: 'Valor',
+          align: 'center',
+          clickToSelect: false,
+          events: window.operateEvents,
+          formatter: operateFormatter
+        },
+
       ]
     })
-    $table.on('check.bs.table uncheck.bs.table ' +
-      'check-all.bs.table uncheck-all.bs.table',
-    function () {
-      $remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
-
+    $table.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table uncheck-all.bs.table',
+    function () {$remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
       // save your data, here just save the current page
       selections = getIdSelections()
       // push or splice the selections if you want to save all data selections

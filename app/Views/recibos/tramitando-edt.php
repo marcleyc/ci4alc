@@ -12,7 +12,7 @@
 
 <div class="container">
 <center><h3 class="mt-2">Editar Tramitando</h3></center>
-<form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('recibosubedt') ?>">  
+<form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('tramitandou') ?>">  
     <div class="col-12">
 		<label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label> </br>
 	  

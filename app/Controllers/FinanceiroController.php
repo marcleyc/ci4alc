@@ -11,10 +11,17 @@ class FinanceiroController extends BaseController
 {
     public function index()
     {
-        $uModel = new FinanceiroModel();
-        $data['financeiro'] = $uModel->orderBy('dataf', 'DESC')->findAll();
+        //$uModel = new FinanceiroModel();
+        //$data['financeiro'] = $uModel->orderBy('dataf', 'DESC')->findAll();
         //dd($data);
-        return view('financeiro/list', $data);
+        return view('financeiro/list');
+    }
+
+    public function financeiroj() // ------------------------ list of financeiro json
+    {
+        $dados = new FinanceiroModel();
+        $dado = $dados->orderBy('id', 'DESC')->findAll();
+        echo json_encode($dado);
     }
  
     public function show($id = null)

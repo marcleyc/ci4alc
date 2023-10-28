@@ -6,12 +6,16 @@ use CodeIgniter\Controller;
 
 class ContatosController extends Controller
 {
-    // list of contatos
-    public function index(){
+    public function index(){  // ------------------------- list of contatos
         //echo "<h1>olá</h1>";
-        $userModel = new ContatosModel();
-        $data['contatos'] = $userModel->orderBy('id', 'DESC')->findAll();
-        return view('contatos/list', $data);
+        return view('contatos/list');
+    }
+
+    public function contatosj() // ------------------------ list of contatos json
+    {
+        $cli = new ContatosModel();
+        $clientes = $cli->select('id,nome,email')->orderBy('id', 'DESC')->findAll();
+        echo json_encode($clientes);
     }
 
     // add contato form

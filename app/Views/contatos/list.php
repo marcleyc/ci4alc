@@ -1,62 +1,78 @@
 <?php echo $this->extend('main'); ?> 
-
 <?= $this->section('conteudo'); ?>
 
-</head>
-<body style="background-color: #F5F5F9;">
- 
-<div>
-<center>    
-<div class="container shadow-sm m-1 border border-light rounded">
-    <div class="d-flex justify-content-between mt-2">
-        <div>
-          <h1></h1>
-        </div>
-        <div><h3>C O N T A T O S</h3></div>
-        <div><button class="btn btn-sm" onclick="window.location.href='<?php echo site_url('/contatosc') ?>';">
-               <img src="<?= base_url("assets/icon/add24.png") ?>" height="20" width="20">
-             </button>
-        </div>   
-	  </div>
-    
-    <?php if(isset($_SESSION['msg'])){ echo $_SESSION['msg']; } ?>
-  <div class="mt-1">
-     <table class="table table-hover table-sm" id="users-list">
-       <thead>
-          <tr>
-             <th>Id</th>
-             <th>Name</th>
-             <th>Email</th>
-             <th>Action</th>
-          </tr>
-       </thead>
-       <tbody>
-          <?php if($contatos): ?>
-          <?php foreach($contatos as $user): ?>
-          <tr>
-             <td><?php echo $user['id']; ?></td>
-             <td><?php echo $user['nome']; ?></td>
-             <td><?php echo $user['email']; ?></td>
-             <td>
-             <a href="<?php echo base_url('contatosf/'.$user['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/family2.png")?>" height="20" width="20" alt=""></a>
-              <a href="<?php echo base_url('contatose/'.$user['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/edit24.png")?>" height="17" width="17" alt=""></a>
-              <a href="<?php echo base_url('contatosd/'.$user['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/del24.png")?>" height="17" width="17" alt=""></a>
-              <a href="<?php echo base_url('clientesa/'.$user['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/groupadd.png")?>" height="20" width="20" alt=""></a>
-              </td>
-          </tr>
-         <?php endforeach; ?>
-         <?php endif; ?>
-       </tbody>
-     </table>
-  </div>
+<link href="<?= base_url("assets/css/bootstrap-table.min.css") ?>" rel="stylesheet">
+<script src="<?= base_url("assets/js/bootstrap-table.min.js") ?>"></script>
+
+<div class=container> <center> <h3 style="color:#878787">C O N T A T O S</h3> </center>
+
+<div id="toolbar">
+  <button id="button" class="btn btn-secondary"> Novo </button>
 </div>
-</center> 
-</div>
+
+<table
+  id="table"
+  data-search="true"
+  data-search-accent-neutralise="true"
+  data-toggle="table"
+  data-toolbar="#toolbar"
+  data-height="475"
+  data-url="<?= base_url('contatosj/');?>">
+  <thead>
+    <tr>
+      <th data-field="id" data-sortable="true">ID</th>
+      <th data-field="nome" data-sortable="true">Nome</th>
+      <th data-field="email">e-mail</th>
+      <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">menu</th>
+    </tr>
+  </thead>
+</table>
 
 <script>
-    $(document).ready( function () {
-      $('#users-list').DataTable();
-  } );
+  var $table = $('#table')
+
+  function operateFormatter(value, row, index) {
+    return [
+      '<a class="add" href="javascript:void(0)" title="Adicionar">',
+      '<img src="<?= base_url("assets/icon/plus-circle.svg")?>" height="17" width="17" style="margin-right: 20px; margin-left: 15px">',
+      '</a>',
+      '<a class="edit" href="javascript:void(0)" title="Editar">',
+      '<img src="<?= base_url("assets/icon/pencil-square.svg")?>" height="17" width="17" style="margin-right: 20px;">',
+      '</a>',
+      '<a class="remove" href="javascript:void(0)" title="Remover">',
+      '<img src="<?= base_url("assets/icon/trash.svg")?>" height="17" width="17" style="margin-right: 20px;">',
+      '</a>',
+      '<a class="parent" href="javascript:void(0)" title="Adicinar Parente">',
+      '<img src="<?= base_url("assets/icon/people.svg")?>" height="17" width="17">',
+      '</a>'
+    ].join('')
+  }
+
+  window.operateEvents = {
+    'click .add': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('contatosc/');?>" },
+    'click .edit': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('contatose/');?>"+row.id },
+    'click .remove': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('contatosd/');?>"+row.id },
+    'click .parent': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('clientesa/');?>"+row.id },  
+  }
+  
 </script>
 
+<script>
+  var $table = $('#table')
+  var $button = $('#button')
+
+  $(function() {
+    $button.click(function () { window.location.href = "<?= base_url('contatosc/');?>" }, )
+  })
+</script>
+
+</div>
+
 <?= $this->endSection('conteudo'); ?>
+
+<!-- http://localhost:8080/boottablej -->
+<!-- { window.location.href = "php //base_url('clientese/');?>"+row.id }, -->

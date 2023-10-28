@@ -225,6 +225,49 @@ class RecibosController extends Controller
         return view('recibos/tramitando', $data);
     }
 
+    public function tramitandou()  // --------------------------- update tramitando
+    {       
+        $xModel = new RecibosubModel();
+        $data = [
+            'id'  => $this->request->getVar('fid'),
+            'nome' => $this->request->getVar('nome'),
+            'servicos' => $this->request->getVar('fservico'),
+            'locals'  => $this->request->getVar('flocal'),
+            'honorarios'  => $this->request->getVar('fhonorarios'),
+            'custas'  => $this->request->getVar('fcustas'),
+            'total'  => $this->request->getVar('fhonorarios')+$this->request->getVar('fcustas'),
+            'idRec'  => $this->request->getVar('fidrec'),
+            'inicio'  => $this->request->getVar('finicio'),
+            'nprocesso'  => $this->request->getVar('fnprocesso'),
+            'codigo'  => $this->request->getVar('fcodigo'),
+            'sit'  => $this->request->getVar('fsit'),
+            'termino'  => $this->request->getVar('ftermino'),
+            'ok'  => $this->request->getVar('fok'),
+            'periodicidade'  => $this->request->getVar('fperiodicidade'),
+        ];
+        //dd($data);
+        $id = $this->request->getVar('fid');
+        $xModel->update($id, $data);
+        $idrec = $this->request->getVar('fidrec');
+
+        $id = $this->request->getVar('fidrec');
+        $dados = $xModel->where('idRec', $id)->findAll();
+        $thon = 0;
+        $tcus = 0;
+        foreach($dados as $x){ $thon += $x['honorarios']; $tcus += $x['custas'];};
+        $ttot = $thon + $tcus;
+        $datar = [
+            'tothonorarios' => $thon,
+            'totcustas'  => $tcus,
+            'total'  => $ttot
+        ];
+        $xRecibo = new RecibosModel();
+        $xRecibo->update($id, $datar);
+        return $this->response->redirect(site_url('tramitando/'));
+        //return $this->response->redirect(site_url('/recibo/'.$idrec));
+    }
+
+
     public function tramitando1()  // ------------ tramitando nas conservatórias
     {  
         $db = db_connect();          
@@ -243,17 +286,15 @@ class RecibosController extends Controller
     public function tramitando2()  // ------------ tramitando com query
     {  
         $db = db_connect();          
-        $query = $db->query('SELECT recibosub.id, recibosub.locals, recibosub.servicos, recibosub.nome, recibosub.inicio, recibosub.codigo, recibosub.ok, contatos.email  
+        $query = $db->query('SELECT recibo.idc, recibosub.id, recibosub.locals, recibosub.servicos, recibosub.nome, recibosub.inicio, recibosub.codigo, recibosub.sit, recibosub.ok, contatos.email  
                              FROM recibosub
                              INNER JOIN recibo ON recibo.id = recibosub.idRec
                              INNER JOIN contatos ON contatos.id = recibo.idc
-                             WHERE recibosub.locals = "Coimbra CRC" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
-                             OR recibosub.locals = "Porto Arq.Central" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
-                             OR recibosub.locals = "Lisboa Centrais" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
+                             WHERE recibosub.locals LIKE "IRN%" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
                              ORDER BY recibosub.locals ASC, recibosub.servicos ASC, recibosub.inicio DESC');                
         $results = $query->getResultArray();
         $data['recibosub'] = $results;
-        dd($data);
+        //dd($data);
         return view('recibos/tramitando-rep', $data);
     }
 
@@ -294,7 +335,18 @@ class RecibosController extends Controller
         $data['local'] = $xModel4->findAll();
         //dd($data);
         return view('recibos/tramitando-edt', $data);
-    }   
+    }
+    
+    public function tramitando4()  // ------------------------ report
+    {
+        $cli = new RecibosubModel();
+        $clientes = $cli->select('*')->orderBy('locals', 'servicos','inicio')
+                        ->like('locals', 'IRN', 'after')
+                        ->where('ok','F')->where('inicio >','2017-01-01')
+                        ->orderby('locals ASC, servicos ASC, inicio ASC')->findAll();
+        dd($clientes);
+        echo json_encode($clientes);
+    }
 
     // =========== S  E  R  V  I  Ç  O  S ======================================================
 

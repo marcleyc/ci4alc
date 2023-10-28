@@ -6,14 +6,18 @@ use CodeIgniter\Controller;
 class ClientesController extends Controller
 {
     // show data list
-    public function index()
+    public function index() // ---------------------------- page listar clientes
     {
-        //echo "<h1>olá</h1>";
-        $cli = new ClientesModel();
-        $data['clientes'] = $cli->select('id,idc,nome,email')->orderBy('idc', 'nome')->findAll();
-        //dd($data);
-        return view('clientes/list', $data);
+        return view('clientes/list');
     }
+
+    public function clientesj() // ------------------------ json de clientes to boottable page
+    {
+        $cli = new ClientesModel();
+        $clientes = $cli->select('id,idc,nome,email')->orderBy('idc', 'DESC')->findAll();
+        echo json_encode($clientes);
+    }
+
 
     public function index1()  // ------------------------ php object array to datatable
     {

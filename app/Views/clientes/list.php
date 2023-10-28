@@ -1,55 +1,61 @@
 <?php echo $this->extend('main'); ?> 
-
 <?= $this->section('conteudo'); ?>
 
+<!-- link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet" -->
+<!-- script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script -->
+
+<link href="<?= base_url("assets/css/bootstrap-table.min.css") ?>" rel="stylesheet">
+<script src="<?= base_url("assets/js/bootstrap-table.min.js") ?>"></script>
+
+<div class=container> <center> <h3 style="color:#878787">C L I E N T E S</h3> </center>
+
+<table
+  id="table"
+  data-search="true"
+  data-toggle="table"
+  data-height="475"
+  data-url="<?= base_url('clientesj/');?>">
+  <thead>
+    <tr>
+      <th data-field="idc">IDC</th>
+      <th data-field="nome">Nome</th>
+      <th data-field="email">e-mail</th>
+      <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">menu</th>
+    </tr>
+  </thead>
+</table>
+
 <script>
-    $(document).ready( function () {
-      $('#users-list').DataTable();
-  } );
+  var $table = $('#table')
+
+  function operateFormatter(value, row, index) {
+    return [
+      '<a class="add" href="javascript:void(0)" title="Adicionar">',
+      '<img src="<?= base_url("assets/icon/plus-circle.svg")?>" height="17" width="17" style="margin-right: 20px; margin-left: 15px">',
+      '</a>',
+      '<a class="edit" href="javascript:void(0)" title="Editar">',
+      '<img src="<?= base_url("assets/icon/pencil-square.svg")?>" height="17" width="17" style="margin-right: 20px;">',
+      '</a>',
+      '<a class="remove" href="javascript:void(0)" title="Remover">',
+      '<img src="<?= base_url("assets/icon/trash.svg")?>" height="17" width="17">',
+      '</a>'
+    ].join('')
+  }
+
+  window.operateEvents = {
+    'click .add': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('clientesa/');?>"+row.idc },
+    'click .edit': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('clientese/');?>"+row.id },
+    'click .remove': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('clientesd/');?>"+row.id },
+  }
+  
 </script>
 
-<div>
-<center>    
-<div class="container bg-white shadow-sm m-3 border border-light rounded">
-    <div class="d-flex justify-content-between mt-2">
-        <div><h4></h4></div>
-        <div><h3>C L I E N T E S</h3></div>
-        <div></div>   
-	  </div>
-    
-    <?php if(isset($_SESSION['msg'])){ echo $_SESSION['msg']; } ?>
-  <div class="mt-1">
-     <table class="table table-hover table-sm" id="users-list">
-       <thead>
-          <tr>
-             <th>Id</th>
-             <th>Name</th>
-             <th>Email</th>
-             <th>Action</th>
-             
-          </tr>
-       </thead>
-       <tbody>
-          <?php if($clientes): ?>
-          <?php foreach($clientes as $cliente): ?>
-          <tr>
-             <td><?php echo $cliente['idc']; ?></td>
-             <td><?php echo $cliente['nome']; ?></td>
-             <td><?php echo $cliente['email']; ?></td>
-             <td>
-              <a href="<?php echo base_url('clientesa/'.$cliente['idc']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/add24.png")?>" height="17" width="17" alt=""></a> 
-              <a href="<?php echo base_url('clientese/'.$cliente['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/edit24.png")?>" height="17" width="17" alt=""></a>
-              <a href="<?php echo base_url('clientesd/'.$cliente['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/del24.png")?>" height="17" width="17" alt=""></a>
-              <a href="<?= '///R:/'.$cliente['idc'] ;?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/file.png")?>" height="17" width="17" alt=""></a>
-             </td>
-          </tr>
-         <?php endforeach; ?>
-         <?php endif; ?>
-       </tbody>
-     </table>
-  </div>
-</div>
-</center> 
 </div>
 
 <?= $this->endSection('conteudo'); ?>
+
+<!-- http://localhost:8080/boottablej -->
+<!-- { window.location.href = "php //base_url('clientese/');?>"+row.id }, -->

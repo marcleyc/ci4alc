@@ -15,8 +15,7 @@
                 <th>nome</th>
                 <th>início</th>
                 <th>senha</th>
-                <th>ok</th>
-                <th>email</th>
+                <th>sit</th>
           </tr>
        </thead>
        <tbody>
@@ -28,8 +27,7 @@
              <td class="col-sm-1"><?php echo $user['nome']; ?></td>
              <td class="col-sm-3"><?php echo $user['inicio']; ?></td>
              <td class="col-sm-1"><?php echo $user['codigo']; ?></td>
-             <td class="col-sm-1"><?php echo $user['ok']; ?></td>
-             <td class="col-sm-1"><?php echo $user['email']; ?></td>
+             <td class="col-sm-1"><?php echo $user['sit']; ?></td>
           </tr>
          <?php endforeach; ?>
          <?php endif; ?>

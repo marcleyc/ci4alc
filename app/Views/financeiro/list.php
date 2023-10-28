@@ -1,73 +1,82 @@
 <?php echo $this->extend('main'); ?> 
-
 <?= $this->section('conteudo'); ?>
 
-</head>
-<body style="background-color: #F5F5F9;">
- 
-<div>
-<center>    
-<div class="container shadow-sm m-1 border border-light rounded">
-    <div class="d-flex justify-content-between mt-2">
-        <div>
-          <h1></h1>
-        </div>
-        <div><h3>F I N A N C E I R O</h3></div>
-        <div><button class="btn btn-sm" onclick="window.location.href='<?php echo site_url('/financeiroc') ?>';">
-               <img src="<?= base_url("assets/icon/add24.png") ?>" height="20" width="20">
-             </button>
-        </div>   
-	  </div>
-    
-    <?php if(isset($_SESSION['msg'])){ echo $_SESSION['msg']; } ?>
-  <div class="mt-1">
-     <table class="table table-hover table-sm" id="users-list">
-       <thead>
-          <tr>
-             <th>Id</th>
-             <th>Dataf</th>
-             <th>Banco</th>
-             <th>Tipo</th>
-             <th>Historico</th>
-             <th>Numero</th>
-             <th>Valor</th>
-             <th>IDC</th>
-             <th>Action</th>
-          </tr>
-       </thead>
-       <tbody>
-          <?php if($financeiro): ?>
-          <?php foreach($financeiro as $user): ?>
-          <tr>
-             <td class="col-sm-1"><?php echo $user['id']; ?></td>
-             <td class="col-sm-1"><?php echo $user['dataf']; ?></td>
-             <td class="col-sm-1"><?php echo $user['banco']; ?></td>
-             <td class="col-sm-1"><?php echo $user['tipo']; ?></td>
-             <td class="col-sm-3"><?php echo $user['historico']; ?></td>
-             <td class="col-sm-1"><?php echo $user['numero']; ?></td>
-             <td><?php echo $user['valor']; ?></td>
-             <td><?php echo $user['cliente']; ?></td>
-             <td>
-              <a href="<?php echo base_url('financeiroe/'.$user['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/edit24.png")?>" height="17" width="17" alt=""></a>
-              <a href="<?php echo base_url('financeirod/'.$user['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/del24.png")?>" height="17" width="17" alt=""></a>
-             </td>
-          </tr>
-         <?php endforeach; ?>
-         <?php endif; ?>
-       </tbody>
-     </table>
-  </div>
-</div>
-</center> 
+<link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
+<link href="<?= base_url("assets/css/bootstrap-table.min.css") ?>" rel="stylesheet">
+<script src="<?= base_url("assets/js/bootstrap-table.min.js") ?>"></script>
+
+<div class=container> <center> <h3 style="color:#878787">F I N A N C E I R O</h3> </center>
+
+<div id="toolbar">
+  <button id="button" class="btn btn-secondary"> Novo </button>
 </div>
 
+<table class="table table-sm"
+  id="table"
+  data-search="true"
+  data-search-accent-neutralise="true"
+  data-search-align="left"
+  data-toggle="table"
+  data-toolbar="#toolbar"
+  data-height="500"
+  data-advanced-search="true"
+  data-id-table="advancedTable"
+  data-url="<?= base_url('financeiroj/');?>">
+  <thead>
+    <tr>
+      <th data-field="id" data-sortable="true">ID</th>
+      <th data-field="dataf" data-filter-control="input" data-sortable="true" data-width="110" >Data</th>
+      <th data-field="banco" data-sortable="true" data-filter-control="input">Banco</th>
+      <th data-field="tipo" data-sortable="true" data-filter-control="input">Tipo</th>
+      <th data-field="historico" data-sortable="true" data-filter-control="input">Historico</th>
+      <th data-field="numero" data-sortable="true" data-filter-control="input">Numero</th>
+      <th data-field="valor" data-sortable="true" data-filter-control="input">Valor</th>
+      <th data-field="cliente" data-sortable="true" data-filter-control="input">IDC</th>
+      <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">menu</th>
+    </tr>
+  </thead>
+</table>
+
 <script>
-    $(document).ready( function () {
-      $('#users-list').DataTable();
-  } );
+  var $table = $('#table')
+
+  function operateFormatter(value, row, index) {
+    return [
+      '<a class="edit" href="javascript:void(0)" title="Editar">',
+      '<img src="<?= base_url("assets/icon/pencil-square.svg")?>" height="17" width="17" style="margin-right: 5px;">',
+      '</a>',
+      '<a class="remove" href="javascript:void(0)" title="Remover">',
+      '<img src="<?= base_url("assets/icon/trash.svg")?>" height="17" width="17" style="margin-right" >',
+      '</a>'
+    ].join('')
+  }
+
+  window.operateEvents = {
+    'click .edit': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('financeiroe/');?>"+row.id },
+    'click .remove': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('financeirod/');?>"+row.id }
+  }
 </script>
+
+<script>
+  var $table = $('#table')
+  var $button = $('#button')
+
+  $(function() {
+    $button.click(function () { window.location.href = "<?= site_url('/financeiroc') ?>" }, )
+  })
+</script>
+
+<script>
+  $(function() {
+    $('#table').bootstrapTable()
+  })
+</script>
+
+</div>
 
 <?= $this->endSection('conteudo'); ?>
 
-<!-- Id Dataf Banco Tipo Historico Numero Valor IDC -->
-             
+<!-- http://localhost:8080/boottablej -->
+<!-- { window.location.href = "php //base_url('clientese/');?>"+row.id }, -->

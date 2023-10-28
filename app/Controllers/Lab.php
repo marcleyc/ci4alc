@@ -215,7 +215,7 @@ class Lab extends BaseController
 
     public function xboottable()  // -------------------- php object array to boottable
     {
-        return view('lab/xboottable7');    
+        return view('lab/xboottable4');    
     }
 
     public function xboottable2()  // ------------------- object array to boottable 10% jeito mais rápido
