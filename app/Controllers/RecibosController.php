@@ -350,7 +350,7 @@ class RecibosController extends Controller
                         ->orderby('locals ASC, servicos ASC, inicio ASC')->findAll();
         $data['recibosub'] = $results;
         //dd($data);
-        return view('recibos/tramitando5', $data);
+        return view('recibos/tramitando7', $data);
     }
 
     // =========== S  E  R  V  I  Ç  O  S ======================================================

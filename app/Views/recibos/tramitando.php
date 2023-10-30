@@ -8,6 +8,7 @@
 
 <div class="container">
 <table
+  class="table-sm size=7px"
   id="table"
   data-search="true"
   data-search-align="left"
@@ -49,9 +50,5 @@
       return { css: {color: 'blue'}}
   }   
 </script>
-
-<style>
-  th, td {border: 1px solid grey; border-radius: 10px; padding: 1px;}
-</style>
  
 <?= $this->endSection('conteudo'); ?>
