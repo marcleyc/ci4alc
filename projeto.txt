@@ -1,8 +1,8 @@
 # mac m1 = boottable - 6.70ms | datatable - 15ms | vuetify - 13.6ms | clientes - 65.4ms | 
-# odroid = boottable - 18.4ms | datatable - 00ms | vuetify - 41.2ms | clientes -        | 3x mais lento q m1           
-# raspbe = boottable - 49.5ms | datatable - 156ms| vuetify - 141ms  | clientes - 948.6ms| 2.7x mais lento q odroid     | 7,38x < mac
-# ryzen5 = boottable - 78.5ms | datatable - 268ms| vuetify - 220ms  | clientes - 424.3ms| 1.6x mais lento q raspberry  | 11,7x < mac
-# huawei = boottable - 111.5ms| datatable - 273ms| vuetify - 244ms  | clientes - 653.3ms| 1.4x mais lento ryzen5       | 16,6x < mac
+# odroid = boottable - 18.4ms | datatable - 00ms | vuetify - 41.2ms | clientes -        | 3.0x < mac           
+# raspbe = boottable - 49.5ms | datatable - 156ms| vuetify - 141ms  | clientes - 948.6ms| 2.7x < odroid     | 7,38x < mac
+# ryzen5 = boottable - 78.5ms | datatable - 268ms| vuetify - 220ms  | clientes - 424.3ms| 1.6x < raspberry  | 11,7x < mac
+# huawei = boottable - 111.5ms| datatable - 273ms| vuetify - 244ms  | clientes - 653.3ms| 1.4x < ryzen5     | 16,6x < mac
 
 Bootstrap-Table (os melhores)
 - https://examples.bootstrap-table.com/#options/buttons-toolbar.html
@@ -14,6 +14,7 @@ Bootstrap-Table (os melhores)
 - https://examples.bootstrap-table.com/#extensions/filter-control.html - filtro por coluna
 - https://examples.bootstrap-table.com/#extensions/multiple-sort.html - ordenarnação múltipla
 - https://examples.bootstrap-table.com/#extensions/toolbar.html - busca avançada
+- https://examples.bootstrap-table.com/#issues/4214.html - baixar a tabela em json ou xml
 
 
 <img src="<?= base_url("assets/icon/add24.png")?>" height="17" width="17" alt="">

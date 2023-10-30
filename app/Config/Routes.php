@@ -65,6 +65,7 @@ $routes->get('recibosubdel/(:num)/(:num)', 'RecibosController::recibosubdel/$1/$
 // - TRAMITANDO
 $routes->get('/processos', 'RecibosController::processos');
 $routes->get('/tramitando', 'RecibosController::tramitando');
+$routes->get('/tramitandoj', 'RecibosController::tramitandoj');  // tramitando json
 $routes->post('/tramitandou', 'RecibosController::tramitandou'); // update tramitando
 $routes->get('tramitandoet/(:num)', 'RecibosController::tramitandoet/$1'); //edit page tramitando
 
@@ -72,6 +73,7 @@ $routes->get('/tramitando1', 'RecibosController::tramitando1'); // em teste
 $routes->get('/tramitando2', 'RecibosController::tramitando2'); // em teste
 $routes->get('/tramitando3', 'RecibosController::tramitando3'); // em teste
 $routes->get('/tramitando4', 'RecibosController::tramitando4'); // em teste
+$routes->get('/tramitando5', 'RecibosController::tramitando5'); // report IRNs
 // - REPORTS
 $routes->get('recibos1', 'RecibosController::index1');
 $routes->get('recibos2', 'RecibosController::index2');

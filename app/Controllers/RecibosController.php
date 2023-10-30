@@ -211,18 +211,21 @@ class RecibosController extends Controller
         return view('recibos/processos', $data);
     }
 
-    public function tramitando()  // ------------------------ tramitando com query
+    public function tramitando()  // ------------------------ tramitando com sql
     {  
+        return view('recibos/tramitando');
+    }
+
+    public function tramitandoj()  // ----------------------- tramitando json
+    {
         $db = db_connect();          
-        $query = $db->query('SELECT recibosub.*, recibo.idc  
-        FROM recibosub
-        INNER JOIN recibo ON recibo.id = recibosub.idRec
-        WHERE  recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
-        ORDER BY recibosub.inicio DESC, recibosub.locals ASC, recibosub.servicos ASC');                 
+        $query = $db->query('SELECT recibosub.*, recibo.idc
+                             FROM recibosub
+                             INNER JOIN recibo ON recibo.id = recibosub.idRec
+                             WHERE recibosub.locals LIKE "IRN%" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
+                             ORDER BY recibosub.locals ASC, recibosub.servicos ASC, recibosub.inicio ASC ');                
         $results = $query->getResultArray();
-        $data['recibosub'] = $results;
-        //dd($data);
-        return view('recibos/tramitando', $data);
+        echo json_encode($results);
     }
 
     public function tramitandou()  // --------------------------- update tramitando
@@ -271,28 +274,24 @@ class RecibosController extends Controller
     public function tramitando1()  // ------------ tramitando nas conservatórias
     {  
         $db = db_connect();          
-        $query = $db->query('SELECT id, locals, servicos, nome, inicio, codigo, ok  
-                             FROM recibosub 
-                             WHERE locals = "Coimbra CRC" AND ok = "F" AND inicio >= "2017-01-01"
-                             OR locals = "Porto Arq.Central" AND ok = "F" AND inicio >= "2017-01-01"
-                             OR locals = "Lisboa Centrais" AND ok = "F" AND inicio >= "2017-01-01"
-                             ORDER BY locals ASC, servicos ASC, inicio DESC');                
+        $query = $db->query('SELECT recibosub.*, recibo.idc  
+        FROM recibosub
+        INNER JOIN recibo ON recibo.id = recibosub.idRec
+        WHERE  recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
+        ORDER BY recibosub.inicio DESC, recibosub.locals ASC, recibosub.servicos ASC');                 
         $results = $query->getResultArray();
         $data['recibosub'] = $results;
-        dd($data);
-        return view('recibos/tramitando', $data);
+        //dd($data);
+        return view('recibos/tramitando-bkp', $data);
     }
 
-    public function tramitando2()  // ------------ tramitando com query
+    public function tramitando2()  // ------------ report das conservatorias
     {  
-        $db = db_connect();          
-        $query = $db->query('SELECT recibo.idc, recibosub.id, recibosub.locals, recibosub.servicos, recibosub.nome, recibosub.inicio, recibosub.codigo, recibosub.sit, recibosub.ok, contatos.email  
-                             FROM recibosub
-                             INNER JOIN recibo ON recibo.id = recibosub.idRec
-                             INNER JOIN contatos ON contatos.id = recibo.idc
-                             WHERE recibosub.locals LIKE "IRN%" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
-                             ORDER BY recibosub.locals ASC, recibosub.servicos ASC, recibosub.inicio DESC');                
-        $results = $query->getResultArray();
+        $cli = new RecibosubModel();
+        $results = $cli->select('*')->orderBy('locals', 'servicos','inicio')
+                        ->like('locals', 'IRN', 'after')
+                        ->where('ok','F')->where('inicio >','2017-01-01')
+                        ->orderby('locals ASC, servicos ASC, inicio ASC')->findAll();
         $data['recibosub'] = $results;
         //dd($data);
         return view('recibos/tramitando-rep', $data);
@@ -301,15 +300,20 @@ class RecibosController extends Controller
     public function tramitando3()  // ------------ tramitando com vuetify
     {  
         $db = db_connect();          
-        $query = $db->query('SELECT recibosub.*
+        $query = $db->query('SELECT recibosub.*, recibo.idc
                              FROM recibosub
+                             INNER JOIN recibo ON recibo.id = recibosub.idRec
                              WHERE recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
                              ORDER BY recibosub.inicio DESC, recibosub.locals ASC, recibosub.servicos ASC');                
         $results = $query->getResultArray();
         $data['recibosub'] = $results;
         //dd($data);
-        #echo "<h1>olá $data</h1>";
         return view('recibos/tramitando3', $data);
+    }
+
+    public function tramitando4()  // ------------ tramitando com vuetify
+    {  
+        return view('recibos/tramitando4');
     }
 
     public function tramitandoet($id = null) // ------------------- edit page tramitando
@@ -336,16 +340,17 @@ class RecibosController extends Controller
         //dd($data);
         return view('recibos/tramitando-edt', $data);
     }
-    
-    public function tramitando4()  // ------------------------ report
-    {
+
+    public function tramitando5()  // ------------ report das conservatorias
+    {  
         $cli = new RecibosubModel();
-        $clientes = $cli->select('*')->orderBy('locals', 'servicos','inicio')
+        $results = $cli->select('*')->orderBy('locals', 'servicos','inicio')
                         ->like('locals', 'IRN', 'after')
                         ->where('ok','F')->where('inicio >','2017-01-01')
                         ->orderby('locals ASC, servicos ASC, inicio ASC')->findAll();
-        dd($clientes);
-        echo json_encode($clientes);
+        $data['recibosub'] = $results;
+        //dd($data);
+        return view('recibos/tramitando5', $data);
     }
 
     // =========== S  E  R  V  I  Ç  O  S ======================================================

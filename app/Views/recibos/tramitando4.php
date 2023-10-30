@@ -15,13 +15,12 @@
   data-url="<?= base_url('tramitandoj/');?>">
   <thead>
     <tr>
-      <th data-field="idc">Local</th>
-      <th data-field="nome">Nome</th>
-      <th data-field="servicos">Serviço</th>
       <th data-field="locals" data-width="175">Local</th>
+      <th data-field="servicos">Serviço</th>
       <th data-field="inicio" data-width="110">Início</th>
+      <th data-field="nome">Nome</th>
       <th data-field="nprocesso">nº Processo</th>
-      <th data-field="codigo" data-width="150">Senha</th>
+      <th data-field="codigo" data-width="150">Código</th>
       <th data-field="sit">Sit</th>
     </tr>
   </thead>
@@ -49,9 +48,5 @@
       return { css: {color: 'blue'}}
   }   
 </script>
-
-<style>
-  th, td {border: 1px solid grey; border-radius: 10px; padding: 1px;}
-</style>
  
 <?= $this->endSection('conteudo'); ?>
