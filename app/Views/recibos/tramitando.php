@@ -13,6 +13,7 @@
   data-search="true"
   data-search-align="left"
   data-row-style="rowStyle"
+  data-total-field="count"
   data-url="<?= base_url('tramitandoj/');?>">
   <thead>
     <tr>
@@ -24,6 +25,7 @@
       <th data-field="nprocesso">nº Processo</th>
       <th data-field="codigo" data-width="150">Senha</th>
       <th data-field="sit">Sit</th>
+      <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">@</th>
     </tr>
   </thead>
 </table>
@@ -39,6 +41,23 @@
       }
     })
   })
+</script>
+
+<script> <!-- "script do campo menu" -->
+  var $table = $('#table')
+
+  function operateFormatter(value, row, index) {
+    return [
+      '<a class="edit" href="javascript:void(0)" title="Editar">',
+      '<img src="<?= base_url("assets/icon/pencil-square.svg")?>" height="17" width="17" style="margin-right: 5px;">',
+      '</a>'
+    ].join('')
+  }
+
+  window.operateEvents = {
+    'click .edit': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('/tramitandoet/');?>"+row.id }
+  }
 </script>
 
 <script>
