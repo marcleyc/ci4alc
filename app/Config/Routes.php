@@ -79,6 +79,7 @@ $routes->get('recibos1', 'RecibosController::index1');
 $routes->get('recibos2', 'RecibosController::index2');
 $routes->add('recibos3', 'RecibosController::index3');
 $routes->add('jsonapi', 'RecibosController::jsonapi');
+$routes->get('total', 'RecibosController::total');
 
 // --------- C O N T R O L L E R   S E R V I Ç O S
 $routes->get('servicos', 'RecibosController::servicos');

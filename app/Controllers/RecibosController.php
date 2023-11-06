@@ -439,4 +439,24 @@ class RecibosController extends Controller
         return view('recibos/list2', $data);    
     }
 
+    public function total()  // --------------------------- update recibosub
+    {       
+        $xModel = new RecibosubModel();
+        $dados = $xModel->findAll();
+        dd($dados);
+        $thon = 0;
+        $tcus = 0;
+        foreach($dados as $x){ $thon += $x['honorarios']; $tcus += $x['custas'];};
+        $ttot = $thon + $tcus;
+        $datar = [
+            'tothonorarios' => $thon,
+            'totcustas'  => $tcus,
+            'total'  => $ttot
+        ];
+        $xRecibo = new RecibosModel();
+        $xRecibo->update($id, $datar);
+        return $this->response->redirect(site_url('/recibo/'.$id));
+        //return $this->response->redirect(site_url('/recibo/'.$idrec));
+    }
+
 }
