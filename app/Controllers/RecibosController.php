@@ -439,24 +439,28 @@ class RecibosController extends Controller
         return view('recibos/list2', $data);    
     }
 
-    public function total()  // --------------------------- update recibosub
+    public function total()  // ------------------ somar o total de todos os recibos
     {       
-        $xModel = new RecibosubModel();
-        $dados = $xModel->findAll();
-        dd($dados);
-        $thon = 0;
-        $tcus = 0;
-        foreach($dados as $x){ $thon += $x['honorarios']; $tcus += $x['custas'];};
-        $ttot = $thon + $tcus;
-        $datar = [
-            'tothonorarios' => $thon,
-            'totcustas'  => $tcus,
-            'total'  => $ttot
-        ];
         $xRecibo = new RecibosModel();
-        $xRecibo->update($id, $datar);
-        return $this->response->redirect(site_url('/recibo/'.$id));
-        //return $this->response->redirect(site_url('/recibo/'.$idrec));
+        $recibos = $xRecibo->findAll();
+        foreach($recibos as $x)
+        {   
+            $thon = 0;
+            $tcus = 0;
+            $idx = $x['id'];
+            $xsub = new RecibosubModel();
+            $subs = $xsub->where('idRec',$idx)->findAll();
+
+            foreach($subs as $y){ $thon += $y['honorarios']; $tcus += $y['custas'];};
+                $ttot = $thon + $tcus;
+                $datar = [
+                    'tothonorarios' => $thon,
+                    'totcustas'  => $tcus,
+                    'total'  => $ttot
+                ];
+                $xRecibo->update($idx, $datar);
+        }
+        return $this->response->redirect(site_url('/recibos/'));   
     }
 
 }
