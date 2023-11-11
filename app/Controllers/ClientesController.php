@@ -86,11 +86,12 @@ class ClientesController extends Controller
         return $this->response->redirect(site_url('/clientes'));
     }    
 
-    public function porfamilia($id = null) // ---- mostrar os clientes pel IDC
+    public function porfamilia($id = null) // ---- filtrar os clientes pel IDC
     {
         $dataModel = new ClientesModel();
-        $data['clientes'] = $dataModel->where('idc', $id)->findAll();
-        //dd($data);
-        return view('clientes/list', $data);
+        //$data['clientes'] = $dataModel->where('idc', $id)->findAll();
+        $data['clientes'] = $dataModel->findAll();
+        //var_dump($data);
+        return view('clientes/list3', $data);
     }
 }

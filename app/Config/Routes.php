@@ -46,6 +46,7 @@ $routes->get('clientese/(:num)', 'ClientesController::edit/$1'); // edit page
 $routes->post('clientesu', 'ClientesController::update'); // update
 $routes->get('clientesd/(:num)', 'ClientesController::delete/$1'); // delete cliente
 
+$routes->get('clientesf/(:num)', 'ClientesController::porfamilia/$1'); // filtra familiares
 $routes->get('clientes1', 'ClientesController::index1'); // datatable
 $routes->get('clientes2', 'ClientesController::index2'); // vuetify
 

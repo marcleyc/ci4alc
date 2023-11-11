@@ -9,12 +9,10 @@
 
 <div class=container> <center> <h3 style="color:#878787">C L I E N T E S</h3> </center>
 
-<table
-  id="table"
+<table id="table"
   data-search="true"
-  data-toggle="table"
   data-height="475"
-  data-url="<?= base_url('clientesj/');?>">
+>
   <thead>
     <tr>
       <th data-field="idc">IDC</th>
@@ -27,6 +25,12 @@
 
 <script>
   var $table = $('#table')
+  $(function() {
+    //var data = [{'idc': 0,'nome': 'Item 0','email': '$0'},{'idc': 10,'nome': 'Item 1','email': '$1'},]
+    var data = <?= json_encode($clientes) ?>;
+    $table.bootstrapTable({data: data})
+  })  
+  console.log(data); 
 
   function operateFormatter(value, row, index) {
     return [
@@ -40,7 +44,7 @@
       '<img src="<?= base_url("assets/icon/trash.svg")?>" height="17" width="17" style="margin-right: 20px;>',
       '</a>',
       '<a class="familiar" href="javascript:void(0)" title="Familiares">',
-      '<img src="<?= base_url("assets/icon/faturas.svg")?>" height="17" width="17">',
+      '<img src="<?= base_url("assets/icon/people.svg")?>" height="17" width="17" style="margin -right: 20px;>',
       '</a>',
       '<a class="fatura" href="javascript:void(0)" title="Faturas">',
       '<img src="<?= base_url("assets/icon/faturas.svg")?>" height="17" width="17">',
@@ -56,7 +60,9 @@
     'click .remove': function (e, value, row, index) 
       { window.location.href = "<?= base_url('clientesd/');?>"+row.id },
     'click .fatura': function (e, value, row, index) 
-      { window.location.href = "<?= base_url('clientesf/');?>"+row.id },  
+      { window.location.href = "<?= base_url('clientesf/');?>"+row.id },
+    'click .familiar': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('clientesf/');?>"+row.id },    
   }
   
 </script>
