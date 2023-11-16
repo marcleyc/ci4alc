@@ -34,29 +34,26 @@
       '<img src="<?= base_url("assets/icon/plus-circle.svg")?>" height="17" width="17" style="margin-right: 20px; margin-left: 15px">',
       '</a>',
       '<a class="edit" href="javascript:void(0)" title="Editar">',
-      '<img src="<?= base_url("assets/icon/pencil-square.svg")?>" height="17" width="17" style="margin-right: 20px;">',
+      '<img src="<?= base_url("assets/icon/pencil-square.svg")?>" height="17" width="17" style="margin-right: 20px">',
       '</a>',
       '<a class="remove" href="javascript:void(0)" title="Remover">',
-      '<img src="<?= base_url("assets/icon/trash.svg")?>" height="17" width="17" style="margin-right: 20px;>',
+      '<img src="<?= base_url("assets/icon/trash.svg")?>" height="17" width="17" style="margin-right: 20px">',
       '</a>',
       '<a class="familiar" href="javascript:void(0)" title="Familiares">',
-      '<img src="<?= base_url("assets/icon/faturas.svg")?>" height="17" width="17">',
+      '<img src="<?= base_url("assets/icon/people.svg")?>" height="17" width="17" style="margin-right: 20px">',
       '</a>',
       '<a class="fatura" href="javascript:void(0)" title="Faturas">',
       '<img src="<?= base_url("assets/icon/faturas.svg")?>" height="17" width="17">',
-      '</a>'
+      '</a>',
     ].join('')
   }
 
   window.operateEvents = {
-    'click .add': function (e, value, row, index) 
-      { window.location.href = "<?= base_url('clientesa/');?>"+row.idc },
-    'click .edit': function (e, value, row, index) 
-      { window.location.href = "<?= base_url('clientese/');?>"+row.id },
-    'click .remove': function (e, value, row, index) 
-      { window.location.href = "<?= base_url('clientesd/');?>"+row.id },
-    'click .fatura': function (e, value, row, index) 
-      { window.location.href = "<?= base_url('clientesf/');?>"+row.id },  
+    'click .add': function (e, value, row, index) { window.location.href = "<?= base_url('clientesa/');?>"+row.idc },
+    'click .edit': function (e, value, row, index) { window.location.href = "<?= base_url('clientese/');?>"+row.id },
+    'click .remove': function (e, value, row, index) { window.location.href = "<?= base_url('clientesd/');?>"+row.idc },
+    'click .familiar': function (e, value, row, index) { window.location.href = "<?= base_url('clientesf/');?>"+row.idc },  
+    'click .fatura': function (e, value, row, index) { window.location.href = "<?= base_url('clientesf/');?>"+row.id }
   }
   
 </script>

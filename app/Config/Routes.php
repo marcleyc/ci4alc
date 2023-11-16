@@ -46,6 +46,7 @@ $routes->get('clientese/(:num)', 'ClientesController::edit/$1'); // edit page
 $routes->post('clientesu', 'ClientesController::update'); // update
 $routes->get('clientesd/(:num)', 'ClientesController::delete/$1'); // delete cliente
 
+$routes->get('familiar/(:num)', 'ClientesController::familiar/$1'); // filtra familiares
 $routes->get('clientesf/(:num)', 'ClientesController::porfamilia/$1'); // filtra familiares
 $routes->get('clientes1', 'ClientesController::index1'); // datatable
 $routes->get('clientes2', 'ClientesController::index2'); // vuetify
@@ -111,6 +112,7 @@ $routes->add('pastas', 'Lab::pastas');
 $routes->get('boottable', 'Lab::xboottable');
 $routes->get('boottablej', 'Lab::xboottablej');
 $routes->get('boottable2', 'Lab::xboottable2');
+$routes->get('boottablef/(:num)', 'Lab::porfamilia/$1'); // filtra familiares
 
 // --------- C O N T R O L L E R   A P I
 $routes->get('contatosapi', 'Api::index');

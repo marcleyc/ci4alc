@@ -234,6 +234,13 @@ class Lab extends BaseController
         $data['cliente'] = $clientes;
         return view('lab/xboottable2', $data);    
     }
+
+    public function porfamilia($id = null) // --------------- bootstraptable filtro interno
+    {
+        $dataModel = new ClientesModel();
+        $data['clientes'] = $dataModel->where('idc', $id)->findAll();
+        return view('clientes/list3', $data);
+    }
     
 }
 
