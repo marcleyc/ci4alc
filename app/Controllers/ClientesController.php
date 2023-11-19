@@ -89,10 +89,8 @@ class ClientesController extends Controller
     public function porfamilia($id = null) // ---- filtrar os clientes bootstraptable
     {
         $dataModel = new ClientesModel();
-        $data['clientes'] = $dataModel->where('idc', $id)->findAll();
-        //$data['clientes'] = $dataModel->findAll();
-        //var_dump($data);
-        return view('clientes/list3', $data);
+        $dataid['idc'] = $id;
+        return view('clientes/list3', $dataid);
     }
 
     public function familiar($id = null) // ---- filtrar os clientes pel IDC json

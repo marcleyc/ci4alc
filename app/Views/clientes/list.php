@@ -12,14 +12,15 @@
 <table
   id="table"
   data-search="true"
+  data-search-align="left"
   data-toggle="table"
   data-height="475"
   data-url="<?= base_url('clientesj/');?>">
   <thead>
     <tr>
-      <th data-field="idc">IDC</th>
-      <th data-field="nome">Nome</th>
-      <th data-field="email">e-mail</th>
+      <th data-field="idc" data-sortable="true">IDC</th>
+      <th data-field="nome" data-sortable="true">Nome</th>
+      <th data-field="email" data-sortable="true">e-mail</th>
       <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">menu</th>
     </tr>
   </thead>
@@ -51,9 +52,9 @@
   window.operateEvents = {
     'click .add': function (e, value, row, index) { window.location.href = "<?= base_url('clientesa/');?>"+row.idc },
     'click .edit': function (e, value, row, index) { window.location.href = "<?= base_url('clientese/');?>"+row.id },
-    'click .remove': function (e, value, row, index) { window.location.href = "<?= base_url('clientesd/');?>"+row.idc },
+    'click .remove': function (e, value, row, index) { window.location.href = "<?= base_url('clientesd/');?>"+row.id },
     'click .familiar': function (e, value, row, index) { window.location.href = "<?= base_url('clientesf/');?>"+row.idc },  
-    'click .fatura': function (e, value, row, index) { window.location.href = "<?= base_url('clientesf/');?>"+row.id }
+    'click .fatura': function (e, value, row, index) { window.location.href = "<?= base_url('recibosubf/');?>"+row.idc }
   }
   
 </script>

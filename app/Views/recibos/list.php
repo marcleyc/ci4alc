@@ -1,65 +1,77 @@
-<?php echo $this->extend('main'); ?> 
-
+<?= $this->extend('main'); ?> 
 <?= $this->section('conteudo'); ?>
 
-</head>
-<body style="background-color: #F5F5F9;">
+<link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
  
-<div>
-<center>    
-<div class="container shadow-sm m-1 border border-light rounded">
-    <div class="d-flex justify-content-between mt-2">
-        <div>
-          <h1></h1>
-        </div>
-        <div><h3>R E C I B O S</h3></div>
-        <div><button class="btn btn-sm" onclick="window.location.href='<?php echo site_url('reciboadd') ?>';">
-               <img src="<?= base_url("assets/icon/add24.png") ?>" height="20" width="20">
-             </button>
-        </div>   
-	  </div>
-    
-    <?php if(isset($_SESSION['msg'])){ echo $_SESSION['msg']; } ?>
-  <div class="mt-1">
-     <table class="table table-hover table-sm" id="users-list">
-       <thead>
- <!-- id,idc, dataf, prestador, nome, fatura, tipo_pgto, obs, tothonorarios, totcustas, total, parceria -->       
-          <tr>                
-             <th>Id</th> 
-             <th>Idc</th>
-             <th>Nome</th>
-             <th>Tipo_pgto</th>
-             <th>Total</th>
-             <th></th>
-          </tr>
-       </thead>
-       <tbody>
-          <?php if($recibos): ?>
-          <?php foreach($recibos as $user): ?>
-          <tr>
-             <td><?php echo $user['id']; ?></td>
-             <td><?php echo $user['idc']; ?></td>
-             <td><?php echo $user['nome']; ?></td>
-             <td><?php echo $user['tipo_pgto']; ?></td>
-             <td><?php echo $user['total']; ?></td>
-             <td>
-              <a href="<?php echo base_url('recibo/'.$user['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/edit24.png")?>" height="17" width="17" alt=""></a>
-              <a href="<?php echo base_url('contatosd/'.$user['id']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/del24.png")?>" height="17" width="17" alt=""></a>
-              </td>
-          </tr>
-         <?php endforeach; ?>
-         <?php endif; ?>
-       </tbody>
-     </table>
-  </div>
+<center> <h3 style="color:#878787">RECIBOS</h3> </center>
+
+<div class="container">
+
+<div id="toolbar" class="">
+  <button id="button" class="btn btn-secondary mx-2"> Novo </button>
 </div>
-</center> 
+
+<table
+  class="table-sm size=7px"
+  id="table"
+  data-search="true"
+  data-search-accent-neutralise="true"
+  data-search-align="left"
+  data-toggle="table"
+  data-toolbar="#toolbar"
+  data-row-style="rowStyle"
+  data-total-field="count"
+  data-height="500"
+  data-url="<?= base_url('recibosj/');?>">
+  <thead>
+    <tr>     
+      <th data-field="id" data-sortable="true">Nº</th>
+      <th data-field="idc" data-sortable="true">IDC</th>
+      <th data-field="nome" data-sortable="true">Nome</th>
+      <th data-field="tipo_pgto" data-width="175" data-sortable="true">Parcela</th>
+      <th data-field="total" data-width="110" data-sortable="true" data-formatter="priceFormatter" data-align="right">Total</th>
+      
+      <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-align="center">@</th>
+    </tr>
+  </thead>
+</table>
 </div>
+
+<!-- https://examples.bootstrap-table.com/#options/row-style.html#view-source -->
 
 <script>
-    $(document).ready( function () {
-      $('#users-list').DataTable();
-  } );
+  $(function() {
+    $('#table').bootstrapTable({
+      formatSearch: function () {
+        return 'Search Item Price'
+      }
+    })
+  })
 </script>
 
+<script> <!-- "script do campo menu" -->
+  var $table = $('#table')
+
+  function operateFormatter(value, row, index) {
+    return [
+      '<a class="edit" href="javascript:void(0)" title="Visualizar">',
+      '<img src="<?= base_url("assets/icon/eye.svg")?>" height="17" width="17" style="margin-right: 20px">',
+      '</a>'
+    ].join('')
+  }
+  
+  window.operateEvents = {
+    'click .edit': function (e, value, row, index) { window.location.href = "<?= base_url('recibo/');?>"+row.id }
+  }
+
+  var $button = $('#button')
+    $(function() {$button.click(function () { window.location.href = "<?= site_url('/reciboadd') ?>" }, )})  
+
+  function priceFormatter(value) {
+    valor = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(value)
+    return valor;
+  }
+</script>
+ 
 <?= $this->endSection('conteudo'); ?>

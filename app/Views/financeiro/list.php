@@ -1,21 +1,20 @@
 <?php echo $this->extend('main'); ?> 
 <?= $this->section('conteudo'); ?>
 
-<link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
 <link href="<?= base_url("assets/css/bootstrap-table.min.css") ?>" rel="stylesheet">
 <script src="<?= base_url("assets/js/bootstrap-table.min.js") ?>"></script>
 
 <div class=container> <center> <h3 style="color:#878787">F I N A N C E I R O</h3> </center>
 
 <div id="toolbar">
-  <button id="button" class="btn btn-secondary"> Novo </button>
+  <button id="button" class="btn btn-secondary mx-2"> Novo </button>
 </div>
 
 <table class="table table-sm"
   id="table"
   data-search="true"
   data-search-accent-neutralise="true"
-  data-search-align="left"
+  data-search-align="center"
   data-toggle="table"
   data-toolbar="#toolbar"
   data-height="500"
@@ -30,7 +29,7 @@
       <th data-field="tipo" data-sortable="true" data-filter-control="input">Tipo</th>
       <th data-field="historico" data-sortable="true" data-filter-control="input">Historico</th>
       <th data-field="numero" data-sortable="true" data-filter-control="input">Numero</th>
-      <th data-field="valor" data-sortable="true" data-filter-control="input">Valor</th>
+      <th data-field="valor" data-sortable="true" data-filter-control="input" data-formatter="priceFormatter" data-align="right">Valor</th>
       <th data-field="cliente" data-sortable="true" data-filter-control="input">IDC</th>
       <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">menu</th>
     </tr>
@@ -56,6 +55,10 @@
       { window.location.href = "<?= base_url('financeiroe/');?>"+row.id },
     'click .remove': function (e, value, row, index) 
       { window.location.href = "<?= base_url('financeirod/');?>"+row.id }
+  }
+  function priceFormatter(value) {
+    valor = new Intl.NumberFormat('de-De', { style: 'currency', currency: 'EUR' }).format(value)
+    return valor  
   }
 </script>
 

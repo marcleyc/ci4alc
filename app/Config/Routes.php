@@ -53,6 +53,7 @@ $routes->get('clientes2', 'ClientesController::index2'); // vuetify
 
 // --------- C O N T R O L L E R   R E C I B O S
 $routes->get('recibos', 'RecibosController::index'); // list recibos
+$routes->get('recibosj', 'RecibosController::recibosj'); // list recibos json
 $routes->get('recibo/(:num)', 'RecibosController::recibo/$1'); // unique page recibo
 $routes->get('reciboadd', 'RecibosController::reciboadd'); // add page recibo
 $routes->post('recibostore', 'RecibosController::recibostore'); // store recibo
@@ -64,8 +65,13 @@ $routes->post('recibosubstore', 'RecibosController::recibosubstore'); // store r
 $routes->get('recibosube/(:num)/(:num)', 'RecibosController::recibosube/$1/$2'); //edit page recibosub
 $routes->post('recibosubedt', 'RecibosController::recibosubedt'); // update recibosub
 $routes->get('recibosubdel/(:num)/(:num)', 'RecibosController::recibosubdel/$1/$2'); // delete recibosub
-// - TRAMITANDO
+// - RECIBOSUB por familia - link na pag clientes
+$routes->get('recibosubf/(:num)', 'RecibosController::porfamilia/$1'); // filtra recibosub por familiar
+$routes->get('recibosubfj/(:num)', 'RecibosController::familiar/$1'); // json recibosub por familiar
+// - PROCESSOS
 $routes->get('/processos', 'RecibosController::processos');
+$routes->get('/processosj', 'RecibosController::processosj');
+// - TRAMITANDO
 $routes->get('/tramitando', 'RecibosController::tramitando');
 $routes->get('/tramitandoj', 'RecibosController::tramitandoj');  // tramitando json
 $routes->post('/tramitandou', 'RecibosController::tramitandou'); // update tramitando

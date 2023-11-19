@@ -17,7 +17,7 @@
   data-url="<?= base_url('tramitandoj/');?>">
   <thead>
     <tr>
-      <th data-field="idc">Local</th>
+      <th data-field="idc">IDC</th>
       <th data-field="nome">Nome</th>
       <th data-field="servicos">Serviço</th>
       <th data-field="locals" data-width="175">Local</th>

@@ -241,6 +241,19 @@ class Lab extends BaseController
         $data['clientes'] = $dataModel->where('idc', $id)->findAll();
         return view('clientes/list3', $data);
     }
+
+    public function processo()  // ------------------------- processos com query
+    {
+        $db = db_connect();          
+        $query = $db->query('SELECT recibo.idc, recibo.nome, recibosub.*, contatos.email, DATE_FORMAT(recibosub.inicio, "%Y-%m-%d") as date 
+                             FROM recibo, recibosub, contatos 
+                             WHERE recibosub.idRec = recibo.id AND recibo.idc = contatos.id AND recibosub.inicio IS NOT NULL
+                             ORDER BY recibosub.inicio DESC');                
+        $results = $query->getResultArray();
+        $data['recibosub'] = $results;
+        //dd($data);
+        return view('recibos/processos', $data);
+    }
     
 }
 

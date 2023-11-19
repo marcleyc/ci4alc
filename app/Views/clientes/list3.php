@@ -7,11 +7,14 @@
 <link href="<?= base_url("assets/css/bootstrap-table.min.css") ?>" rel="stylesheet">
 <script src="<?= base_url("assets/js/bootstrap-table.min.js") ?>"></script>
 
-<div class=container> <center> <h3 style="color:#878787">F A M I L I A R E S</h3> </center>
+<div class=container> <center> <h3 style="color:#878787">F A M I L I A R </h3> </center>
 
 <table id="table"
   data-search="true"
+  data-search-align="left"
   data-height="475"
+  data-toggle="table"
+  data-url="<?= base_url('familiar/'.$idc);?>"
 >
   <thead>
     <tr>
@@ -25,13 +28,7 @@
 
 <script>
   var $table = $('#table')
-  $(function() {
-    //var data = [{'idc': 0,'nome': 'Item 0','email': '$0'},{'idc': 10,'nome': 'Item 1','email': '$1'},]
-    var data = <?= json_encode($clientes) ?>;
-    $table.bootstrapTable({data: data})
-  })  
-  console.log(data); 
-
+  
   function operateFormatter(value, row, index) {
     return [
       '<a class="add" href="javascript:void(0)" title="Adicionar">',

@@ -1,7 +1,7 @@
 <?= $this->extend('main'); ?> 
 <?= $this->section('conteudo'); ?>
  
-<div class=container> <center> <h3 style="color:#878787">PROCESSOS</h3> </center>
+<div class=container> <center> <h3 style="color:#878787">Processos do cliente <?= $idc ?></h3> </center>
  
 <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
@@ -15,10 +15,9 @@
   data-search-align="left"
   data-row-style="rowStyle"
   data-total-field="count"
-  data-url="<?= base_url('processosj/');?>">
+  data-url="<?= base_url('recibosubfj/'.$idc);?>">
   <thead>
     <tr>
-      <th data-field="idc" data-sortable="true">IDC</th>
       <th data-field="nome" data-sortable="true">Nome</th>
       <th data-field="servicos" data-sortable="true">Serviço</th>
       <th data-field="locals" data-width="175" data-sortable="true">Local</th>

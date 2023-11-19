@@ -12,12 +12,18 @@ class RecibosController extends Controller
 {   
     public function index()  
     {  
-        $db = db_connect();          
-        $query   = $db->query("SELECT * FROM recibo ORDER BY id DESC");
-        $results = $query->getResultArray();
-        $data['recibos'] = $results;
-        #dd($data);
-        return view('recibos/list', $data);
+        #$db = db_connect();          
+        #$query   = $db->query("SELECT * FROM recibo ORDER BY id DESC");
+        #$results = $query->getResultArray();
+        #$data['recibos'] = $results;
+        return view('recibos/list');
+    }
+
+    public function recibosj()  // --------- recibos json
+    {  
+        $cli = new RecibosModel();
+        $results = $cli->select('*')->orderby('dataf DESC')->findAll();
+        echo json_encode($results);
     }
 
     public function reciboadd()  // ------------------------  add form recibosub
@@ -196,20 +202,40 @@ class RecibosController extends Controller
         return $this->response->redirect(site_url('/recibo/'.$idrec));
     }
 
-    // =========== T  R  A  M  I  T  A  N  D  O  ===============================================
-
-    public function processos()  // ------------------------- processos com query
+    public function porfamilia($id = null) // ---- filtrar recibosub por cliente
     {
-        $db = db_connect();          
-        $query = $db->query('SELECT recibo.idc, recibo.nome, recibosub.*, contatos.email, DATE_FORMAT(recibosub.inicio, "%Y-%m-%d") as date 
-                             FROM recibo, recibosub, contatos 
-                             WHERE recibosub.idRec = recibo.id AND recibo.idc = contatos.id AND recibosub.inicio IS NOT NULL
-                             ORDER BY recibosub.inicio DESC');                
-        $results = $query->getResultArray();
-        $data['recibosub'] = $results;
-        //dd($data);
-        return view('recibos/processos', $data);
+        $dataModel = new ClientesModel();
+        $dataid['idc'] = $id;
+        return view('recibos/processos-idc', $dataid);
     }
+
+    public function familiar($id = null)  // --------- filtrar os recibosub por IDC - json
+    {  
+        $cli = new RecibosubModel();
+        $results = $cli->select('recibosub.*')
+                        ->join('recibo', 'recibo.id = recibosub.idRec')
+                        ->where('recibo.idc',$id)
+                        ->orderby('inicio DESC')->findAll();
+        //$results = $query->getResultArray();
+        //dd($results);
+        echo json_encode($results);
+    }
+
+    // =========== P  R  O  C  E  S  S  O  S  ===============================================
+
+    public function processos()  // ------------------------- pág boottable processo
+    { return view('recibos/processos'); }
+
+    public function processosj()  // --------- filtrar os recibosub por IDC - json
+    {  
+        $cli = new RecibosubModel();
+        $results = $cli->select('recibosub.*, recibo.idc')
+                        ->join('recibo', 'recibo.id = recibosub.idRec')
+                        ->orderby('inicio DESC')->findAll();
+        echo json_encode($results);
+    }
+
+    // =========== T  R  A  M  I  T  A  N  D  O  ===============================================
 
     public function tramitando()  // ------------------------ tramitando com sql
     {  
