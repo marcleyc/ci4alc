@@ -18,14 +18,14 @@
 <body>
   <div class="container mt-5 rounded">
     <form method="post" id="update_user" name="update_user" action="<?= site_url('/contatosu') ?>">
-      <input type="hidden" name="id" id="id" value="<?php echo $user_obj['id']; ?>">
+      <input type="hidden" name="id" id="id" value="<?php echo $recibo['id']; ?>">
       <div class="form-group">
         <label>Name</label>
-        <input type="text" name="nome" class="form-control" value="<?php echo $user_obj['nome']; ?>">
+        <input type="text" name="nome" class="form-control" value="<?php echo $recibo['nome']; ?>">
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input type="email" name="email" class="form-control" value="<?php echo $user_obj['email']; ?>">
+        <input type="email" name="email" class="form-control" value="">
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-danger btn-block">Save Data</button>

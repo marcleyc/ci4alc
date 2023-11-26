@@ -11,33 +11,34 @@
 <body>
 
 <div class="container">
-<center><h3>Editar Recibo</h3></center>
+<center><h3>Editar Recibo</h3></center>	
+
 <form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('recibostore') ?>">  
-    <div class="col-12">
+  <div class="col-12">
 		<label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label> </br>
-	  	  
+
 		<div class="input-group input-group">
 	    <div class="input-group-text">Nome Completo</div>
-         <input list="browsers" class="form-control" name="nome" placeholder="nome" autocomplete="off" id="val" required onchange="myvalida()"/>         
+         <input list="browsers" class="form-control" name="nome" placeholder="nome" autocomplete="off" id="val" required onchange="myvalida()" value="<?= $rec['nome']; ?>"/>         
             <datalist id="browsers">
-              <?php foreach($recibos as $x): ?>
-                 <option value="<?php echo $x['nome']; ?>"></option>
+              <?php foreach($cli as $x): ?>
+                 <option value="<?= $x['nome']; ?>"><?= $x['nome']; ?></option>
               <?php endforeach; ?>      
             </datalist>             
 		</div>
 		 
 		<div class="input-group input-group mt-2">
-		   <div class="input-group-text">Data</div><input type="date" class="form-control" name="data" placeholder="data" required />
-		   <div class="input-group-text">Cód Cliente</div><input type="number" class="form-control" name="fidc" placeholder="IDC" id="fidc" value="" />
-       <div class="input-group-text">N.º Recibo</div><input type="number" class="form-control" name="frecn" placeholder="N.º Recibo" id="frecn" value=0 disabled="disabled" />
+		   <div class="input-group-text">Data</div><input type="date" class="form-control" value="<?= $rec['dataf'];?>" name="fdata" id="fdata" />
+		   <div class="input-group-text">Cód Cliente</div><input type="number" class="form-control" name="fidc" placeholder="IDC" id="fidc" value="<?= $rec['idc']; ?>" />
+       <div class="input-group-text">N.º Recibo</div><input type="number" class="form-control" name="frecn" placeholder="N.º Recibo" id="frecn" disabled="disabled" value="<?= $rec['id']; ?>"/>
 		</div>
 
 		<div class="input-group input-group mt-2">
 			<label class="input-group-text" for="inputGroupSelect01">Prestador</label>
 			<select class="form-select" name="prestador">
 			  <option selected>Andréa</option>
-          <?php foreach($prestador as $p): ?>
-            <option value="<?php echo $p['nomep']; ?>"><?php echo $p['nomep']; ?></option>
+          <?php foreach($pre as $p): ?>
+            <option value="<?= $p['nomep']; ?>"><?= $p['nomep']; ?></option>
           <?php endforeach; ?> 
             <option value="Marcley"></option>
 			</select>
@@ -56,9 +57,9 @@
 		<div class="col-12 mt-3">
 		    <button type="submit" id="submit" class="btn btn-primary" disabled="true">Enviar</button>
 		</div>
+ 
   </form>
 </div>
- 
     <h2 id="resultado"></h2>  
     
   <script>
@@ -70,9 +71,10 @@
         function myvalida(){
           var nome = document.getElementById("val").value;
           var submit = document.getElementById("submit");
-          var rec = <?php echo json_encode($rec); ?>;
-          var reci = <?php echo json_encode($recibos); ?>;
-          //console.log(rec);
+          var rec = <?= json_encode($rec); ?>;
+          var reci = <?= json_encode($rec); ?>;
+          console.log(rec);
+          console.log(reci);
 
           if (rec.data.includes(nome)) // verifica se no array reci contem a var nome
              {

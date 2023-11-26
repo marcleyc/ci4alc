@@ -17,7 +17,7 @@ Bootstrap-Table (os melhores)
 - https://examples.bootstrap-table.com/#issues/4214.html - baixar a tabela em json ou xml
 
 ( )colocar no sitema data para eliminar os arquivos físicos
-( )
+( )atualizar serviços para boottable
 
 <img src="<?= base_url("assets/icon/add24.png")?>" height="17" width="17" alt="">
 <?php echo base_url('clientesa/'.$cliente['idc']);?>

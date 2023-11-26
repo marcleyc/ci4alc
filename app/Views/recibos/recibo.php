@@ -28,7 +28,8 @@
     </div>
   </div>
   <div id="button-1" class="d-flex justify-content-end mt-2">
-    <button type="button" class="btn btn-outline-info" onclick="window.location.href="<?php echo base_url('reciboe/'.$r['id']) ?>">Edit</button>
+    <button type="button" class="btn btn-outline-info" onclick="window.location.href=<?php echo base_url('reciboe/'.$r['id']) ?>">Edit</button>
+    <button type="button" class="btn btn-outline-info" onclick="editarj('$r['id']')">Editj</button>
     <button type="button" class="btn btn-outline-danger" onclick="confirmaExclusao()" >Delete</button>
   </div>
 <?php endforeach; ?>
@@ -62,7 +63,7 @@
                 <td><?=($rec['total']);?></td>
                 <td><?=($rec['ok']);?></td>
                 <td> 
-                    <a href="<?php echo base_url('recibosube/'.$rec['id'].'/'.$recibo[0]['idc']) ?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/edit24.png")?>" height="17" width="17" alt=""></a>
+                    <a href="<?php echo base_url('recibosube/'.$rec['id']) ?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/edit24.png")?>" height="17" width="17" alt=""></a>
                     <a href="<?php echo base_url('recibosubdel/'.$rec['id'].'/'.$rec['idRec']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/del24.png")?>" height="17" width="17" alt=""></a>
                 </td>
               </tr>
@@ -94,7 +95,13 @@
         }
         else
         { alert("Você desistiu de excluir o item " + itemSelecionado + " da lista!"); }
-    }
+  }
+
+  function editarj(x){
+    var id = x;
+    console.log(id);
+    window.location.href='<?php echo base_url('reciboe/')."300" ?>';
+  }
 </script>
 
 <style> 

@@ -5,7 +5,6 @@ use App\Models\ClientesModel;
 use App\Models\RecibosubModel;
 use App\Models\ServicosModel;
 use App\Models\ReclocalModel;
-use App\Models\PrestadorModel;
 use CodeIgniter\Controller;
 use CodeIgniter\Database\Query;
 
@@ -65,7 +64,6 @@ class RecibosController extends Controller
             'nome' => $this->request->getVar('nome'),
             'dataf' => $this->request->getVar('data'),
             'idc'  => $this->request->getVar('fidc'),
-            'prestador'  => $this->request->getVar('fprestador'),
             'tipo_pgto'  => $this->request->getVar('fparcela'),
             'parceria'  => $this->request->getVar('fparceria'),
             'obs'  => $this->request->getVar('fobs'),               
@@ -76,21 +74,11 @@ class RecibosController extends Controller
         return $this->response->redirect(site_url('/recibo/'.$novoid));
     }
 
-    public function reciboe($id = null) // ---------------- edit page recibo
+    public function reciboedit($id = null) // ---------------- edit page recibo
     {
-        $xModel = new RecibosModel();
-        $dados = $xModel->where('id', $id)->first();
-        $data['rec'] = $dados; 
-        $idc = $dados['idc'];
-        
-        $xModel2 = new ClientesModel();
-        $data['cli'] = $xModel2->where('idc', $idc)->findAll();
-        
-        $xModel3 = new PrestadorModel();
-        $data['pre'] = $xModel3->findAll();
-
-        //dd($data);
-        return view('recibos/recibo-edt', $data);
+        $xModel = new ContatosModel();
+        $data['recibo'] = $xModel->where('id', $id)->first();
+        return view('recibos/edit', $data);
     }
 
     // =========== R  E  C  I  B  O  S  U  B ======================================================
@@ -140,34 +128,18 @@ class RecibosController extends Controller
         return $this->response->redirect(site_url('/recibo/'.$id));
     }
 
-    public function recibosube($id = null) // ------------------- edit page recibosub
+    public function recibosube($id = null, $idc = null) // ------------------- edit page recibosub
     {
-        {
-            $xModel = new RecibosubModel();
-            $dados = $xModel->where('id', $id)->first();
-            $data['recibosub'] = $dados;
-            $idRec = $dados['idRec'];
-            
-            $xRecibo = new RecibosModel();
-            $recibo = $xRecibo->where('id', $idRec)->first();
-            $data['recibo'] = $recibo;
-            $idc = $recibo['idc'];
-    
-            $xModel2 = new ClientesModel();
-            $data['clientes'] = $xModel2->where('idc', $idc)->findAll();
-            $data['clientess'] = $xModel2->where('idc', $idc)->select('nome')->findAll();
-            
-            $xModel3 = new ServicosModel();
-            $data['servicos'] = $xModel3->findAll();
-    
-            $xModel4 = new ReclocalModel();
-            $data['local'] = $xModel4->findAll();
-            //dd($data);
-            return view('recibos/recibosub-edt', $data);
-        }
+        $xModel = new RecibosubModel();
+        $data['recibosub'] = $xModel->where('id', $id)->first();
+        $xModel2 = new ClientesModel();
+        $data['clientes'] = $xModel2->where('idc', $idc)->findAll();
+        $xModel3 = new ServicosModel();
+        $data['servico'] = $xModel3->findAll();
+        return view('recibos/recibosub-edt', $data);
     }    
 
-    public function recibosubu()  // --------------------------- update recibosub
+    public function recibosubedt()  // --------------------------- update recibosub
     {       
         $xModel = new RecibosubModel();
         $data = [
@@ -205,7 +177,7 @@ class RecibosController extends Controller
         ];
         $xRecibo = new RecibosModel();
         $xRecibo->update($id, $datar);
-        return $this->response->redirect(site_url('recibo/'.$id));
+        return $this->response->redirect(site_url('/recibo/'.$id));
         //return $this->response->redirect(site_url('/recibo/'.$idrec));
     }
  

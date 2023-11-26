@@ -12,6 +12,7 @@
   id="table"
   data-search="true"
   data-search-align="left"
+  data-search-accent-neutralise="true"
   data-row-style="rowStyle"
   data-total-field="count"
   data-url="<?= base_url('tramitandoj/');?>">

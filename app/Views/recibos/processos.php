@@ -13,6 +13,7 @@
   data-search="true"
   data-toggle="table"
   data-search-align="left"
+  data-search-accent-neutralise="true"
   data-row-style="rowStyle"
   data-total-field="count"
   data-url="<?= base_url('processosj/');?>">

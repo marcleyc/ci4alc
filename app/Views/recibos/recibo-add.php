@@ -34,7 +34,7 @@
 
 		<div class="input-group input-group mt-2">
 			<label class="input-group-text" for="inputGroupSelect01">Prestador</label>
-			<select class="form-select" name="prestador">
+			<select class="form-select" name="fprestador">
 			  <option selected>Andréa</option>
           <?php foreach($prestador as $p): ?>
             <option value="<?php echo $p['nomep']; ?>"><?php echo $p['nomep']; ?></option>

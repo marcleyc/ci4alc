@@ -58,12 +58,12 @@ $routes->get('recibo/(:num)', 'RecibosController::recibo/$1'); // unique page re
 $routes->get('reciboadd', 'RecibosController::reciboadd'); // add page recibo
 $routes->post('recibostore', 'RecibosController::recibostore'); // store recibo
 $routes->get('reciboe/(:num)', 'RecibosController::reciboe/$1'); //edit page recibo
-$routes->post('reciboedt', 'RecibosController::reciboedt'); // update recibo
+$routes->post('recibou', 'RecibosController::recibou'); // update recibo
 // - RECIBOSUB
 $routes->get('recibosub/(:num)/(:num)', 'RecibosController::recibosub/$1/$2'); // add page recibosub
 $routes->post('recibosubstore', 'RecibosController::recibosubstore'); // store recibosub
-$routes->get('recibosube/(:num)/(:num)', 'RecibosController::recibosube/$1/$2'); //edit page recibosub
-$routes->post('recibosubedt', 'RecibosController::recibosubedt'); // update recibosub
+$routes->get('recibosube/(:num)', 'RecibosController::recibosube/$1'); //edit page recibosub
+$routes->post('recibosubu', 'RecibosController::recibosubu'); // update recibosub
 $routes->get('recibosubdel/(:num)/(:num)', 'RecibosController::recibosubdel/$1/$2'); // delete recibosub
 // - RECIBOSUB por familia - link na pag clientes
 $routes->get('recibosubf/(:num)', 'RecibosController::porfamilia/$1'); // filtra recibosub por familiar

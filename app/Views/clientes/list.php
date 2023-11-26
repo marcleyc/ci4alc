@@ -13,6 +13,7 @@
   id="table"
   data-search="true"
   data-search-align="left"
+  data-search-accent-neutralise="true"
   data-toggle="table"
   data-height="475"
   data-url="<?= base_url('clientesj/');?>">
