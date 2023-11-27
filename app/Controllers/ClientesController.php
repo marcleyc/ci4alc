@@ -5,7 +5,6 @@ use CodeIgniter\Controller;
 
 class ClientesController extends Controller
 {
-    // show data list
     public function index() // ---------------------------- page listar clientes
     {
         return view('clientes/list');

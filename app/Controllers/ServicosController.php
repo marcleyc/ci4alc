@@ -1,55 +1,71 @@
 <?php 
 namespace App\Controllers;
-use App\Models\ClientesModel;
 use CodeIgniter\Controller;
+use App\Models\ServicosModel;
 
-class ClientesController extends Controller
+class ServicosController extends Controller
 {
-    // show users list
-    public function index(){
-        //echo "<h1>olá</h1>";
-        $cli = new ClientesModel();
-        $data['clientes'] = $cli->orderBy('idc', 'nome')->findAll();
-        return view('clientes/list', $data);
-        //return dd($data);
+    public function index() // ---------------------------- list page
+    {
+        return view('servicos/list');
     }
-    // add user form
-        public function adicionar(){
-        return view('clientes/add');
+
+    public function servicosj() // ------------------------ list json
+    {
+        $obj = new ServicosModel();
+        $Servicos = $obj->select('id,descricao,honorarios,emolumentos,total,obs')->orderBy('descricao', 'ASC')->findAll();
+        echo json_encode($Servicos);
+    }
+
+    public function create($id = null)  // ------------- form add
+    {
+        //$data = [ 'idc' => $id ];
+        $data['idc'] = $id;
+        //dd($data);
+        //$data = $id;
+        return view('clientes/add', $data);
     }
  
-    // insert data
-    public function store() {
-        $userModel = new UserModel();
+    public function store() // ----------------------- store data 
+    {
+        $xModel = new ServicosModel(); //descricao,honorarios,emolumentos,total,obs
         $data = [
-            'name' => $this->request->getVar('name'),
-            'email'  => $this->request->getVar('email'),
+            'descricao' => $this->request->getVar('fdescricao'),
+            'honorarios' => $this->request->getVar('fhonorarios'),
+            'emolumentos'  => $this->request->getVar('femolumentos'),
+            'total'  => $this->request->getVar('ftotal'),
+            'obs'  => $this->request->getVar('fobs'),
         ];
-        $userModel->insert($data);
-        return $this->response->redirect(site_url('/users-list'));
+        //dd($data);
+        $xModel->insert($data);
+        return $this->response->redirect(site_url('/servicos'));
     }
-    // show single user
-    public function singleUser($id = null){
-        $userModel = new UserModel();
-        $data['user_obj'] = $userModel->where('id', $id)->first();
-        return view('edit_user', $data);
+    
+    public function edit($id = null) // ------------- edit page
+    {
+        $dataModel = new ClientesModel();
+        $data['resp'] = $dataModel->where('id', $id)->first();
+        //dd($data);
+        return view('clientes/edit', $data);
     }
-    // update user data
-    public function update(){
-        $userModel = new UserModel();
+
+    public function update() // --------------------- update data
+    {
+        $userModel = new ClientesModel();
         $id = $this->request->getVar('id');
         $data = [
             'name' => $this->request->getVar('name'),
             'email'  => $this->request->getVar('email'),
         ];
         $userModel->update($id, $data);
-        return $this->response->redirect(site_url('/users-list'));
+        return $this->response->redirect(site_url('/clientes'));
     }
  
-    // delete user
-    public function delete($id = null){
-        $userModel = new UserModel();
+    public function delete($id = null) // ------------ delete data
+    {
+        $userModel = new ClientesModel();
         $data['user'] = $userModel->where('id', $id)->delete($id);
-        return $this->response->redirect(site_url('/users-list'));
+        return $this->response->redirect(site_url('/clientes'));
     }    
+ 
 }

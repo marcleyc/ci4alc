@@ -90,7 +90,13 @@ $routes->add('jsonapi', 'RecibosController::jsonapi');
 $routes->get('total', 'RecibosController::total');
 
 // --------- C O N T R O L L E R   S E R V I Ç O S
-$routes->get('servicos', 'RecibosController::servicos');
+$routes->get('servicos', 'ServicosController::index'); // list clientes
+$routes->get('servicosj', 'ServicosController::servicosj'); // list clientes json
+$routes->get('cservicosa/(:num)', 'ServicosController::create/$1'); // unique 
+$routes->post('servicoss', 'ServicosController::store'); // store 
+$routes->get('servicose/(:num)', 'ServicosController::edit/$1'); // edit page
+$routes->post('servicosu', 'ServicosController::update'); // update
+$routes->get('servicosd/(:num)', 'ServicosController::delete/$1'); // delete cliente
 
 // --------- C O N T R O L L E R   F I N A N C E I R O
 $routes->get('financeiro', 'FinanceiroController::index');                 //financeiro list
