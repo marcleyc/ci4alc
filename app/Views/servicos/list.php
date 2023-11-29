@@ -10,7 +10,7 @@
 
 <div id="toolbar" class="px-2">
   <button id="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTable"> Novo </button>
-  <button id="button2" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTableE"> Edit </button>
+  <button id="button2" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTable2"> Edit </button>
 </div>
 
 <table
@@ -46,7 +46,7 @@
       </div>
 
     <!-- C O N T E U D O -->
-    <form class="row row-cols-lg-auto g-3 align-items-center mt-3 needs-validation m-2" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('servicoss') ?>">  
+    <form class="row row-cols-lg-auto g-3 align-items-center mt-3 needs-validation m-2" novalidate method="post" id="add" name="add_create" action="<?= site_url('servicoss') ?>">  
     <div class="col-12">
 	  	  
 		<div class="input-group input-group">
@@ -94,9 +94,9 @@
 
 <!-- -------------------M O D A L  A D D  E N D-------------------------------- -->  
 
-<!-- -------------------M O D A L  E D I T-------------------------------- -->
+<!-- -------------------M O D A L  E D I T------------------------------------------------------------ -->
 
-<div id="modalTableE" class="modal fade" tabindex="-1" role="dialog">
+<div id="modalTable2" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -105,23 +105,23 @@
       </div>
 
     <!-- C O N T E U D O -->
-    <form class="row row-cols-lg-auto g-3 align-items-center mt-3 needs-validation m-2" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('servicoss') ?>">  
+    <form class="row row-cols-lg-auto g-3 align-items-center mt-3 needs-validation m-2" novalidate method="post" id="edit" name="add_create" action="<?= site_url('servicoss') ?>">  
     <div class="col-12">
 	  	  
 		<div class="input-group input-group">
-	       <div class="input-group-text">Descrição</div> <input type="text" class="form-control" name="fdescricao" required />
+	       <div class="input-group-text">Descrição</div> <input type="text" class="form-control" name="fdescricaoe" required />
 		</div>
 		 
 		<div class="input-group input-group mt-2">
-		   <div class="input-group-text">Honorários</div> <input type="number" class="form-control" name="fhonorarios" id="fhonorarios" onchange="somar()" required />
+		   <div class="input-group-text">Honorários</div> <input type="number" class="form-control" name="fhonorariose" id="fhonorariose" onchange="somar()" required />
 		</div>
 
     <div class="input-group input-group mt-2">
-		   <div class="input-group-text">Emolumentos</div> <input type="number" class="form-control" name="femolumentos" id="femolumentos" onchange="somar()" required />
+		   <div class="input-group-text">Emolumentos</div> <input type="number" class="form-control" name="femolumentose" id="femolumentose" onchange="somar()" required />
 		</div>
 
     <div class="input-group input-group mt-2">
-		   <div class="input-group-text">Total</div> <input type="number" class="form-control" name="ftotal" id="ftotal" required />
+		   <div class="input-group-text">Total</div> <input type="number" class="form-control" name="ftotale" id="ftotale" required />
 		</div>
 
 		<div class="input-group input-group mt-2">
@@ -133,7 +133,6 @@
 			</select>
 		</div>
 
-    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
   </form>
   <!-- F I M   D O   C O N T E U D O -->
 
@@ -189,6 +188,14 @@
     { return { classes: classes[index / 2]}}
       return { css: {color: 'blue'}}
   }   
+</script>
+
+<script>
+  function mostrar_modal2(){
+    let el = document.getElementById('modal02');
+    let minhaModa2 = new bootstrap.Modal(el);
+    minhaModa2.show();
+}
 </script>
 
  

@@ -82,6 +82,7 @@ $routes->get('/tramitando2', 'RecibosController::tramitando2'); // em teste
 $routes->get('/tramitando3', 'RecibosController::tramitando3'); // em teste
 $routes->get('/tramitando4', 'RecibosController::tramitando4'); // em teste
 $routes->get('/tramitando5', 'RecibosController::tramitando5'); // report IRNs
+$routes->get('/tramitando8', 'RecibosController::tramitando8'); // report por serviço
 // - REPORTS
 $routes->get('recibos1', 'RecibosController::index1');
 $routes->get('recibos2', 'RecibosController::index2');

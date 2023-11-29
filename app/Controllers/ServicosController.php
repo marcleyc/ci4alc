@@ -43,7 +43,7 @@ class ServicosController extends Controller
     
     public function edit($id = null) // ------------- edit page
     {
-        $dataModel = new ClientesModel();
+        $dataModel = new ServicosModel();
         $data['resp'] = $dataModel->where('id', $id)->first();
         //dd($data);
         return view('clientes/edit', $data);
@@ -51,7 +51,7 @@ class ServicosController extends Controller
 
     public function update() // --------------------- update data
     {
-        $userModel = new ClientesModel();
+        $userModel = new ServicosModel();
         $id = $this->request->getVar('id');
         $data = [
             'name' => $this->request->getVar('name'),
@@ -63,9 +63,9 @@ class ServicosController extends Controller
  
     public function delete($id = null) // ------------ delete data
     {
-        $userModel = new ClientesModel();
-        $data['user'] = $userModel->where('id', $id)->delete($id);
-        return $this->response->redirect(site_url('/clientes'));
+        $xModel = new ServicosModel();
+        $data['user'] = $xModel->where('id', $id)->delete($id);
+        return $this->response->redirect(site_url('/servicos'));
     }    
  
 }

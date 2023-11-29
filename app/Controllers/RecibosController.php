@@ -277,7 +277,7 @@ class RecibosController extends Controller
                              FROM recibosub
                              INNER JOIN recibo ON recibo.id = recibosub.idRec
                              WHERE recibosub.locals LIKE "IRN%" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
-                             ORDER BY recibosub.locals ASC, recibosub.servicos ASC, recibosub.inicio ASC ');                
+                             ORDER BY recibosub.locals ASC, recibosub.servicos ASC, recibosub.inicio DESC ');                
         $results = $query->getResultArray();
         echo json_encode($results);
     }
@@ -367,7 +367,7 @@ class RecibosController extends Controller
     public function tramitando2()  // ------------ report das conservatorias
     {  
         $cli = new RecibosubModel();
-        $results = $cli->select('*')->orderBy('locals', 'servicos','inicio')
+        $results = $cli->select('*')
                         ->like('locals', 'IRN', 'after')
                         ->where('ok','F')->where('inicio >','2017-01-01')
                         ->orderby('locals ASC, servicos ASC, inicio ASC')->findAll();
@@ -405,6 +405,18 @@ class RecibosController extends Controller
         $data['recibosub'] = $results;
         //dd($data);
         return view('recibos/tramitando7', $data);
+    }
+
+    public function tramitando8()  // ------------ report por serviços
+    {  
+        $cli = new RecibosubModel();
+        $results = $cli->select('*')
+                        ->like('locals', 'IRN', 'after')
+                        ->where('ok','F')->where('inicio >','2017-01-01')
+                        ->orderby('servicos ASC, inicio ASC, locals ASC')->findAll();
+        $data['recibosub'] = $results;
+        //dd($data);
+        return view('recibos/tramitando-rep', $data);
     }
 
     // =========== S  E  R  V  I  Ç  O  S ======================================================
