@@ -9,7 +9,7 @@
 <div class="container">
 
 <div id="toolbar" class="px-2">
-  <button id="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTable"> Novo </button>
+  <button id="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTable"> Novo </button>
   <button id="button2" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTable2"> Edit </button>
 </div>
 
@@ -35,7 +35,7 @@
 </table>
 </div>
 
-<!-- -------------------M O D A L  A D D-------------------------------- -->
+<!-- -------------------M O D A L  A D D---------------------------------------------------------------- -->
 
 <div id="modalTable" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -105,7 +105,7 @@
       </div>
 
     <!-- C O N T E U D O -->
-    <form class="row row-cols-lg-auto g-3 align-items-center mt-3 needs-validation m-2" novalidate method="post" id="edit" name="add_create" action="<?= site_url('servicoss') ?>">  
+    <form class="row row-cols-lg-auto g-3 align-items-center mt-3 needs-validation m-2" novalidate method="post" id="medit" name="medit" action="<?= site_url('servicoss') ?>">  
     <div class="col-12">
 	  	  
 		<div class="input-group input-group">

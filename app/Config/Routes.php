@@ -24,7 +24,8 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
-$routes->get('/', 'Home::index');
+$routes->get('/', 'ClientesController::index');
+$routes->get('cadonline', 'Home::index');  //cadastro online de clientes
 // --------- C O N T R O L L E R   C O N T A T O S
 $routes->get('contatos', 'ContatosController::index'); // list
 $routes->get('contatosj', 'ContatosController::contatosj'); // list json
