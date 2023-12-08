@@ -24,6 +24,7 @@
       <th data-field="servicos" data-sortable="true">Serviço</th>
       <th data-field="locals" data-width="175" data-sortable="true">Local</th>
       <th data-field="inicio" data-width="110" data-sortable="true">Início</th>
+      <th data-field="mes" data-sortable="true">Mês</th>
       <th data-field="nprocesso">nº Processo</th>
       <th data-field="periodicidade" data-sortable="true">Tipo</th>
       
@@ -66,7 +67,7 @@
   function rowStyle(row, index) {
     var classes = ['bg-blue','bg-green','bg-orange','bg-yellow','bg-red']
 
-    if (row.periodicidade > 1 ) 
+    if (row.periodicidade == "A" ) 
     { return { classes: classes[index / 2]}}
       return { css: {color: 'blue'}}
   }   

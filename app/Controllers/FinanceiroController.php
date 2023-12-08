@@ -97,13 +97,13 @@ class FinanceiroController extends BaseController
     public function areceberj()  // ----------------------- a receber json
     {
         $db = db_connect();          
-        $query = $db->query('SELECT recibosub.*, recibo.idc
+        $query = $db->query('SELECT recibosub.*, recibo.idc, MONTH(inicio) AS mes
                              FROM recibosub
                              INNER JOIN recibo ON recibo.id = recibosub.idRec
                              WHERE recibosub.periodicidade <> "N" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
-                             ORDER BY recibosub.inicio DESC ');                
+                             ORDER BY mes ASC ');                
         $results = $query->getResultArray();
-        //dd(json_encode($results));
+        //dd($results);
         echo json_encode($results);
     }
 
