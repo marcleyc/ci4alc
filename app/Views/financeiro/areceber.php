@@ -1,7 +1,7 @@
 <?= $this->extend('main'); ?> 
 <?= $this->section('conteudo'); ?>
  
-<div class=container> <center> <h3 style="color:#878787">Processos tramitando nas conservatórias</h3> </center>
+<div class=container> <center> <h3 style="color:#878787">A RECEBER</h3> </center>
  
 <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
@@ -11,11 +11,12 @@
   class="table-sm size=7px"
   id="table"
   data-search="true"
+  data-toggle="table"
   data-search-align="left"
   data-search-accent-neutralise="true"
- 
-  
-  data-url="<?= base_url('tramitandoj/');?>">
+  data-row-style="rowStyle"
+  data-total-field="count"
+  data-url="<?= base_url('financeiroarj/');?>">
   <thead>
     <tr>
       <th data-field="idc" data-sortable="true">IDC</th>
@@ -24,8 +25,8 @@
       <th data-field="locals" data-width="175" data-sortable="true">Local</th>
       <th data-field="inicio" data-width="110" data-sortable="true">Início</th>
       <th data-field="nprocesso">nº Processo</th>
-      <th data-field="codigo" data-width="150">Senha</th>
-      <th data-field="sit" data-sortable="true">Sit</th>
+      <th data-field="periodicidade" data-sortable="true">Tipo</th>
+      
       <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">@</th>
     </tr>
   </thead>
@@ -65,7 +66,7 @@
   function rowStyle(row, index) {
     var classes = ['bg-blue','bg-green','bg-orange','bg-yellow','bg-red']
 
-    if (row.sit <= 3 ) 
+    if (row.periodicidade > 1 ) 
     { return { classes: classes[index / 2]}}
       return { css: {color: 'blue'}}
   }   

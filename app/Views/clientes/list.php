@@ -16,6 +16,7 @@
   data-search-accent-neutralise="true"
   data-toggle="table"
   data-height="475"
+  data-virtual-scroll="true"
   data-url="<?= base_url('clientesj/');?>">
   <thead>
     <tr>

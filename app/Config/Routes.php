@@ -108,6 +108,8 @@ $routes->post('financeiros', 'FinanceiroController::store');               //sub
 $routes->get('financeiroe/(:num)', 'FinanceiroController::singleUser/$1'); //edit
 $routes->post('financeirou', 'FinanceiroController::update');              //update
 $routes->get('financeirod/(:num)', 'FinanceiroController::delete/$1');     //delete
+$routes->get('financeiroar', 'FinanceiroController::areceber');
+$routes->get('financeiroarj', 'FinanceiroController::areceberj');
 
 // --------- C O N T R O L L E R   L A B 
 $routes->get('lab', 'Lab::index');

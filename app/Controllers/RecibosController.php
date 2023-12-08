@@ -277,7 +277,7 @@ class RecibosController extends Controller
                              FROM recibosub
                              INNER JOIN recibo ON recibo.id = recibosub.idRec
                              WHERE recibosub.locals LIKE "IRN%" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
-                             ORDER BY recibosub.locals ASC, recibosub.servicos ASC, recibosub.inicio DESC ');                
+                             ORDER BY recibosub.inicio DESC ');                
         $results = $query->getResultArray();
         echo json_encode($results);
     }

@@ -89,6 +89,24 @@ class FinanceiroController extends BaseController
         return $this->response->redirect(site_url('/financeiro'));
     }
     
+    public function areceber()  // ------------------------ page a receber
+    {
+        return view('financeiro/areceber');
+    }
+
+    public function areceberj()  // ----------------------- a receber json
+    {
+        $db = db_connect();          
+        $query = $db->query('SELECT recibosub.*, recibo.idc
+                             FROM recibosub
+                             INNER JOIN recibo ON recibo.id = recibosub.idRec
+                             WHERE recibosub.periodicidade <> "N" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
+                             ORDER BY recibosub.inicio DESC ');                
+        $results = $query->getResultArray();
+        //dd(json_encode($results));
+        echo json_encode($results);
+    }
+
     public function test()
     {
         return view('cliente_cadastro');

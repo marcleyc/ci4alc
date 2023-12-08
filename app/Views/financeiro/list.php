@@ -20,6 +20,7 @@
   data-height="500"
   data-advanced-search="true"
   data-id-table="advancedTable"
+  data-virtual-scroll="true"
   data-url="<?= base_url('financeiroj/');?>">
   <thead>
     <tr>
