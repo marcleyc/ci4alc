@@ -9,10 +9,7 @@ function calcularParcelas($dataInicial, $numeroParcelas, $intervaloMeses) {
     $periodo = new DatePeriod($dataAtual, new DateInterval("P{$intervaloMeses}M"), $numeroParcelas - 1);
     
     // Armazena as datas no array
-    foreach ($periodo as $dataParcela) {
-        $datasParcelas[] = $dataParcela->format('Y-m-d');
-    }
-    
+    foreach ($periodo as $dataParcela) {$datasParcelas[] = $dataParcela->format('Y-m-d');}
     return $datasParcelas;
 }
 

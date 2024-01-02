@@ -667,21 +667,20 @@ class RecibosController extends Controller
             $par = $hon / $tip;
             $mes = 30;
             $idc = $recibo['idc'];
-            for ($i = 1; $i <= 2; $i++)  //https://www.devmedia.com.br/manipulando-datas-com-php/32966
-            {
-                $datav = new \DateTime($dataf);
-                $datav->modify('+1 month');
-                dd($datav);
-                //------------
-                //$data = date("Y/m/d");
-                //$datav = explode("/", $dataf);
-                //list($ano, $mes, $dia) = $datav;
-                //$datav = "$ano/$mes/$dia";
-                //dd($datav);
-                echo $data = ['idRec' => $idrec, 'venct' => $datav, 'valor' => $i];
-                //dd($dataf);
-                //$xRecibo->insert($data);
-            } dd($data);
+            
+            function calcularParcelas($dataInicial, $numeroParcelas, $intervaloMeses) {
+                $datasParcelas = [];
+                
+                // Cria um objeto DateTime a partir da data inicial
+                $dataAtual = new DateTime($dataInicial);
+                
+                // Calcula as datas das parcelas usando DatePeriod
+                $periodo = new DatePeriod($dataAtual, new DateInterval("P{$intervaloMeses}M"), $numeroParcelas - 1);
+                
+                // Armazena as datas no array
+                foreach ($periodo as $dataParcela) {$datasParcelas[] = $dataParcela->format('Y-m-d');}
+                return $datasParcelas;
+            }
 
             $data2 = ['idRec' => $idrec, 'venct' => $dataf, 'valor' => $emo,];
             $xRecibo->insert($data2);
@@ -692,5 +691,8 @@ class RecibosController extends Controller
     //$datav = new \DateTime($dataf);
     //$datav->modify('+1 month');
     //dd($datav);
+    //$data = ['idRec' => $idrec, 'venct' => $datav, 'valor' => $i];s
+    //$xRecibo->insert($data);
+    //for ($i = 1; $i <= $par; $i++) {}
 
 }
