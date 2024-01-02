@@ -40,13 +40,17 @@ class FinanceiroController extends BaseController
     public function store()
     {
         $userModel = new FinanceiroModel();
+        $tipo = $this->request->getVar('tipo');
+        $valor = $this->request->getVar('valor');
+        $lista = array('recebimento','entrada');
+        if (in_array($tipo, $lista)) {$valorn = $valor;} else {$valorn = $valor * -1;}
         $data = [
             'dataf' => $this->request->getVar('dataf'),
             'banco' => $this->request->getVar('banco'),
-            'tipo' => $this->request->getVar('tipo'),
+            'tipo' => $tipo, //$this->request->getVar('tipo'),
             'historico' => $this->request->getVar('historico'),
             'numero' => $this->request->getVar('numero'),
-            'valor' => $this->request->getVar('valor'),
+            'valor' => $valorn, //$this->request->getVar('valor'),
             'cliente' => $this->request->getVar('idc'),
             'obs' => $this->request->getVar('obs')           
         ];
@@ -67,13 +71,17 @@ class FinanceiroController extends BaseController
     {
         $userModel = new FinanceiroModel();
         $id = $this->request->getVar('id');
+        $tipo = $this->request->getVar('tipo');
+        $valor = $this->request->getVar('valor');
+        $lista = array('recebimento','entrada');
+        if (in_array($tipo, $lista)) {$valorn = $valor;} else {$valorn = $valor * -1;}
         $data = [
             'dataf' => $this->request->getVar('dataf'),
             'banco' => $this->request->getVar('banco'),
-            'tipo' => $this->request->getVar('tipo'),
+            'tipo' => $tipo,
             'historico' => $this->request->getVar('historico'),
             'numero' => $this->request->getVar('numero'),
-            'valor' => $this->request->getVar('valor'),
+            'valor' => $valorn,
             'cliente' => $this->request->getVar('idc'),
             'obs' => $this->request->getVar('obs') 
         ];

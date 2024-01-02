@@ -3,6 +3,7 @@ namespace App\Controllers;
 use App\Models\RecibosModel;
 use App\Models\ClientesModel;
 use App\Models\RecibosubModel;
+use App\Models\RecibopgtModel;
 use App\Models\ServicosModel;
 use App\Models\ReclocalModel;
 use App\Models\PrestadorModel;
@@ -49,11 +50,14 @@ class RecibosController extends Controller
         $db = db_connect();          
         $query = $db->query("SELECT * FROM recibo WHERE id = $id ORDER BY id DESC LIMIT 1");
         $query2 = $db->query("SELECT * FROM recibosub WHERE idRec = $id ORDER BY id ASC");
+        $query3 = $db->query("SELECT * FROM recibopgt WHERE idRec = $id ORDER BY id ASC");
         $results = $query->getResultArray();
         $results2 = $query2->getResultArray();
+        $results3 = $query3->getResultArray();
         $data['recibo'] = $results;
         $data['recibosub'] = $results2;
-        //dd($data);
+        $data['recibopgt'] = $results3;
+        //dd($data); //idRec:176
         return view('recibos/recibo', $data);
         //$results = $query->getResultArray();
     }
@@ -528,5 +532,165 @@ class RecibosController extends Controller
         }
         return $this->response->redirect(site_url('/recibos/'));   
     }
+
+    // =========== R  E  C  I  B  O  P  G  T ======================================================
+
+    public function recibopgt($idc = null, $id = null)  // -----------------form inclusão recibosub
+    {
+        $db = db_connect();          
+        $query = $db->query("SELECT * FROM clientes WHERE idc = $idc ORDER BY nome ASC");
+        $results = $query->getResultArray();
+        $data['cliente'] = $results;
+        $query2 = $db->query("SELECT * FROM servicos ORDER BY descricao ASC");
+        $results2 = $query2->getResultArray();
+        $data['servico'] = $results2;
+        $data['recibo'] = $id;
+        //dd($data);
+        return view('recibos/recibosub-add', $data);
+    }
+
+    public function recibopgtstore()  // ------------------ inserir recibopgt
+    {
+        $xModel = new RecibopgtModel();
+        $data = [
+            'nome' => $this->request->getVar('nome'),
+            'servicos' => $this->request->getVar('fservico'),
+            'locals'  => $this->request->getVar('flocal'),
+            'honorarios'  => $this->request->getVar('fhonorarios'),
+            'custas'  => $this->request->getVar('fcustas'),
+            'total'  => $this->request->getVar('fhonorarios')+$this->request->getVar('fcustas'),
+            'idRec'  => $this->request->getVar('fidrec'),               
+        ];
+        
+        $xModel->insert($data);
+        //$novoid = $xModel->insertID; // id da última inserção no contatos
+        $id = $this->request->getVar('fidrec');
+        $dados = $xModel->where('idRec', $id)->findAll();
+        $thon = 0;
+        $tcus = 0;
+        foreach($dados as $x){ $thon += $x['honorarios']; $tcus += $x['custas'];};
+        $ttot = $thon + $tcus;
+        $datar = [
+            'tothonorarios' => $thon,
+            'totcustas'  => $tcus,
+            'total'  => $ttot
+        ];
+        $xRecibo = new RecibosModel();
+        $xRecibo->update($id, $datar);
+        return $this->response->redirect(site_url('/recibo/'.$id));
+    }
+
+    public function recibopgte($id = null) // ------------------- edit page recibosub
+    {
+        {
+            $xModel = new RecibosubModel();
+            $dados = $xModel->where('id', $id)->first();
+            $data['recibosub'] = $dados;
+            $idRec = $dados['idRec'];
+            
+            $xRecibo = new RecibosModel();
+            $recibo = $xRecibo->where('id', $idRec)->first();
+            $data['recibo'] = $recibo;
+            $idc = $recibo['idc'];
+    
+            $xModel2 = new ClientesModel();
+            $data['clientes'] = $xModel2->where('idc', $idc)->findAll();
+            $data['clientess'] = $xModel2->where('idc', $idc)->select('nome')->findAll();
+            
+            $xModel3 = new ServicosModel();
+            $data['servicos'] = $xModel3->findAll();
+    
+            $xModel4 = new ReclocalModel();
+            $data['local'] = $xModel4->findAll();
+            //dd($data);
+            return view('recibos/recibosub-edt', $data);
+        }
+    }    
+
+    public function recibopgtu()  // --------------------------- update recibosub
+    {       
+        $xModel = new RecibosubModel();
+        $data = [
+            'id'  => $this->request->getVar('fid'),
+            'nome' => $this->request->getVar('nome'),
+            'servicos' => $this->request->getVar('fservico'),
+            'locals'  => $this->request->getVar('flocal'),
+            'honorarios'  => $this->request->getVar('fhonorarios'),
+            'custas'  => $this->request->getVar('fcustas'),
+            'total'  => $this->request->getVar('fhonorarios')+$this->request->getVar('fcustas'),
+            'idRec'  => $this->request->getVar('fidrec'),
+            'inicio'  => $this->request->getVar('finicio'),
+            'nprocesso'  => $this->request->getVar('fnprocesso'),
+            'codigo'  => $this->request->getVar('fcodigo'),
+            'sit'  => $this->request->getVar('fsit'),
+            'termino'  => $this->request->getVar('ftermino'),
+            'ok'  => $this->request->getVar('fok'),
+            'periodicidade'  => $this->request->getVar('fperiodicidade'),
+        ];
+        //dd($data);
+        $id = $this->request->getVar('fid');
+        $xModel->update($id, $data);
+        $idrec = $this->request->getVar('fidrec');
+
+        $id = $this->request->getVar('fidrec');
+        $dados = $xModel->where('idRec', $id)->findAll();
+        $thon = 0;
+        $tcus = 0;
+        foreach($dados as $x){ $thon += $x['honorarios']; $tcus += $x['custas'];};
+        $ttot = $thon + $tcus;
+        $datar = [
+            'tothonorarios' => $thon,
+            'totcustas'  => $tcus,
+            'total'  => $ttot
+        ];
+        $xRecibo = new RecibosModel();
+        $xRecibo->update($id, $datar);
+        return $this->response->redirect(site_url('recibo/'.$id));
+        //return $this->response->redirect(site_url('/recibo/'.$idrec));
+    }
+ 
+    public function recibopgtdel($id = null, $idrec = null) // ------------------ deletar recibopgt
+    {
+        $xModel = new RecibopgtModel();
+        $data['recibosub'] = $xModel->where('id', $id)->delete($id);
+        return $this->response->redirect(site_url('/recibo/'.$idrec));
+    }
+
+    public function parcelar($id = null, $idrec = null) // ------------------ parcelas automáticas
+    {
+        $xRecibo = new RecibosModel();
+            $recibo = $xRecibo->where('id', $idrec)->first();
+            $dataf = $recibo['dataf'];
+            $hon = $recibo['tothonorarios'];
+            $emo = $recibo['totcustas'];
+            $tip = $recibo['tipo_pgto'];
+            $par = $hon / $tip;
+            $mes = 30;
+            $idc = $recibo['idc'];
+            for ($i = 1; $i <= 2; $i++)  //https://www.devmedia.com.br/manipulando-datas-com-php/32966
+            {
+                $datav = new \DateTime($dataf);
+                $datav->modify('+1 month');
+                dd($datav);
+                //------------
+                //$data = date("Y/m/d");
+                //$datav = explode("/", $dataf);
+                //list($ano, $mes, $dia) = $datav;
+                //$datav = "$ano/$mes/$dia";
+                //dd($datav);
+                echo $data = ['idRec' => $idrec, 'venct' => $datav, 'valor' => $i];
+                //dd($dataf);
+                //$xRecibo->insert($data);
+            } dd($data);
+
+            $data2 = ['idRec' => $idrec, 'venct' => $dataf, 'valor' => $emo,];
+            $xRecibo->insert($data2);
+            dd($par);
+        return $this->response->redirect(site_url('/recibo/'.$idrec));
+    }
+
+    //$datav = new \DateTime($dataf);
+    //$datav->modify('+1 month');
+    //dd($datav);
 
 }

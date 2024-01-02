@@ -72,56 +72,11 @@
        </div>
        <?php foreach($recibo as $r): ?>  
        <div id="button-1" class="d-flex justify-content-end mt-2">
-          <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('recibosub/'.$r['idc'].'/'.$r['id']) ?>';">+ Serviço</button>
+          <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('recibosub/'.$r['idc'].'/'.$r['id']) ?>';">Adicionar</button>
        </div>
        <?php endforeach; ?>
     </div>
   </div>
-
-  <br>  
-  <!-- -----------------------------------Recibopgt ----------------------->
-  <div id="orderform" class="container">
-    <orderform :orderd="formdata"></orderform>
-    <div id="app">   <i class="bi bi-three-dots-vertical"></i>
-    
-       <div class="shadow rounded">
-          <table class="table table-sm">
-              <tr class="table-info">
-                <th>venct</th>
-                <th>valor</th>
-                <th>iva</th>
-                <th>total</th>
-                <th>tipo</th>
-                <th>nrecpg</th>
-                <th>pgtoIVA</th>
-                <th>action</th>
-              </tr>
-              <?php foreach($recibopgt as $rec): ?>
-              <tr>
-                <td><?=($rec['venct']);?></td>
-                <td><?=($rec['valor']);?></td>
-                <td><?=($rec['iva']);?></td>
-                <td><?=($rec['total']);?></td>
-                <td><?=($rec['tipo']);?></td>
-                <td><?=($rec['nrecpg']);?></td>
-                <td><?=($rec['pgtoIVA']);?></td>
-                <td> 
-                    <a href="<?php echo base_url('recibopgte/'.$rec['id']) ?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/edit24.png")?>" height="17" width="17" alt=""></a>
-                    <a href="<?php echo base_url('recibopgtdel/'.$rec['id'].'/'.$rec['idRec']);?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/del24.png")?>" height="17" width="17" alt=""></a>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-          </table>
-       </div>
-       <?php foreach($recibo as $r): ?>  
-       <div id="button-1" class="d-flex justify-content-end mt-2">
-          <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('parcelar/'.$r['idc'].'/'.$r['id']) ?>';">Parcelar</button>
-          <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('recibosub/'.$r['idc'].'/'.$r['id']) ?>';">+ Parcelas</button>
-       </div>
-       <?php endforeach; ?>
-    </div>
-  </div>
-
 </div>  
 
 </body>

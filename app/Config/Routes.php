@@ -24,8 +24,18 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
-$routes->get('/', 'ClientesController::index');
+$routes->get('/c', 'ClientesController::index');
 $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
+
+// --------- S E C U R I T Y 
+// -- https://www.positronx.io/codeigniter-authentication-login-and-registration-tutorial/
+//$routes->get('/', 'SignupController::index');
+$routes->get('/', 'SigninController::index');
+$routes->get('/signup', 'SignupController::index');
+$routes->match(['get', 'post'], 'SignupController/store', 'SignupController::store');
+$routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
+$routes->get('/signin', 'SigninController::index');
+$routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 // --------- C O N T R O L L E R   C O N T A T O S
 $routes->get('contatos', 'ContatosController::index'); // list
 $routes->get('contatosj', 'ContatosController::contatosj'); // list json
@@ -69,6 +79,13 @@ $routes->get('recibosubdel/(:num)/(:num)', 'RecibosController::recibosubdel/$1/$
 // - RECIBOSUB por familia - link na pag clientes
 $routes->get('recibosubf/(:num)', 'RecibosController::porfamilia/$1'); // filtra recibosub por familiar
 $routes->get('recibosubfj/(:num)', 'RecibosController::familiar/$1'); // json recibosub por familiar
+// - RECIBOPGT
+//$routes->get('recibosub/(:num)/(:num)', 'RecibosController::recibosub/$1/$2'); // add page recibosub
+//$routes->post('recibosubstore', 'RecibosController::recibosubstore'); // store recibosub
+//$routes->get('recibosube/(:num)', 'RecibosController::recibosube/$1'); //edit page recibosub
+//$routes->post('recibosubu', 'RecibosController::recibosubu'); // update recibosub
+$routes->get('recibopgtdel/(:num)/(:num)', 'RecibosController::recibopgtdel/$1/$2'); // delete recibopgt
+$routes->get('parcelar/(:num)/(:num)', 'RecibosController::parcelar/$1/$2'); // parcelas automáticas
 // - PROCESSOS
 $routes->get('/processos', 'RecibosController::processos');
 $routes->get('/processosj', 'RecibosController::processosj');
