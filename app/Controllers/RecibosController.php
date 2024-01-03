@@ -656,7 +656,7 @@ class RecibosController extends Controller
         return $this->response->redirect(site_url('/recibo/'.$idrec));
     }
 
-    public function parcelar($id = null, $idrec = null) // ------------------ parcelas automáticas
+    public function parcelar2($id = null, $idrec = null) // ------------------ parcelas automáticas
     {
         $xRecibo = new RecibosModel();
             $recibo = $xRecibo->where('id', $idrec)->first();
@@ -665,26 +665,64 @@ class RecibosController extends Controller
             $emo = $recibo['totcustas'];
             $tip = $recibo['tipo_pgto'];
             $par = $hon / $tip;
-            $mes = 30;
             $idc = $recibo['idc'];
             
             function calcularParcelas($dataInicial, $numeroParcelas, $intervaloMeses) {
                 $datasParcelas = [];
-                
-                // Cria um objeto DateTime a partir da data inicial
-                $dataAtual = new DateTime($dataInicial);
-                
-                // Calcula as datas das parcelas usando DatePeriod
-                $periodo = new DatePeriod($dataAtual, new DateInterval("P{$intervaloMeses}M"), $numeroParcelas - 1);
-                
-                // Armazena as datas no array
+                $dataAtual = new \DateTime($dataInicial);
+                $periodo = new \DatePeriod($dataAtual, new \DateInterval("P{$intervaloMeses}M"), $numeroParcelas - 1);    
+            // Armazena as datas no array
                 foreach ($periodo as $dataParcela) {$datasParcelas[] = $dataParcela->format('Y-m-d');}
                 return $datasParcelas;
             }
 
+            $intervaloMeses = 1;
+            $parcelas = calcularParcelas($dataf, $tip, $intervaloMeses);
+            dd($parcelas);
+
             $data2 = ['idRec' => $idrec, 'venct' => $dataf, 'valor' => $emo,];
             $xRecibo->insert($data2);
             dd($par);
+        return $this->response->redirect(site_url('/recibo/'.$idrec));
+    }
+
+    public function parcelar($id = null, $idrec = null) // ------------------ parcelas automáticas
+    {
+        $xRecibo = new RecibosModel();
+            $recibo = $xRecibo->where('id', $idrec)->first();
+            $dataf = $recibo['dataf'];
+            $hon = $recibo['tothonorarios'];
+            $emo = $recibo['totcustas'];
+            $tip = $recibo['tipo_pgto'];
+            $valor_parc = $hon / $tip;
+            $idc = $recibo['idc'];
+            $controle = 1;
+            $soma_valor_parc = 0;
+            $data_atual = new \DateTime($dataf);
+            $xRecibopgt = new RecibopgtModel();    
+            
+        while ($controle <= $tip) {
+        $data_atual->add(new \DateInterval("P1M"));  // Somar um mês na data
+        // Acessa o IF quando é última parcela para corrigir o valor da compra
+        if ($controle == $tip) {
+            $valor_ultima_parc = $valor_parc - $soma_valor_parc;  // corrigir a diferença 
+            //echo "Valor da parcela " . number_format($valor_ultima_parc, 2, ',', '.') . "<br>"; // Converter para o Real
+            //$soma_valor_parc += number_format($valor_parc, 2, '.', ''); // Somar o valor das parcelas
+            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => number_format($valor_parc, 2, ',', '.')];
+            //dd($data);
+            $xRecibopgt->insert($data);
+        } else {
+            $valor_ultima_parc = $hon - $soma_valor_parc; 
+            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorário', 'valor' => $valor_parc ];
+            $xRecibopgt->insert($data);
+            //echo "Valor da parcela " . number_format($valor_parc, 2, ',', '.') . "<br>"; // Converter para o Real
+            $soma_valor_parc += number_format($valor_parc, 2, '.', '');  // Somar o valor das parcelas
+        }
+        $controle++;  // Incrementar a variável após imprimir a parcela
+        }
+        $data2 = ['idRec' => $idrec, 'venct' => $dataf, 'tipo' => 'emolumento', 'valor' => $emo,];
+        $xRecibopgt->insert($data2);
+        //dd($par);
         return $this->response->redirect(site_url('/recibo/'.$idrec));
     }
 
