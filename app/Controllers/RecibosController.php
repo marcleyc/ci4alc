@@ -699,9 +699,12 @@ class RecibosController extends Controller
             $controle = 1;
             $soma_valor_parc = 0;
             $data_atual = new \DateTime($dataf);
-            $xRecibopgt = new RecibopgtModel();    
+            $xRecibopgt = new RecibopgtModel();   
+        // 1a parcela de honorario    
+        $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => $valor_parc];
+        $xRecibopgt->insert($data);    
             
-        while ($controle <= $tip) {
+        while ($controle <= $tip-1) {
         $data_atual->add(new \DateInterval("P1M"));  // Somar um mês na data
         // Acessa o IF quando é última parcela para corrigir o valor da compra
         if ($controle == $tip) {
