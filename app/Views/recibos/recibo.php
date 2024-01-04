@@ -28,9 +28,8 @@
     </div>
   </div>
   <div id="button-1" class="d-flex justify-content-end mt-2">
-    <button type="button" class="btn btn-outline-info" onclick="window.location.href=<?php echo base_url('reciboe/'.$r['id']) ?>">Edit</button>
-    <button type="button" class="btn btn-outline-info" onclick="editarj('$r['id']')">Editj</button>
-    <button type="button" class="btn btn-outline-danger" onclick="confirmaExclusao()" >Delete</button>
+    <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('reciboe/'.$r['id']) ?>';">Editar</button>
+    <button type="button" class="btn btn-outline-danger" onclick="confirmaExclusao(<?=$r['id'];?> )" >Delete</button>
   </div>
 <?php endforeach; ?>
 </div>  
@@ -132,14 +131,19 @@
   var jrecibosub = JSON.parse('<?php echo json_encode($recibosub) ?>');
   console.log(jrecibosub);
 
-  function confirmaExclusao(){
-        var resultado = confirm("Deseja excluir o item: ?");
-        if (resultado == true) {
-            href="google.com";
-            alert("O item " + itemSelecionado + " será excluído da lista!");    
+  function confirmaExclusao(id){
+        var resultado = confirm("Deseja excluir este recibo?");
+        if (resultado == true) 
+        {
+          //window.location.href=`d/${id}`;
+          var link = "<?php echo site_url('recibod/') ?>";
+          console.log(link);
+          window.location.href= "<?php echo site_url('recibod/'.`${id}`) ?>";
+          //window.location.href = link/id;
+          alert("O item " + itemSelecionado + " será excluído da lista!");    
         }
         else
-        { alert("Você desistiu de excluir o item " + itemSelecionado + " da lista!"); }
+        { alert("Você desistiu de excluir o item!"); }
   }
 
   function editarj(x){

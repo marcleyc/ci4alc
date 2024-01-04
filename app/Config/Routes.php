@@ -70,6 +70,7 @@ $routes->get('reciboadd', 'RecibosController::reciboadd'); // add page recibo
 $routes->post('recibostore', 'RecibosController::recibostore'); // store recibo
 $routes->get('reciboe/(:num)', 'RecibosController::reciboe/$1'); //edit page recibo
 $routes->post('recibou', 'RecibosController::recibou'); // update recibo
+$routes->get('recibod/(:num)', 'RecibosController::recibosubd/$1'); // delete recibo
 // - RECIBOSUB
 $routes->get('recibosub/(:num)/(:num)', 'RecibosController::recibosub/$1/$2'); // add page recibosub
 $routes->post('recibosubstore', 'RecibosController::recibosubstore'); // store recibosub
