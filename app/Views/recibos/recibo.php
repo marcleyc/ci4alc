@@ -2,7 +2,7 @@
 
 <?= $this->section('conteudo'); ?>
 
-<center><h1>R E C I B O</h1></center>
+<center><h3 style="color:#878787">R E C I B O</h3></center>
 
 <div class="container m-8">
 
@@ -42,7 +42,7 @@
        
        <div class="shadow rounded">
           <table class="table table-sm">
-              <tr class="table-info">
+              <tr class="table-secondary">
                 <th>nome</th>
                 <th>serviços</th>
                 <th>local</th>
@@ -85,7 +85,7 @@
     
        <div class="shadow rounded">
           <table class="table table-sm">
-              <tr class="table-info">
+              <tr class="table-secondary">
                 <th>venct</th>
                 <th>valor</th>
                 <th>iva</th>
@@ -115,7 +115,7 @@
        <?php foreach($recibo as $r): ?>  
        <div id="button-1" class="d-flex justify-content-end mt-2">
           <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('parcelar/'.$r['idc'].'/'.$r['id']) ?>';">Parcelar</button>
-          <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('recibosub/'.$r['idc'].'/'.$r['id']) ?>';">+ Parcelas</button>
+          <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('recibopgta/'.$r['id']) ?>';">+ Parcelas</button>
        </div>
        <?php endforeach; ?>
     </div>
@@ -138,7 +138,7 @@
           //window.location.href=`d/${id}`;
           var link = "<?php echo site_url('recibod/') ?>";
           console.log(link);
-          window.location.href= "<?php echo site_url('recibod/'.`${id}`) ?>";
+          window.location.href= `${link}${id}`;
           //window.location.href = link/id;
           alert("O item " + itemSelecionado + " será excluído da lista!");    
         }

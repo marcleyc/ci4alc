@@ -4,7 +4,7 @@
 <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
  
-<center> <h3 style="color:#878787">RECIBOS</h3> </center>
+<center> <h3 style="color:#878787">R E C I B O S</h3> </center>
 
 <div class="container">
 

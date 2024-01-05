@@ -70,7 +70,7 @@ $routes->get('reciboadd', 'RecibosController::reciboadd'); // add page recibo
 $routes->post('recibostore', 'RecibosController::recibostore'); // store recibo
 $routes->get('reciboe/(:num)', 'RecibosController::reciboe/$1'); //edit page recibo
 $routes->post('recibou', 'RecibosController::recibou'); // update recibo
-$routes->get('recibod/(:num)', 'RecibosController::recibosubd/$1'); // delete recibo
+$routes->get('recibod/(:num)', 'RecibosController::recibod/$1'); // delete recibo
 // - RECIBOSUB
 $routes->get('recibosub/(:num)/(:num)', 'RecibosController::recibosub/$1/$2'); // add page recibosub
 $routes->post('recibosubstore', 'RecibosController::recibosubstore'); // store recibosub
@@ -81,10 +81,10 @@ $routes->get('recibosubdel/(:num)/(:num)', 'RecibosController::recibosubdel/$1/$
 $routes->get('recibosubf/(:num)', 'RecibosController::porfamilia/$1'); // filtra recibosub por familiar
 $routes->get('recibosubfj/(:num)', 'RecibosController::familiar/$1'); // json recibosub por familiar
 // - RECIBOPGT
-//$routes->get('recibosub/(:num)/(:num)', 'RecibosController::recibosub/$1/$2'); // add page recibosub
-//$routes->post('recibosubstore', 'RecibosController::recibosubstore'); // store recibosub
-//$routes->get('recibosube/(:num)', 'RecibosController::recibosube/$1'); //edit page recibosub
-//$routes->post('recibosubu', 'RecibosController::recibosubu'); // update recibosub
+$routes->get('recibopgta/(:num)', 'RecibosController::recibopgta/$1'); // add page recibopgt
+$routes->post('recibopgts', 'RecibosController::recibopgts'); // store recibopgt
+$routes->get('recibopgte/(:num)', 'RecibosController::recibopgte/$1'); //edit page recibopgt
+$routes->post('recibopgtu', 'RecibosController::recibopgtu'); // update recibopgt
 $routes->get('recibopgtdel/(:num)/(:num)', 'RecibosController::recibopgtdel/$1/$2'); // delete recibopgt
 $routes->get('parcelar/(:num)/(:num)', 'RecibosController::parcelar/$1/$2'); // parcelas automáticas
 // - PROCESSOS
