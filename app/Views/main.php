@@ -39,7 +39,14 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="<?= site_url('/processos') ?>">Processos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= site_url('/cadonline') ?>">Lab</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Lab</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="nav-item"><a class="nav-link" href="<?= site_url('/cadonline') ?>">Cadastro</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= site_url('/files') ?>">Files</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tramitando</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

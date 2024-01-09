@@ -13,7 +13,7 @@
 <div class="container">
 <center><h3>Editar Recibo</h3></center>	
 
-<form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('recibostore') ?>">  
+<form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('recibou') ?>">  
   <div class="col-12">
 		<label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label> </br>
 
@@ -53,9 +53,11 @@
 			<div class="input-group-text">Obs</div><input type="string" class="form-control" name="fobs" id="fobs" placeholder="obs" value="" />
 		</div>
 
+    <div class="input-group-text d-none">N.º Recibo</div><input type="number" class="form-control" name="fid" placeholder="N.º Recibo" id="fid" hidden value="<?= $rec['id']; ?>"/>
+
     <!-- ----------------------------------------B U T T O N------------------------------------------------------- -->
 		<div class="col-12 mt-3">
-		    <button type="submit" id="submit" class="btn btn-primary" disabled="true">Enviar</button>
+		    <button type="submit" id="submit" class="btn btn-primary">Enviar</button>
 		</div>
  
   </form>
@@ -68,28 +70,28 @@
         //document.getElementById("resultado").innerHTML="Seunomeé"+formCores["nome"].value+" e a cor selecionada é " + formCores ["cores" ].value;
         //}:
 
-        function myvalida(){
-          var nome = document.getElementById("val").value;
-          var submit = document.getElementById("submit");
-          var rec = <?= json_encode($rec); ?>;
-          var reci = <?= json_encode($rec); ?>;
-          console.log(rec);
-          console.log(reci);
+        //function myvalida(){
+          //var nome = document.getElementById("val").value;
+          //var submit = document.getElementById("submit");
+          //var rec = <!?= json_encode($rec); ?>;
+          //var reci = <!?= json_encode($rec); ?>;
+          //console.log(rec);
+          //console.log(reci);
 
-          if (rec.data.includes(nome)) // verifica se no array reci contem a var nome
-             {
-              console.log("contem"); 
-              submit.removeAttribute("disabled");
-              var findCliente = reci.filter(cli => cli.nome == nome);
-                findCliente.forEach(cli => { 
-                  fidc.value = cli.idc;
-                  console.log(cli.idc);
-                });
-             }
-          else
-             {console.log("não contem"); alert("Cliente não cadastrado");}; 
+          //if (rec.data.includes(nome)) // verifica se no array reci contem a var nome
+             //{
+              //console.log("contem"); 
+              //submit.removeAttribute("disabled");
+              //var findCliente = reci.filter(cli => cli.nome == nome);
+                //findCliente.forEach(cli => { 
+                  //fidc.value = cli.idc;
+                  //console.log(cli.idc);
+                //});
+             //}
+          //else
+             //{console.log("não contem"); alert("Cliente não cadastrado");}; 
           //alert(nome);
-        };
+        //};
 
        // if (conditions) {
          // inputName.classList.remove('is-danger')

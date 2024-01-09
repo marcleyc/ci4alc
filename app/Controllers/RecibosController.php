@@ -97,6 +97,25 @@ class RecibosController extends Controller
         return view('recibos/recibo-edt', $data);
     }
 
+    public function recibou()  // --------------------------- update recibosub
+    {       
+        $xModel = new RecibosModel();
+        $data = [
+            'nome' => $this->request->getVar('nome'),
+            'dataf' => $this->request->getVar('data'),
+            'idc'  => $this->request->getVar('fidc'),
+            'prestador'  => $this->request->getVar('fprestador'),
+            'tipo_pgto'  => $this->request->getVar('fparcela'),
+            'parceria'  => $this->request->getVar('fparceria'),
+            'obs'  => $this->request->getVar('fobs'),
+        ];
+        $id = $this->request->getVar('fid');
+        //dd($id);
+        $xModel->update($id, $data);
+        $idrec = $this->request->getVar('fidrec');
+        return $this->response->redirect(site_url('recibo/'.$id));
+    }
+
     public function recibod($id = null) // ------------------ deletar recibopgt
     {
         $xModel = new RecibosModel();

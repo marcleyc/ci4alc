@@ -147,6 +147,9 @@ $routes->get('boottable', 'Lab::xboottable');
 $routes->get('boottablej', 'Lab::xboottablej');
 $routes->get('boottable2', 'Lab::xboottable2');
 $routes->get('boottablef/(:num)', 'Lab::porfamilia/$1'); // filtra familiares
+// --------- F I L E S 
+$routes->get('files/', 'FilesController::index');
+$routes->get('files/open/(:segment)', 'FilesController::open/$1');
 
 // --------- C O N T R O L L E R   A P I
 $routes->get('contatosapi', 'Api::index');
