@@ -587,6 +587,7 @@ class RecibosController extends Controller
             'valor'  => $this->request->getVar('fvalor'),
             'iva'  => $this->request->getVar('fiva'),
             'tipo'  => $this->request->getVar('ftipo'),
+            'repete'  => $this->request->getVar('frepete'),
             'total'  => $this->request->getVar('fvalor')+$this->request->getVar('iva'),
             //'pgtoIVA'  => $this->request->getVar('fpgto')             
         ];
@@ -610,6 +611,34 @@ class RecibosController extends Controller
     public function recibopgtu()  // --------------------------- update recibosub
     {       
         $xModel = new RecibopgtModel();
+        $repete = $this->request->getVar('frepete');
+        $vencto = $this->request->getVar('fvencto');
+        $pgto = $this->request->getVar('fpgto');
+        $venc = new \DateTime($vencto);
+        if ($pgto != null) 
+        {
+          if ($repete != "não") 
+          { 
+            if ($repete == "semestral") { $venc->add(new \DateInterval("P6M")); }
+            if ($repete == "anual") { $venc->add(new \DateInterval("P12M")); }
+            $datax = [
+                'idRec'  => $this->request->getVar('fidrec'),  
+                'venct' => $venc->format('Y/m/d'),
+                'servicos' => $this->request->getVar('fs'),
+                'valor'  => $this->request->getVar('fvalor'),
+                'iva'  => $this->request->getVar('fiva'),
+                'tipo'  => $this->request->getVar('ftipo'),
+                'repete'  => $this->request->getVar('frepete'),
+                'total'  => $this->request->getVar('fvalor')+$this->request->getVar('iva'),
+                //'pgtoIVA'  => $this->request->getVar('fpgto')
+            ];
+            $xModel->insert($datax);
+          }
+          else
+          {
+            $venc->format('Y/m/d'); ;
+          }
+        }        
         $data = [
             'idRec'  => $this->request->getVar('fidrec'),  
             'venct' => $this->request->getVar('fvencto'),
@@ -617,6 +646,7 @@ class RecibosController extends Controller
             'valor'  => $this->request->getVar('fvalor'),
             'iva'  => $this->request->getVar('fiva'),
             'tipo'  => $this->request->getVar('ftipo'),
+            'repete'  => $this->request->getVar('frepete'),
             'total'  => $this->request->getVar('fvalor')+$this->request->getVar('iva'),
             'pgtoIVA'  => $this->request->getVar('fpgto')
         ];

@@ -45,7 +45,17 @@
 		</div>
 
     <div class="input-group input-group mt-2">
-			<div class="input-group-text">Pagto</div><input type="date" class="form-control" name="fpgto" id="fpgto" value="<?=$recibopgt['venct']?>" />
+			<label class="input-group-text" for="inputGroupSelect01">Repete</label>
+			<select class="form-select" name="frepete" id="frepete">
+			    <option selected><?=$recibopgt['repete']?></option>
+          <option value="semestral">semestral</option>
+          <option value="anual">anual</option>
+          <option value="anual">não</option>
+			</select>
+		</div>
+
+    <div class="input-group input-group mt-2">
+			<div class="input-group-text">Pagto</div><input type="date" class="form-control" name="fpgto" id="fpgto" value="<?=$recibopgt['pgtoIVA']?>" />
 		</div>
 
     <!-- ----------------------------------------B U T T O N------------------------------------------------------- -->

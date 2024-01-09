@@ -91,8 +91,8 @@
                 <th>iva</th>
                 <th>total</th>
                 <th>tipo</th>
-                <th>nrecpg</th>
-                <th>pgtoIVA</th>
+                <th>repete</th>
+                <th>pagou</th>
                 <th>action</th>
               </tr>
               <?php foreach($recibopgt as $rec): ?>
@@ -102,7 +102,7 @@
                 <td><?=($rec['iva']);?></td>
                 <td><?=($rec['total']);?></td>
                 <td><?=($rec['tipo']);?></td>
-                <td><?=($rec['nrecpg']);?></td>
+                <td><?=($rec['repete']);?></td>
                 <td><?=($rec['pgtoIVA']);?></td>
                 <td> 
                     <a href="<?php echo base_url('recibopgte/'.$rec['id']) ?>" class="btn btn-sm"><img src="<?= base_url("assets/icon/edit24.png")?>" height="17" width="17" alt=""></a>
