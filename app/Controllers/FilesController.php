@@ -10,13 +10,12 @@ class FilesController extends BaseController
      // https://www.devmedia.com.br/listando-arquivos-de-pastas-com-php/17716
         //$path = "./clientes";
         $path = FCPATH . './clientes/';
+        //$filePath = FCPATH . './clientes/' . urldecode($fileName);
         $diretorio = dir($path);
 
         echo "Lista de Arquivos do cliente '<strong>".$path."</strong>':<br />";
         while($arquivo = $diretorio -> read()){ echo "<a href='".$path.$arquivo."'>".$arquivo."</a><br />"; }
         $diretorio -> close();
-                
-        //return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
     }
 
     public function index2()
