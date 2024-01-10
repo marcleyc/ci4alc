@@ -680,7 +680,7 @@ class RecibosController extends Controller
             $data_atual = new \DateTime($dataf);
             $xRecibopgt = new RecibopgtModel();   
         // 1a parcela de honorario    
-        $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => $valor_parc];
+        $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => number_format($valor_parc, 2, '.', '')];
         $xRecibopgt->insert($data);    
             
         while ($controle <= $tip-1) {
@@ -693,7 +693,7 @@ class RecibosController extends Controller
             $xRecibopgt->insert($data);
         } else {
             $valor_ultima_parc = $hon - $soma_valor_parc; 
-            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorário', 'valor' => $valor_parc ];
+            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorário', 'valor' => number_format($valor_parc, 2, '.', '') ];
             $xRecibopgt->insert($data);
             $soma_valor_parc += number_format($valor_parc, 2, '.', '');  // Somar o valor das parcelas
         }
