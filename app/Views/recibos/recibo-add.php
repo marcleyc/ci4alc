@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-<center><h3>Recibo</h3></center>
+<center class="mt-3"><h3>Recibo</h3></center>
 <form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('recibostore') ?>">  
     <div class="col-12">
 		<label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label> </br>
@@ -27,7 +27,7 @@
 		</div>
 		 
 		<div class="input-group input-group mt-2">
-		   <div class="input-group-text">Data</div><input type="date" class="form-control" name="data" placeholder="data" required />
+		   <div class="input-group-text">Data</div><input type="date" class="form-control" name="fdata" placeholder="data" required />
 		   <div class="input-group-text">Cód Cliente</div><input type="number" class="form-control" name="fidc" placeholder="IDC" id="fidc" value="" />
        <div class="input-group-text">N.º Recibo</div><input type="number" class="form-control" name="frecn" placeholder="N.º Recibo" id="frecn" value=0 disabled="disabled" />
 		</div>

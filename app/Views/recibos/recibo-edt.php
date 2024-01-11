@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-<center><h3>Editar Recibo</h3></center>	
+<center class="mt-3"><h3>Editar Recibo</h3></center>	
 
 <form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('recibou') ?>">  
   <div class="col-12">
@@ -35,8 +35,8 @@
 
 		<div class="input-group input-group mt-2">
 			<label class="input-group-text" for="inputGroupSelect01">Prestador</label>
-			<select class="form-select" name="prestador">
-			  <option selected>Andréa</option>
+			<select class="form-select" name="fprestador">
+			  <option selected><?= $rec['prestador']; ?></option>
           <?php foreach($pre as $p): ?>
             <option value="<?= $p['nomep']; ?>"><?= $p['nomep']; ?></option>
           <?php endforeach; ?> 
@@ -45,12 +45,12 @@
 		</div>
 
     <div class="input-group input-group mt-2">
-		   <div class="input-group-text">Qtd Parcela</div><input type="number" class="form-control" name="fparcela" placeholder="Qtd de parcelas" value=1 required />
-		   <div class="input-group-text">Parceria</div><input type="string" class="form-control" name="fparceria" placeholder="Parceria" id="fpar" value="não" />
+		   <div class="input-group-text">Qtd Parcela</div><input type="number" class="form-control" name="fparcela" placeholder="Qtd de parcelas" value="<?= $rec['tipo_pgto']; ?>" required />
+		   <div class="input-group-text">Parceria</div><input type="string" class="form-control" name="fparceria" placeholder="Parceria" id="fpar" value="<?= $rec['parceria']; ?>" />
  		</div>
 
 		<div class="input-group input-group mt-2">
-			<div class="input-group-text">Obs</div><input type="string" class="form-control" name="fobs" id="fobs" placeholder="obs" value="" />
+			<div class="input-group-text">Obs</div><input type="string" class="form-control" name="fobs" id="fobs" placeholder="obs" value="<?= $rec['obs']; ?>" />
 		</div>
 
     <div class="input-group-text d-none">N.º Recibo</div><input type="number" class="form-control" name="fid" placeholder="N.º Recibo" id="fid" hidden value="<?= $rec['id']; ?>"/>

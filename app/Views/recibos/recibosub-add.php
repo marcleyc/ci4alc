@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-<center><h3>Serviços</h3></center>
+<center class="mt-3"><h3>Serviços</h3></center>
 <form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('recibosubstore') ?>">  
     <div class="col-12">
 		<label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label> </br>
@@ -47,6 +47,17 @@
        <div class="input-group-text">Total</div><input type="number" class="form-control" id="ftotal" name="ftotal" onfocus="myTotal()" required />
 		</div>
 
+    <div class="input-group input-group mt-2">
+			<label class="input-group-text" for="inputGroupSelect01">Periodicidade</label>
+			<select class="form-select" name="fperiodicidade">
+			  <option selected>Selecione</option>
+            <option value="N">Não</option>
+            <option value="M">Mensal</option>
+            <option value="S">Semestral</option>
+            <option value="A">Anual</option>
+			</select>
+		</div>
+ 
     <!-- div class="input-group input-group mt-2" -->
 		   <!-- div class="input-group-text">nº do recibo</div --><input type="hidden" class="form-control" name="fidrec" value="<?php echo $recibo; ?>"/>
  		<!-- /div -->

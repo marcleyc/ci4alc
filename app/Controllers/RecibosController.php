@@ -67,7 +67,7 @@ class RecibosController extends Controller
         $xModel = new RecibosModel();
         $data = [
             'nome' => $this->request->getVar('nome'),
-            'dataf' => $this->request->getVar('data'),
+            'dataf' => $this->request->getVar('fdata'),
             'idc'  => $this->request->getVar('fidc'),
             'prestador'  => $this->request->getVar('fprestador'),
             'tipo_pgto'  => $this->request->getVar('fparcela'),
@@ -102,7 +102,7 @@ class RecibosController extends Controller
         $xModel = new RecibosModel();
         $data = [
             'nome' => $this->request->getVar('nome'),
-            'dataf' => $this->request->getVar('data'),
+            'dataf' => $this->request->getVar('fdata'),
             'idc'  => $this->request->getVar('fidc'),
             'prestador'  => $this->request->getVar('fprestador'),
             'tipo_pgto'  => $this->request->getVar('fparcela'),
@@ -167,6 +167,26 @@ class RecibosController extends Controller
         ];
         $xRecibo = new RecibosModel();
         $xRecibo->update($id, $datar);
+        
+        // INSERIR PARCELA
+        $xRecibopgt = new RecibopgtModel();
+        $periodicidade = $this->request->getVar('fperiodicidade');
+        if ($periodicidade != "N"){ 
+          //$hoje = date("Y-m-d");
+          $hoje = new \DateTime();  
+          if ($periodicidade === "S") {$hoje->add(new \DateInterval("P6M"));};
+          if ($periodicidade === "A") {$hoje->add(new \DateInterval("P12M"));};
+            $data = [
+                'idRec' => $id, 
+                'venct' => $hoje->format('Y/m/d'), 
+                'tipo' => 'honorários', 
+                'valor' => $this->request->getVar('fhonorarios'),
+                'iva' => 0,
+                'total' => $this->request->getVar('fhonorarios'),
+                'nome' => $this->request->getVar('nome')
+            ];
+            $xRecibopgt->insert($data);
+        } 
         return $this->response->redirect(site_url('/recibo/'.$id));
     }
 
@@ -674,13 +694,23 @@ class RecibosController extends Controller
             $emo = $recibo['totcustas'];
             $tip = $recibo['tipo_pgto'];
             $valor_parc = $hon / $tip;
+            $iva = $recibo['iva'];
+            if ($iva === null) {$iva = 0;}
+            $total = $valor_parc + $iva;
             $idc = $recibo['idc'];
             $controle = 1;
             $soma_valor_parc = 0;
             $data_atual = new \DateTime($dataf);
             $xRecibopgt = new RecibopgtModel();   
         // 1a parcela de honorario    
-        $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => number_format($valor_parc, 2, '.', '')];
+        $data = [
+                 'idRec' => $idrec, 
+                 'venct' => $data_atual->format('Y/m/d'), 
+                 'tipo' => 'honorários', 
+                 'valor' => number_format($valor_parc, 2, '.', ''),
+                 'iva' => $iva,
+                 'total' => $total,
+                ];
         $xRecibopgt->insert($data);    
             
         while ($controle <= $tip-1) {
@@ -688,18 +718,17 @@ class RecibosController extends Controller
         // Acessa o IF quando é última parcela para corrigir o valor da compra
         if ($controle == $tip) {
             $valor_ultima_parc = $valor_parc - $soma_valor_parc;  // corrigir a diferença 
-            //echo "Valor da parcela " . number_format($valor_ultima_parc, 2, ',', '.') . "<br>"; // Converter para o Real
-            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => number_format($valor_parc, 2, ',', '.')];
+            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => $valor_parc, 'iva' => $iva,'total' => $total];
             $xRecibopgt->insert($data);
         } else {
             $valor_ultima_parc = $hon - $soma_valor_parc; 
-            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorário', 'valor' => number_format($valor_parc, 2, '.', '') ];
+            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorário', 'valor' => $valor_parc, 'iva' => $iva,'total' => $total];
             $xRecibopgt->insert($data);
             $soma_valor_parc += number_format($valor_parc, 2, '.', '');  // Somar o valor das parcelas
         }
         $controle++;  // Incrementar a variável após imprimir a parcela
         }
-        $data2 = ['idRec' => $idrec, 'venct' => $dataf, 'tipo' => 'emolumento', 'valor' => $emo,];
+        $data2 = ['idRec' => $idrec, 'venct' => $dataf, 'tipo' => 'emolumento', 'valor' => $emo,'iva' => $iva, 'total' => $emo];
         $xRecibopgt->insert($data2);
         return $this->response->redirect(site_url('/recibo/'.$idrec));
     }

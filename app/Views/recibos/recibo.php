@@ -22,7 +22,7 @@
       <div style="margin:7px"> <span class="titulo">tipo pagto:</span> <?=$r['tipo_pgto'];?> </div>
     </div>
     <div class="col shadow rounded m-2">
-      <div style="margin:7px"> <span class="titulo">total de honorários:</span> <?=$r['tothonorarios'];?> </div>
+      <div style="margin:7px" > <span class="titulo">total de honorários:</span> <?=$r['tothonorarios'];?> </div>
       <div style="margin:7px"> <span class="titulo">total de custas:</span> <?=$r['totcustas'];?> </div>
       <div style="margin:7px"> <span class="titulo">total:</span> <?=$r['tothonorarios']+$r['totcustas'];?> </div> 
     </div>
