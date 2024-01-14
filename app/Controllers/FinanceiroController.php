@@ -115,6 +115,19 @@ class FinanceiroController extends BaseController
         echo json_encode($results);
     }
 
+    public function areceberj2()  // ----------------------- a receber json
+    {
+        $db = db_connect();          
+        $query = $db->query('SELECT recibosub.*, recibo.idc
+                             FROM recibopgt
+                             INNER JOIN recibopgt ON recibopgt.idRec = recibo.id
+                             WHERE recibopgt.pgtoIVA > "1900-01-01"
+                             ORDER BY recibopgt.vencto ASC ');                
+        $results = $query->getResultArray();
+        dd($results);
+        echo json_encode($results);
+    }
+
     public function test()
     {
         return view('cliente_cadastro');

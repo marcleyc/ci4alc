@@ -24,7 +24,6 @@
       <input type="string" class="form-control" name="fidrec" id="fidrec" value="<?=$recibopgt['idRec']?>" hidden />
 		</div>
    
-
     <div class="input-group input-group mt-2">
 			<div class="input-group-text">Vencto</div><input type="date" class="form-control" name="fvencto" id="fvencto" onchange="myVen()" value="<?=$recibopgt['venct']?>" />
 		</div>
@@ -52,6 +51,10 @@
           <option value="anual">anual</option>
           <option value="anual">não</option>
 			</select>
+		</div>
+
+    <div class="input-group input-group mt-2">
+			<div class="input-group-text">Nome</div><input type="string" class="form-control" name="nome" id="fnome" value="<?=$recibopgt['nome']?>" />
 		</div>
 
     <div class="input-group input-group mt-2">

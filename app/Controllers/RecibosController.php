@@ -183,8 +183,9 @@ class RecibosController extends Controller
                 'valor' => $this->request->getVar('fhonorarios'),
                 'iva' => 0,
                 'total' => $this->request->getVar('fhonorarios'),
-                'nome' => $this->request->getVar('nome')
+                'nome' => $this->request->getVar('nome'),
             ];
+            //dd($data);
             $xRecibopgt->insert($data);
         } 
         return $this->response->redirect(site_url('/recibo/'.$id));
@@ -650,6 +651,7 @@ class RecibosController extends Controller
                 'tipo'  => $this->request->getVar('ftipo'),
                 'repete'  => $this->request->getVar('frepete'),
                 'total'  => $this->request->getVar('fvalor')+$this->request->getVar('iva'),
+                'nome'  => $this->request->getVar('nome'),
                 //'pgtoIVA'  => $this->request->getVar('fpgto')
             ];
             $xModel->insert($datax);

@@ -128,6 +128,7 @@ $routes->post('financeirou', 'FinanceiroController::update');              //upd
 $routes->get('financeirod/(:num)', 'FinanceiroController::delete/$1');     //delete
 $routes->get('financeiroar', 'FinanceiroController::areceber');
 $routes->get('financeiroarj', 'FinanceiroController::areceberj');
+$routes->get('financeiroarj2', 'FinanceiroController::areceberj2');
 
 // --------- C O N T R O L L E R   L A B 
 $routes->get('lab', 'Lab::index');
