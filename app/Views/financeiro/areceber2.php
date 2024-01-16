@@ -16,17 +16,17 @@
   data-search-accent-neutralise="true"
   data-row-style="rowStyle"
   data-total-field="count"
-  data-url="<?= base_url('financeiroarj/');?>">
+  data-url="<?= base_url('financeiroarj2/');?>">
   <thead>
     <tr>
       <th data-field="idc" data-sortable="true">IDC</th>
       <th data-field="nome" data-sortable="true">Nome</th>
-      <th data-field="servicos" data-sortable="true">Serviço</th>
-      <th data-field="locals" data-width="175" data-sortable="true">Local</th>
-      <th data-field="inicio" data-width="110" data-sortable="true">Início</th>
-      <th data-field="mes" data-sortable="true">Mês</th>
-      <th data-field="nprocesso">nº Processo</th>
-      <th data-field="periodicidade" data-sortable="true">Tipo</th>
+      <th data-field="tipo" data-sortable="true">Tipo</th>
+      <th data-field="venct" data-width="110" data-sortable="true">Vencto</th>
+      <th data-field="repete" data-sortable="true">Repetição</th>
+      <th data-field="valor">Valor</th>
+      <th data-field="iva">IVA</th>
+      <th data-field="total">Total</th>
       
       <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">@</th>
     </tr>

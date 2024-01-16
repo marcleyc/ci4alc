@@ -1,7 +1,7 @@
 <?= $this->extend('main'); ?> 
 <?= $this->section('conteudo'); ?>
  
-<div class=container> <center> <h3 style="color:#878787">A RECEBER</h3> </center>
+<div class=container> <center> <h3 style="color:#878787">SERVIÇOS TEMPORÁRIOS</h3> </center>
  
 <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>

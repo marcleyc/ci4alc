@@ -127,6 +127,7 @@ $routes->get('financeiroe/(:num)', 'FinanceiroController::singleUser/$1'); //edi
 $routes->post('financeirou', 'FinanceiroController::update');              //update
 $routes->get('financeirod/(:num)', 'FinanceiroController::delete/$1');     //delete
 $routes->get('financeiroar', 'FinanceiroController::areceber');
+$routes->get('financeiroar2', 'FinanceiroController::areceber2');
 $routes->get('financeiroarj', 'FinanceiroController::areceberj');
 $routes->get('financeiroarj2', 'FinanceiroController::areceberj2');
 

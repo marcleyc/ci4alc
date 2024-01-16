@@ -102,6 +102,11 @@ class FinanceiroController extends BaseController
         return view('financeiro/areceber');
     }
 
+    public function areceber2()  // ------------------------ page a receber
+    {
+        return view('financeiro/areceber2');
+    }
+
     public function areceberj()  // ----------------------- a receber json
     {
         $db = db_connect();          
@@ -115,17 +120,17 @@ class FinanceiroController extends BaseController
         echo json_encode($results);
     }
 
-    public function areceberj2()  // ----------------------- a receber json
-    {
-        $db = db_connect();          
-        $query = $db->query('SELECT recibosub.*, recibo.idc
-                             FROM recibopgt
-                             INNER JOIN recibopgt ON recibopgt.idRec = recibo.id
-                             WHERE recibopgt.pgtoIVA > "1900-01-01"
-                             ORDER BY recibopgt.vencto ASC ');                
-        $results = $query->getResultArray();
-        dd($results);
-        echo json_encode($results);
+    public function areceberj2()  // ------------ report por serviços
+    {    
+        $db = db_connect(); 
+        $results = $db->table('recibopgt')
+                      ->select('recibopgt.*, recibo.idc')
+                      ->where('recibopgt.repete !=','não')->where('recibopgt.pgtoIVA',null)
+                      ->join('recibo', 'recibo.id = recibopgt.idRec')
+                      ->get()->getResultArray();
+        $data = $results;
+        //dd($data);
+        echo json_encode($data);
     }
 
     public function test()
