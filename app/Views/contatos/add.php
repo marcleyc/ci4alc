@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="input-group input-group mt-2">
-			<div class="input-group-text">Honorários</div><input type="text" class="form-control" name="mãe" placeholder="honorarios" />
+			<div class="input-group-text">Honorários</div><input type="text" class="form-control" name="honorarios" placeholder="honorarios" />
 		</div>
 		
 		<div class="input-group mb-3 mt-2">

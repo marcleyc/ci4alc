@@ -26,11 +26,17 @@ class ContatosController extends Controller
     // insert contato
     public function store() {
         $userModel = new ContatosModel();
+        $cli = $this->request->getVar('check');
+        if ($cli == null) {$cli = "F";}
         $data = [
             'nome' => $this->request->getVar('nome'),
-            'data' => $this->request->getVar('data'),
+            'datac' => $this->request->getVar('data'),
             'email'  => $this->request->getVar('email'),
-            'cli'  => $this->request->getVar('check'),            
+            'status'  => $this->request->getVar('status'),
+            'indicacao'  => $this->request->getVar('indicacao'),
+            'honorarios'  => $this->request->getVar('honorarios'),
+            'obs'  => $this->request->getVar('obs'),
+            'cli'  => $cli,            
         ];
         $userModel->insert($data);
         $novoid = $userModel->insertID; // id da última inserção no contatos

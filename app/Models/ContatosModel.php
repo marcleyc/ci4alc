@@ -5,7 +5,7 @@ class ContatosModel extends Model
 {
     protected $table = 'contatos';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['nome', 'email'];
+    protected $allowedFields = ['datac','nome', 'email','status','indicacao','obs','honorarios','cli'];
 
     // Dates
     protected $useTimestamps = false;
