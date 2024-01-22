@@ -598,7 +598,7 @@ class RecibosController extends Controller
         return view('recibos/recibopgt-add', $data);
     }
 
-    public function recibopgts()  // ------------------ inserir recibopgt
+    public function recibopgts()  // ------------------ store recibopgt
     {
         $xModel = new RecibopgtModel();
         $data = [
