@@ -16,7 +16,7 @@ $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 
-//$routes->setAutoRoute(true);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -148,6 +148,11 @@ $routes->add('pastas', 'Lab::pastas');
 $routes->get('boottable', 'Lab::xboottable');
 $routes->get('boottablej', 'Lab::xboottablej');
 $routes->get('boottable2', 'Lab::xboottable2');
+$routes->get('contrato', 'MpdfController::contrato');
+$routes->get('contrato2', 'MpdfController::contrato2');
+$routes->get('contrato3', 'MpdfController::contrato3');
+$routes->get('gerarpdf', 'MpdfController::gerarpdf');
+$routes->get('jspdf', 'MpdfController::jspdf');
 $routes->get('boottablef/(:num)', 'Lab::porfamilia/$1'); // filtra familiares
 // --------- F I L E S 
 $routes->get('files/', 'FilesController::index');

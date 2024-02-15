@@ -46,6 +46,7 @@
                             <li class="nav-item"><a class="nav-link" href="<?= site_url('/cadonline') ?>">Cadastro</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li class="nav-item"><a class="nav-link" href="<?= site_url('/files') ?>">Files</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= site_url('/contrato') ?>">Contrato</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

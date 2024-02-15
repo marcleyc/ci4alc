@@ -99,4 +99,9 @@ class Autoload extends AutoloadConfig
      * @phpstan-var list<string>
      */
     public $helpers = [];
+ 
+    // L O G I N
+    //$autoload['libraries'] = array('session'); 
+    //$autoload['drivers'] = array(); 
+    //$autoload['helper'] = array('url','html','file'); 
 }
