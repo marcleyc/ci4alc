@@ -5,8 +5,7 @@ use App\Models\ContatosModel;
 use App\Models\ClientesModel;
 use CodeIgniter\Controller;
 use \Mpdf\Mpdf;
-use CodeIgniter\API\ResponseTrait;
-//defined('BASEPATH') OR exit('No direct script access allowed');
+//use CodeIgniter\API\ResponseTrait;
 
 class MpdfController extends BaseController
 {
@@ -15,6 +14,27 @@ class MpdfController extends BaseController
         return view('mpdf/jspdf');
     }
 
+    public function geraA4()
+    {
+        return view('mpdf/a4');
+    }
+
+    public function fpublic()
+    {
+        // Obtém a URL base do site
+        $baseURL = base_url();
+
+        // Constrói a URL para o arquivo imagem.jpg dentro da pasta public/imagens 
+        //$imagemURL = $baseURL . 'assets/img/casa.png';
+        //$imagemURL = WRITEPATH . 'assets/img/casa.png';
+        $imagemURL = base_url("assets/js/bootstrap-table.min.js");
+
+        // Agora você pode usar $imagemURL onde precisar da URL da imagem
+        //echo "A URL da imagem é: $imagemURL";
+        readfile($imagemURL);
+    }
+
+
     public function contrato3()  // -------------------- php object array to boottable
     {
         $id = 200;
@@ -22,6 +42,7 @@ class MpdfController extends BaseController
         $data["clientes"] = $dataModel->where('idc', $id)->findAll();
         //dd($data);
         //$imagem = file_get_contents('./caminho/para/sua/imagem.jpg');
+        $html = view('mpdf/contrato3',$data);
 
         $mpdf = new \Mpdf\Mpdf([
             'pagenumPrefix' => 'Página ',
@@ -34,7 +55,7 @@ class MpdfController extends BaseController
             'margin_bottom' => 27,
             'margin_header' => 10,
             'margin_footer' => 10,
-            'mode' => 'utf-8'
+            //'mode' => 'utf-8'
         ]);
 
         $mpdf->SetHeader('
@@ -55,20 +76,19 @@ class MpdfController extends BaseController
         <div style=text-align:right;font-size:8pt;font-style:normal;>{PAGENO}{nbpg}</div>
         ');
 
-		$html = view('mpdf/contrato3',$data);
 		$mpdf->WriteHTML($html);
 		$this->response->setHeader('Content-Type', 'application/pdf');
-		$mpdf->Output('arjun.pdf','I');  
+		$mpdf->Output('arjun.pdf','D');  
     }
 
     public function contrato2()  // -------------------- php object array to boottable
     {
-        $mpdf = new \Mpdf\Mpdf();
         $nome = "VICTOR KOLTUNIK FRANÇA";
 		$html = view('mpdf/contrato1body');
+        $mpdf = new \Mpdf\Mpdf();
 		$mpdf->WriteHTML($html);
 		$this->response->setHeader('Content-Type', 'application/pdf');
-		$mpdf->Output('contrato2.pdf','I');   
+		$mpdf->Output('contrato2.pdf','I'); // Saída do PDF = I:print browser, D:Download  
     }
    
     public function gerarpdf()  // -------------------- exemplo chatGPT
@@ -87,8 +107,8 @@ class MpdfController extends BaseController
         $mpdf->WriteHTML($html);
         
         $this->response->setHeader('Content-Type', 'application/pdf');
-        // Saída do PDF
-        $mpdf->Output('gerarpdf.pdf','I');
+        // Saída do PDF = I:print browser, D:Download
+        $mpdf->Output('gerarpdf.pdf','D');
     }
 
     public function contrato()  // ----------------------------------------------- C  O  N  T  R  A  T  O -------------------
@@ -421,7 +441,7 @@ class MpdfController extends BaseController
 
         $mpdf->WriteHTML($html);
         $this->response->setHeader('Content-Type', 'application/pdf');
-        $mpdf->Output(); 
+        $mpdf->Output('gerarpdf.pdf','D'); 
     }
     
 }

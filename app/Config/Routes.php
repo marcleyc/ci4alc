@@ -153,6 +153,8 @@ $routes->get('contrato2', 'MpdfController::contrato2');
 $routes->get('contrato3', 'MpdfController::contrato3');
 $routes->get('gerarpdf', 'MpdfController::gerarpdf');
 $routes->get('jspdf', 'MpdfController::jspdf');
+$routes->get('fpublic', 'MpdfController::fpublic');
+$routes->get('a4', 'MpdfController::geraa4');
 $routes->get('boottablef/(:num)', 'Lab::porfamilia/$1'); // filtra familiares
 // --------- F I L E S 
 $routes->get('files/', 'FilesController::index');
