@@ -42,7 +42,8 @@ class MpdfController extends BaseController
         $data["clientes"] = $dataModel->where('idc', $id)->findAll();
         //dd($data);
         //$imagem = file_get_contents('./caminho/para/sua/imagem.jpg');
-        $html = view('mpdf/contrato3',$data);
+        
+        $html = view('mpdf/contrato1body',$data);
 
         $mpdf = new \Mpdf\Mpdf([
             'pagenumPrefix' => 'Página ',
@@ -57,17 +58,20 @@ class MpdfController extends BaseController
             'margin_footer' => 10,
             //'mode' => 'utf-8'
         ]);
-
+        
+        $header = view('mpdf/setheader');
         $mpdf->SetHeader('
         <table width="100%" style="vertical-align: bottom; font-family: serif; 
             font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
             <tr>
                 <td width="33%"><span style="font-weight: bold; font-style: italic;"></span></td>
-                <td width="33%" align="center"><img src="logo.png" align="middle" width=200 ></td>
-                <td width="33%" style="text-align: right; "></td>
+                <td width="33%" align="center"></td>
+                <td width="33%" style="text-align: right; ">ALC Advocacia</td>
             </tr>
         </table>', 'O'
         );
+
+        $this->response->setHeader('Content-Type', 'application/pdf');
 
         $mpdf->SetFooter('
         <div style=text-align:center;font-size:10px;font-style:normal;font-weight:normal;font-family:Arial;>ESCRITÓRIO DE ADVOCACIA</div>
@@ -77,15 +81,43 @@ class MpdfController extends BaseController
         ');
 
 		$mpdf->WriteHTML($html);
-		$this->response->setHeader('Content-Type', 'application/pdf');
-		$mpdf->Output('arjun.pdf','D');  
+		
+		$mpdf->Output('arjun.pdf','I');  
     }
 
     public function contrato2()  // -------------------- php object array to boottable
     {
         $nome = "VICTOR KOLTUNIK FRANÇA";
 		$html = view('mpdf/contrato1body');
-        $mpdf = new \Mpdf\Mpdf();
+        $mpdf = new \Mpdf\Mpdf([
+            'pagenumPrefix' => 'Página ',
+            'pagenumSuffix' => ' / ',
+            'nbpgPrefix' => '',
+            'nbpgSuffix' => '',
+            'margin_left' => 20,
+            'margin_right' => 15,
+            'margin_top' => 26,
+            'margin_bottom' => 27,
+            'margin_header' => 10,
+            'margin_footer' => 10,
+            //'mode' => 'utf-8'
+        ]);
+        $mpdf->SetHeader('
+        <table width="100%" style="vertical-align: bottom; font-family: serif; 
+            font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
+            <tr>
+                <td width="33%"><span style="font-weight: bold; font-style: italic;"></span></td>
+                <td width="33%" align="center"></td>
+                <td width="33%" style="text-align: right; ">ALC Advocacia</td>
+            </tr>
+        </table>', 'O'
+        );
+        $mpdf->SetFooter('
+        <div style=text-align:center;font-size:10px;font-style:normal;font-weight:normal;font-family:Arial;>ESCRITÓRIO DE ADVOCACIA</div>
+        <div style=text-align:center;font-size:10px;font-style:normal;font-weight:normal;font-family:Arial;>Praça da República n.o 8, 2ºF, Condeixa-a-Nova, Coimbra, Portugal 3150-127</div>
+        <div style=text-align:center;font-size:10px;font-style:normal;font-weight:normal;font-family:Arial;>Advogada Andréa L Carvalho - C.P.: 57281C  +351 911 992 069  andrealevindo@gmail.com</div>
+        <div style=text-align:right;font-size:8pt;font-style:normal;>{PAGENO}{nbpg}</div>
+        ');
 		$mpdf->WriteHTML($html);
 		$this->response->setHeader('Content-Type', 'application/pdf');
 		$mpdf->Output('contrato2.pdf','I'); // Saída do PDF = I:print browser, D:Download  
