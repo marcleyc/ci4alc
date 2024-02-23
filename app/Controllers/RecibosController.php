@@ -590,10 +590,9 @@ class RecibosController extends Controller
         $data['recibopgt'] = $results;
         //dd($data);
         
-        //$query2 = $db->query("SELECT * FROM servicos ORDER BY descricao ASC");
-        //$results2 = $query2->getResultArray();
-        //$data['servico'] = $results2;
-        //$data['recibo'] = $id;
+        $query2 = $db->query("SELECT nome FROM recibo WHERE id = $idc");
+        $results2 = $query2->getResultArray();
+        $data['recibo'] = $results2;
         //dd($data);
         return view('recibos/recibopgt-add', $data);
     }
@@ -609,6 +608,7 @@ class RecibosController extends Controller
             'iva'  => $this->request->getVar('fiva'),
             'tipo'  => $this->request->getVar('ftipo'),
             'repete'  => $this->request->getVar('frepete'),
+            'nome'  => $this->request->getVar('fnome'),
             'total'  => $this->request->getVar('fvalor')+$this->request->getVar('iva'),
             //'pgtoIVA'  => $this->request->getVar('fpgto')             
         ];
@@ -694,6 +694,7 @@ class RecibosController extends Controller
             $dataf = $recibo['dataf'];
             $hon = $recibo['tothonorarios'];
             $emo = $recibo['totcustas'];
+            $nom = $recibo['nome'];
             $tip = $recibo['tipo_pgto'];
             $valor_parc = $hon / $tip;
             $iva = $recibo['iva'];
@@ -707,7 +708,8 @@ class RecibosController extends Controller
         // 1a parcela de honorario    
         $data = [
                  'idRec' => $idrec, 
-                 'venct' => $data_atual->format('Y/m/d'), 
+                 'venct' => $data_atual->format('Y/m/d'),
+                 'nome' => 'nom',  
                  'tipo' => 'honorários', 
                  'valor' => number_format($valor_parc, 2, '.', ''),
                  'iva' => $iva,

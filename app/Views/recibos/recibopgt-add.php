@@ -12,7 +12,7 @@
 
 <div class="container mt-4">
 
-<center class="mt-4"><h3>P A R C E L A</h3></center>
+<center class="mt-4"><h3>Adicionar  P A R C E L A</h3></center>
 <form class="row row-cols-lg-auto g-3 align-items-center mt-1 needs-validation" novalidate method="post" id="add_create" name="add_create" action="<?= site_url('recibopgts') ?>">  
     <div class="col-12">
 		<label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label> </br>
@@ -50,6 +50,10 @@
           <option value="semestral">semestral</option>
           <option value="anual">anual</option>
 			</select>
+		</div>
+
+    <div class="input-group input-group mt-2">
+			<div class="input-group-text">Nome</div><input type="string" class="form-control" name="fnome" id="fnome" value="<?=$recibo[0]['nome']?>" />
 		</div>
 
     <div class="input-group input-group mt-2">

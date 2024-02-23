@@ -157,7 +157,10 @@ $routes->get('fpublic', 'MpdfController::fpublic');
 $routes->get('a4', 'MpdfController::geraa4');
 $routes->get('boottablef/(:num)', 'Lab::porfamilia/$1'); // filtra familiares
 // --------- F I L E S 
-$routes->get('files/', 'FilesController::index');
+$routes->get('files/', 'FilesController::index');            // funciona
+$routes->get('files2/(:num)', 'FilesController::index2/$1'); // funciona
+$routes->get('files3/', 'FilesController::index3');
+$routes->get('filee/(:segment)', 'FilesController::filee/$1');
 $routes->get('files/open/(:segment)', 'FilesController::open/$1');
 
 // --------- C O N T R O L L E R   A P I

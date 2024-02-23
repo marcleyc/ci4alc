@@ -59,7 +59,7 @@
 
   window.operateEvents = {
     'click .edit': function (e, value, row, index) 
-      { window.location.href = "<?= base_url('/tramitandoet/');?>"+row.id }
+      { window.location.href = "<?= base_url('recibopgte/');?>"+row.id }
   }
 </script>
 

@@ -3,21 +3,29 @@
 namespace App\Controllers;
 //use CodeIgniter\I18n\Time;
 
-class FilesController extends BaseController
+class FilesController extends BaseController // está funcionando
 {
     public function index()
     {
-        $file = new \CodeIgniter\Files\File($path);
-        $path = FCPATH . './clientes/';
-        //$filePath = FCPATH . './clientes/' . urldecode($fileName);
-        $diretorio = dir($path);
+        // Caminho para a pasta que você deseja exibir
+        $directoryPath = FCPATH . './clientes/';
 
-        echo "Lista de Arquivos do cliente '<strong>".$path."</strong>':<br />";
-        while($arquivo = $diretorio -> read()){ echo "<a href='".$path.$arquivo."'>".$arquivo."</a><br />"; }
-        $diretorio -> close();
+        // Obtenha uma matriz de arquivos na pasta
+        $filesList = scandir($directoryPath);
+        //dd($filesList);
+
+        // Passe a lista de arquivos e o caminho da pasta para a view
+        return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
     }
 
-    public function indexBkp()
+    public function index2($idc = null)
+    {
+        $directoryPath = FCPATH . './clientes/'.$idc;
+        $filesList = scandir($directoryPath);
+        return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
+    }
+
+    public function index3()
     {
      // https://www.devmedia.com.br/listando-arquivos-de-pastas-com-php/17716
         //$path = "./clientes";
@@ -30,20 +38,7 @@ class FilesController extends BaseController
         $diretorio -> close();
     }
 
-    public function index2()
-    {
-        // Caminho para a pasta que você deseja exibir
-        $directoryPath = FCPATH . './clientes/';
-
-        // Obtenha uma matriz de arquivos na pasta
-        $filesList = scandir($directoryPath);
-
-        // Passe a lista de arquivos e o caminho da pasta para a view
-        return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
-    }
-
-    // método para abrir o arquivo selecionado
-    public function open($fileName)
+    public function open($fileName)  // método para abrir o arquivo selecionado
     {
     $filePath = FCPATH . './clientes/' . urldecode($fileName);
 
@@ -64,6 +59,19 @@ class FilesController extends BaseController
             exit; // Importante para garantir que nenhum outro conteúdo seja enviado após o arquivo
         } else {
             echo 'Arquivo não encontrado.';
+        }
+    }
+
+    public function filee($folder = null)
+    {
+        // Verifica se o diretório fornecido é válido
+        if ($folder && is_dir(WRITEPATH . 'clientes/' . $folder)) {
+            $data['files'] = directory_map(WRITEPATH . 'clientes/' . $folder);
+            echo view('public/index', $data);
+        } else {
+            // Se o diretório não for válido, redireciona ou exibe uma mensagem de erro
+            // redirecionar para uma página de erro, por exemplo.
+            echo "Pasta não encontrada!";
         }
     }
 

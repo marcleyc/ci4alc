@@ -127,7 +127,6 @@ class FinanceiroController extends BaseController
                       ->select('recibopgt.*, recibo.idc')
                       ->join('recibo', 'recibo.id = recibopgt.idRec')
                       ->where('recibopgt.repete !=','não')->where('recibopgt.repete !=',null)
-                      
                       ->get()->getResultArray();
         $data = $results;
         //dd($data);

@@ -114,7 +114,7 @@
        </div>
        <?php foreach($recibo as $r): ?>  
        <div id="button-1" class="d-flex justify-content-end mt-2">
-          <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('parcelar/'.$r['idc'].'/'.$r['id']) ?>';">Parcelar</button>
+          <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('parcelar/'.$r['idc'].'/'.$r['id']) ?>';">Parcela automática</button>
           <button class="btn btn-outline-info mr-2" onclick="window.location.href='<?php echo site_url('recibopgta/'.$r['id']) ?>';">+ Parcelas</button>
        </div>
        <?php endforeach; ?>
