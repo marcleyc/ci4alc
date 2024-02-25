@@ -9,19 +9,19 @@
 # to override the setting, you must un-comment it by removing the '#'
 # at the beginning of the line.
 #--------------------------------------------------------------------
-
+  
 #--------------------------------------------------------------------
 # ENVIRONMENT MAC M1
 #--------------------------------------------------------------------
 
 # CI_ENVIRONMENT = production
   CI_ENVIRONMENT = development
-
+  
 #--------------------------------------------------------------------
 # APP
 #--------------------------------------------------------------------
 
-# app.baseURL = ''
+# app.baseURL = 'lana'
   app.baseURL = 'http://localhost:8080'
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''

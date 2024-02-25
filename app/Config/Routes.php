@@ -156,9 +156,12 @@ $routes->get('jspdf', 'MpdfController::jspdf');
 $routes->get('fpublic', 'MpdfController::fpublic');
 $routes->get('a4', 'MpdfController::geraa4');
 $routes->get('boottablef/(:num)', 'Lab::porfamilia/$1'); // filtra familiares
+// --------- C O N T R A T O S
+$routes->get('autcontrato', 'ReportController::autcontrato');
+$routes->get('autcontrato/(:num)', 'ReportController::autcontrato/$1');
 // --------- F I L E S 
 $routes->get('files/', 'FilesController::index');            // funciona
-$routes->get('files2/(:num)', 'FilesController::index2/$1'); // funciona
+$routes->get('file/(:num)', 'FilesController::index2/$1'); // funciona
 $routes->get('files3/', 'FilesController::index3');
 $routes->get('filee/(:segment)', 'FilesController::filee/$1');
 $routes->get('files/open/(:segment)', 'FilesController::open/$1');

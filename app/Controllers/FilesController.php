@@ -6,31 +6,26 @@ namespace App\Controllers;
 class FilesController extends BaseController // está funcionando
 {
     public function index()
-    {
-        // Caminho para a pasta que você deseja exibir
-        $directoryPath = FCPATH . './clientes/';
-
-        // Obtenha uma matriz de arquivos na pasta
-        $filesList = scandir($directoryPath);
-        //dd($filesList);
-
+    {   
+        $caminho = $_ENV['MYFILE']; // criar no .env o MYFILE com caminho '/Users/marcley/Downloads' 
+        $directoryPath = $caminho;
+        $filesList = scandir($directoryPath); // Obtenha uma matriz de arquivos na pasta
         // Passe a lista de arquivos e o caminho da pasta para a view
         return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
     }
 
     public function index2($idc = null)
     {
-        $directoryPath = FCPATH . './clientes/'.$idc;
+        $directoryPath = FCPATH . 'clientes/'.$idc;
         $filesList = scandir($directoryPath);
+        //dd($filesList);
         return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
     }
 
     public function index3()
     {
      // https://www.devmedia.com.br/listando-arquivos-de-pastas-com-php/17716
-        //$path = "./clientes";
-        $path = FCPATH . './clientes/';
-        //$filePath = FCPATH . './clientes/' . urldecode($fileName);
+        $path = FCPATH . 'clientes/';
         $diretorio = dir($path);
 
         echo "Lista de Arquivos do cliente '<strong>".$path."</strong>':<br />";
