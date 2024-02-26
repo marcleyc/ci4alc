@@ -13,9 +13,10 @@ div { text-align: justify; text-justify: inter-word; font-family:Arial Narrow;fo
 #texto { text-align: justify; text-justify: inter-word; font-family:Arial Narrow; } 
 </style>
 
+<?php foreach($recibo as $r): ?>  
 <p style=text-align:center><b>CONTRATO DE PRESTAÇÃO DE SERVIÇOS ADVOCATÍCIOS</b></p>
 
-<p><b>CONTRATANTES: $nome</b>, $estcivil, $profissao, $nacionalidade, portador do passaporte n.o $passaporte, emitido pela República Federativa do Brasil e válido até $validade, identificação fiscal (CPF) sob o n.o $cpf, residente em $endereco e endereço eletrônico em $email.</p> 
+<p><b>CONTRATANTES: <?=$r['nome'];?></b>, $estcivil, $profissao, $nacionalidade, portador do passaporte n.o $passaporte, emitido pela República Federativa do Brasil e válido até $validade, identificação fiscal (CPF) sob o n.o $cpf, residente em $endereco e endereço eletrônico em $email.</p> 
 
 <div id='texto'><b>CONTRATADA: ANDRÉA LEVINDO CARVALHO</b>, casada, advogada, brasileira, inscrita na Ordem dos Advogados sob o n.o 57281C, identificação fiscal (NIF) sob o n.o 289418054, com endereço profissional em Praça da República, n.o 8 - 2 F, 3150-127 Condeixa-a-Nova, Coimbra, Portugal, e endereços eletrônicos em andrealevindo@gmail.com e andrea-57281c@adv.oa.pt.</div>
 
@@ -126,9 +127,9 @@ Por estarem assim justos e contratados, firmam o presente instrumento, em duas v
 <p><b>CONTRATANTE</b></p>
 
 <div>_______________________________________________________________________________</div>
-<div>$nome</div>
+<div><?=$r['nome'];?></div>
 
 ");
-
+<?php endforeach; ?>
 </body>
 
