@@ -165,6 +165,8 @@ $routes->get('file/(:num)', 'FilesController::index2/$1'); // funciona
 $routes->get('files3/', 'FilesController::index3');
 $routes->get('filee/(:segment)', 'FilesController::filee/$1');
 $routes->get('files/open/(:segment)', 'FilesController::open/$1');
+//----------
+$routes->get('myfile/', 'Files2Controller::filelist');  
 
 // --------- C O N T R O L L E R   A P I
 $routes->get('contatosapi', 'Api::index');

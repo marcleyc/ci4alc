@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\Files\File;
 //use CodeIgniter\I18n\Time;
 
 class FilesController extends BaseController // está funcionando
@@ -16,9 +17,9 @@ class FilesController extends BaseController // está funcionando
 
     public function index2($idc = null)
     {
-        $directoryPath = FCPATH . 'clientes/'.$idc;
-        $filesList = scandir($directoryPath);
-        //dd($filesList);
+        //$directoryPath = FCPATH . 'clientes/'.$idc;
+        $directoryPath = $_ENV['MYFILE'] .'/'. $idc; //dd($directoryPath);
+        $filesList = scandir($directoryPath);        //dd($filesList);
         return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
     }
 

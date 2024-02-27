@@ -18,9 +18,15 @@ class ReportController extends BaseController
         $results = $query->getResultArray();
         $results2 = $query2->getResultArray();
         $results3 = $query3->getResultArray();
+        $idc = $results[0]['idc']; //dd($idc);
+        $nome = $results[0]['nome'];
+        $query4 = $db->query("SELECT * FROM clientes WHERE idc = $idc AND nome = '$nome'");
+        $results4 = $query4->getResultArray();
+        //dd($results4);
         $datar['recibo'] = $results;
         $datar['recibosub'] = $results2;
         $datar['recibopgt'] = $results3;
+        $datar['cliente'] = $results4;
         //dd($datar);
 
         $mpdf = new \Mpdf\Mpdf([
