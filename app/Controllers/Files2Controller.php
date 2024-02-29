@@ -17,7 +17,7 @@ class Files2Controller extends BaseController // está funcionando
 
     public function filelist()
     {   
-        $path = WRITEPATH . 'uploads';
+        $path = WRITEPATH . 'cli'; //dd($path);
         // Verifica se a pasta existe antes de listar os arquivos
         if (is_dir($path)) {
             $files = scandir($path); // Lista os arquivos na pasta
@@ -66,5 +66,31 @@ class Files2Controller extends BaseController // está funcionando
         else { echo 'A pasta não existe.';}
     }
 
+    public function filetest2()
+    {   
+        // Define o caminho para a pasta
+        $pasta = $_ENV['MYFILE'];
+        $diretorio = $pasta;
+
+        $arquivos = scandir($diretorio);  // Lista os arquivos no diretório
+        //dd($arquivos);
+        // Itera sobre os arquivos
+        foreach ($arquivos as $arquivo) {
+            // Ignora os diretórios pai e atual
+            if ($arquivo == '.' || $arquivo == '..') { continue; }
+
+            // Caminho completo para o arquivo
+            $caminhoCompleto = $diretorio .'/'. $arquivo;
+
+            if (is_dir($caminhoCompleto)) { echo "O arquivo $arquivo é um diretório.<br>"; } // Verifica se o arquivo é um diretório
+            else { echo "<a href='$caminhoCompleto'>$arquivo</a><br>";} // Cria o link para o arquivo PDF
+            //else { echo "<a href='$caminhoCompleto target='_blank'>$arquivo</a><br>";} // Cria o link para o arquivo PDF
+        }
+
+        
+    }
+
 }
+
+
 

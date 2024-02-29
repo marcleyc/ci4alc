@@ -140,11 +140,12 @@ class RecibosController extends Controller
     }
 
     public function recibosubstore()  // ------------------ inserir recibosub
-    {
+    {   
+        $servico = $this->request->getVar('fservico'); //dd($servico);
         $xModel = new RecibosubModel();
         $data = [
             'nome' => $this->request->getVar('nome'),
-            'servicos' => $this->request->getVar('fservico'),
+            'serv' => $servico,
             'locals'  => $this->request->getVar('flocal'),
             'honorarios'  => $this->request->getVar('fhonorarios'),
             'custas'  => $this->request->getVar('fcustas'),
@@ -176,17 +177,18 @@ class RecibosController extends Controller
           $hoje = new \DateTime();  
           if ($periodicidade === "S") {$hoje->add(new \DateInterval("P6M"));};
           if ($periodicidade === "A") {$hoje->add(new \DateInterval("P12M"));};
-            $data = [
+            $data2 = [
                 'idRec' => $id, 
-                'venct' => $hoje->format('Y/m/d'), 
-                'tipo' => 'honorários', 
+                'venct' => $hoje->format('Y/m/d'),
                 'valor' => $this->request->getVar('fhonorarios'),
                 'iva' => 0,
                 'total' => $this->request->getVar('fhonorarios'),
+                'tipo' => 'honorários',
                 'nome' => $this->request->getVar('nome'),
+                'serv' => $this->request->getVar('fservico'), 
             ];
-            //dd($data);
-            $xRecibopgt->insert($data);
+            //dd($data2);
+            $xRecibopgt->insert($data2);
         } 
         return $this->response->redirect(site_url('/recibo/'.$id));
     }
@@ -590,10 +592,13 @@ class RecibosController extends Controller
         $data['recibopgt'] = $results;
         //dd($data);
         
-        $query2 = $db->query("SELECT nome FROM recibo WHERE id = $idc");
+        $query2 = $db->query("SELECT nome, id FROM recibo WHERE id = $idc");
         $results2 = $query2->getResultArray();
         $data['recibo'] = $results2;
-        //dd($data);
+
+        $query3 = $db->query("SELECT descricao FROM servicos");
+        $results3 = $query3->getResultArray();
+        $data['servico'] = $results3;
         return view('recibos/recibopgt-add', $data);
     }
 
@@ -603,7 +608,7 @@ class RecibosController extends Controller
         $data = [
             'idRec'  => $this->request->getVar('fidrec'),  
             'venct' => $this->request->getVar('fvencto'),
-            'servicos' => $this->request->getVar('fs'),
+            'serv' => $this->request->getVar('fservico'),
             'valor'  => $this->request->getVar('fvalor'),
             'iva'  => $this->request->getVar('fiva'),
             'tipo'  => $this->request->getVar('ftipo'),
@@ -612,10 +617,10 @@ class RecibosController extends Controller
             'total'  => $this->request->getVar('fvalor')+$this->request->getVar('iva'),
             //'pgtoIVA'  => $this->request->getVar('fpgto')             
         ];
+        //dd($data);
         $xModel->insert($data);
-        $id = $this->request->getVar('fidrec');
-        //dd($id);
-        return $this->response->redirect(site_url('/recibo/'.$id));
+        $id = $this->request->getVar('fidrec'); //dd($id);
+        return $this->response->redirect(site_url('recibo'.'/'.$id));
     }
 
     public function recibopgte($id = null) // ------------------- edit page recibosub

@@ -17,12 +17,10 @@
     <div class="col-12">
 		<label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label> </br>
     
-    <?php foreach($recibopgt as $r): ?>  
     <div class="input-group input-group mt-2 d-none">
 			<div class="input-group-text">nº recibo</div>
-      <input type="string" class="form-control" name="fidrec" id="fid" value="<?= ($r['idRec'])?>" hidden />
+      <input type="string" class="form-control" name="fidrec" id="fid" value="<?= ($recibo[0]['id'])?>" hidden />
 		</div>
-    <?php endforeach; ?>
 
     <div class="input-group input-group mt-2">
 			<div class="input-group-text">Vencto</div><input type="date" class="form-control" name="fvencto" id="fvencto" onchange="myVen()" />
@@ -58,6 +56,17 @@
 
     <div class="input-group input-group mt-2">
 			<div class="input-group-text">Pagto</div><input type="date" class="form-control" name="fpgto" id="fpgto" value="null"/>
+		</div>
+
+    <div class="input-group input-group mt-2">
+			<label class="input-group-text" for="inputGroupSelect01">Serviço</label>
+			<select class="form-select" name="fservico" onchange="myServico()" id="fservico">
+			  <option selected>Selecione</option>
+          <?php foreach($servico as $p): ?>
+            <option value="<?php echo $p['descricao']; ?>"><?php echo $p['descricao']; ?></option>
+          <?php endforeach; ?> 
+            <option value="Marcley"></option>
+			</select>
 		</div>
 
     <!-- ----------------------------------------B U T T O N------------------------------------------------------- -->
