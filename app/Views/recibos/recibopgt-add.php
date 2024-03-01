@@ -55,10 +55,6 @@
 		</div>
 
     <div class="input-group input-group mt-2">
-			<div class="input-group-text">Pagto</div><input type="date" class="form-control" name="fpgto" id="fpgto" value="null"/>
-		</div>
-
-    <div class="input-group input-group mt-2">
 			<label class="input-group-text" for="inputGroupSelect01">Serviço</label>
 			<select class="form-select" name="fservico" onchange="myServico()" id="fservico">
 			  <option selected>Selecione</option>
@@ -67,6 +63,10 @@
           <?php endforeach; ?> 
             <option value="Marcley"></option>
 			</select>
+		</div>
+
+    <div class="input-group input-group mt-2">
+			<div class="input-group-text">Pagto</div><input type="date" class="form-control" name="fpgto" id="fpgto" value="null"/>
 		</div>
 
     <!-- ----------------------------------------B U T T O N------------------------------------------------------- -->
