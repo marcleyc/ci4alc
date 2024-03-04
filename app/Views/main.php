@@ -59,6 +59,7 @@
                                 <li><a class="dropdown-item" href="<?= site_url('/tramitando3') ?>">Relatório c/filtro</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="<?= site_url('/logout') ?>">Logout</a></li>
                     </ul>                    
                 </div>
             </div>

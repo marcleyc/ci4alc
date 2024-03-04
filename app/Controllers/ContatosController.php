@@ -14,6 +14,8 @@ class ContatosController extends Controller
     public function contatosj() // ------------------------ list of contatos json
     {
         $cli = new ContatosModel();
+        //$session = session();
+        //echo "Hello : ".$session->get('name');
         $clientes = $cli->select('id,nome,email')->orderBy('id', 'DESC')->findAll();
         echo json_encode($clientes);
     }

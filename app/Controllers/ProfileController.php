@@ -13,7 +13,7 @@ class ProfileController extends Controller
     {
         $session = session();
         //echo "Hello : ".$session->get('name');
-        $data = $session->get('name');
-        return view('clientes/list', $data);
+        $data = $session->get('name'); //dd($data);
+        return view('clientes/list');
     }
 }

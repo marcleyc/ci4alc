@@ -54,4 +54,12 @@ class SigninController extends Controller
             return redirect()->to('signin');
         }
     }
+    
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('signin');
+    } 
+
 }

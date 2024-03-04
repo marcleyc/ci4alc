@@ -29,15 +29,15 @@ $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
 
 // --------- S E C U R I T Y 
 // -- https://www.positronx.io/codeigniter-authentication-login-and-registration-tutorial/
-//$routes->get('/', 'SignupController::index');
 $routes->get('/', 'SigninController::index');
 $routes->get('/signup', 'SignupController::index');
 $routes->match(['get', 'post'], 'SignupController/store', 'SignupController::store');
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
+$routes->get('/logout', 'SigninController::logout');
 // --------- C O N T R O L L E R   C O N T A T O S
-$routes->get('contatos', 'ContatosController::index'); // list
+$routes->get('contatos', 'ContatosController::index', ['filter'=> 'authGuard']); // list
 $routes->get('contatosj', 'ContatosController::contatosj'); // list json
 $routes->get('contatosf/(:num)', 'ClientesController::porfamilia/$1'); // contato unico
 $routes->get('contatosc', 'ContatosController::create'); // add page contato
@@ -161,7 +161,7 @@ $routes->get('autcontrato', 'ReportController::autcontrato');
 $routes->get('autcontrato/(:num)', 'ReportController::autcontrato/$1');
 // --------- F I L E S 
 $routes->get('files/', 'FilesController::index');            // funciona
-$routes->get('file/(:num)', 'FilesController::index2/$1'); // funciona
+$routes->get('files/(:num)', 'FilesController::index2/$1'); // funciona
 $routes->get('files3/', 'FilesController::index3');
 $routes->get('filee/(:segment)', 'FilesController::filee/$1');
 $routes->get('files/open/(:segment)', 'FilesController::open/$1');

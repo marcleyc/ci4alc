@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center align-self-center">
             <div class="col-5">
                 <h2>Login in</h2>        
                 <?php if(session()->getFlashdata('msg')):?>
