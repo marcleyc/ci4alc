@@ -133,6 +133,7 @@ $routes->get('financeiroarj2', 'FinanceiroController::areceberj2');
 
 // --------- C O N T R O L L E R   L A B 
 $routes->get('lab', 'Lab::index');
+$routes->get('laba4', 'FinanceiroController::arecebera4');
 $routes->get('contatosx', 'Lab::contatos');
 $routes->add('labs', 'Lab::cadastro');
 $routes->add('labsc', 'Lab::clientes');

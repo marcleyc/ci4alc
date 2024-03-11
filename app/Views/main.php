@@ -36,6 +36,7 @@
                             <li class="nav-item"><a class="nav-link" href="<?= site_url('/financeiro') ?>">Financeiro</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li class="nav-item"><a class="nav-link" href="<?= site_url('/financeiroar2') ?>">A Receber</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= site_url('/laba4') ?>">A Receber report</a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?= site_url('/financeiroar') ?>">Temporários</a></li>
                             </ul>
                         </li>

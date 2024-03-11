@@ -171,7 +171,8 @@ class Lab extends BaseController
         return view('lab/recibo', $data);
     }
 
-    public function recibo($id = null){  
+    public function recibo($id = null)
+    {  
         $db = db_connect();          
         $query = $db->query("SELECT * FROM recibo WHERE id = $id ORDER BY id DESC LIMIT 1");
         $query2 = $db->query("SELECT * FROM recibosub WHERE idRec = $id ORDER BY id DESC");
@@ -183,7 +184,8 @@ class Lab extends BaseController
         return view('lab/phpvue', $data);
     }
 
-    public function recibob($id = null){  
+    public function recibob($id = null)
+    {  
         $db = db_connect();          
         $query = $db->query("SELECT * FROM recibo WHERE id = $id ORDER BY id DESC LIMIT 1");
         $query2 = $db->query("SELECT * FROM recibosub WHERE idRec = $id ORDER BY id DESC");
@@ -195,7 +197,8 @@ class Lab extends BaseController
         return view('lab/phpvueb', $data);
     }
 
-    public function pastas(){  
+    public function pastas()
+    {  
         $path = ".../Views/";
         $diretorio = dir($path);
 
@@ -284,7 +287,7 @@ class Lab extends BaseController
         $dados['cpf'] = "058.419.127-80";
         $dados['endereco'] = "av.Antonio Borges, n.o 80, apartamento 1302, Ed Grand Bay, 29065-250 Mata da Praia, Vitória/ES, Brasil";
         $dados['email'] = "victorkfranca@gmail.com";
-        $dados['ano'] => date("Y");
+        //$dados['ano'] => date("Y");
 
         $mpdf = new \Mpdf\Mpdf([
             'pagenumPrefix' => 'Página ',
@@ -326,6 +329,11 @@ class Lab extends BaseController
         $html2 = view('mpdf/contrato1fatura');
         $mpdf->WriteHTML($html2);
 		$mpdf->Output('arjun.pdf','I');   
+    }
+
+    public function a4()  // -------------------- php object array to boottable
+    {
+        return view('lab/a4');    
     }
     
 }

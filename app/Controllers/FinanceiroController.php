@@ -135,6 +135,21 @@ class FinanceiroController extends BaseController
         echo json_encode($data);
     }
 
+    public function arecebera4()  // ------------ report por serviços
+    {    
+        $db = db_connect(); 
+        $results = $db->table('recibopgt')
+                      ->select('recibopgt.*, recibo.idc')
+                      ->join('recibo', 'recibo.id = recibopgt.idRec')
+                      ->where('recibopgt.pgtoIVA =', '0000-00-00'  )
+                      ->orWhere('recibopgt.pgtoIVA =', null)
+                      ->orderBy('venct', 'nome')
+                      ->get()->getResultArray();
+        $data['financeiro'] = $results;
+        //dd($data);
+        return view('lab/a4',$data);
+    }
+
     public function test()
     {
         return view('cliente_cadastro');

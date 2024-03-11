@@ -12,6 +12,7 @@ use CodeIgniter\Database\Query;
 
 class RecibosController extends Controller
 {   
+// =========== R  E  C  I  B  O              ===============================================    
     public function index()  
     {  
         #$db = db_connect();          
@@ -123,7 +124,7 @@ class RecibosController extends Controller
         return $this->response->redirect(site_url('/recibos/'));
     }
 
-    // =========== R  E  C  I  B  O  S  U  B ======================================================
+// =========== R  E  C  I  B  O  S  U  B     ===============================================
 
     public function recibosub($idc = null, $id = null)  // -----------------form inclusão recibosub
     {
@@ -302,7 +303,7 @@ class RecibosController extends Controller
         echo json_encode($results);
     }
 
-// =========== P  R  O  C  E  S  S  O  S  ===============================================
+// =========== P  R  O  C  E  S  S  O  S     ===============================================
 
     public function processos()  // ------------------------- pág boottable processo
     { return view('recibos/processos'); }
@@ -472,7 +473,7 @@ class RecibosController extends Controller
         return view('recibos/tramitando-rep', $data);
     }
 
-// =========== S  E  R  V  I  Ç  O  S ======================================================
+// =========== S  E  R  V  I  Ç  O  S        ===============================================
 
     public function servicos()  
     {  
@@ -484,7 +485,7 @@ class RecibosController extends Controller
         return view('recibos/servicos', $data);
     }
     
-// =========== R  E  L  A  T  Ó  R  I  O  S ===============================================
+// =========== R  E  L  A  T  Ó  R  I  O  S  ==============================================
 
     public function processos_old()  // ----------------------- tramitando ---------------------
     {
