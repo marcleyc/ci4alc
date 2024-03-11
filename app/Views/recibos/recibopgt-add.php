@@ -35,7 +35,7 @@
     <div class="input-group input-group mt-2">
 			<label class="input-group-text" for="inputGroupSelect01">Tipo</label>
 			<select class="form-select" name="ftipo" onchange="myHon()" id="ftipo">
-			    <option selected>Selecione</option>
+			    <option selected>honorário</option>
           <option value="honorário">honorário</option>
           <option value="emolumento">emolumento</option>
 			</select>
@@ -44,7 +44,7 @@
     <div class="input-group input-group mt-2">
 			<label class="input-group-text" for="inputGroupSelect01">Repete</label>
 			<select class="form-select" name="frepete" id="frepete">
-			    <option selected>Selecione</option>
+			    <option selected>Não</option>
           <option value="semestral">semestral</option>
           <option value="anual">anual</option>
 			</select>

@@ -126,7 +126,9 @@ class FinanceiroController extends BaseController
         $results = $db->table('recibopgt')
                       ->select('recibopgt.*, recibo.idc')
                       ->join('recibo', 'recibo.id = recibopgt.idRec')
-                      ->where('recibopgt.repete !=','não')->where('recibopgt.repete !=',null)
+                      ->where('recibopgt.pgtoIVA =', '0000-00-00'  )
+                      ->orWhere('recibopgt.pgtoIVA =', null)
+                      ->orderBy('venct', 'nome')
                       ->get()->getResultArray();
         $data = $results;
         //dd($data);

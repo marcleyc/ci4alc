@@ -302,7 +302,7 @@ class RecibosController extends Controller
         echo json_encode($results);
     }
 
-    // =========== P  R  O  C  E  S  S  O  S  ===============================================
+// =========== P  R  O  C  E  S  S  O  S  ===============================================
 
     public function processos()  // ------------------------- pág boottable processo
     { return view('recibos/processos'); }
@@ -316,7 +316,7 @@ class RecibosController extends Controller
         echo json_encode($results);
     }
 
-    // =========== T  R  A  M  I  T  A  N  D  O  ===============================================
+// =========== T  R  A  M  I  T  A  N  D  O  ===============================================
 
     public function tramitando()  // ------------------------ tramitando com sql
     {  
@@ -472,7 +472,7 @@ class RecibosController extends Controller
         return view('recibos/tramitando-rep', $data);
     }
 
-    // =========== S  E  R  V  I  Ç  O  S ======================================================
+// =========== S  E  R  V  I  Ç  O  S ======================================================
 
     public function servicos()  
     {  
@@ -484,7 +484,7 @@ class RecibosController extends Controller
         return view('recibos/servicos', $data);
     }
     
-    // =========== R  E  L  A  T  Ó  R  I  O  S ===============================================
+// =========== R  E  L  A  T  Ó  R  I  O  S ===============================================
 
     public function processos_old()  // ----------------------- tramitando ---------------------
     {
@@ -596,8 +596,8 @@ class RecibosController extends Controller
         $results2 = $query2->getResultArray();
         $data['recibo'] = $results2;
 
-        $query3 = $db->query("SELECT descricao FROM servicos");
-        $results3 = $query3->getResultArray();
+        $query3 = $db->query("SELECT descricao FROM servicos ORDER BY descricao ASC");
+        $results3 = $query3->getResultArray(); 
         $data['servico'] = $results3;
         return view('recibos/recibopgt-add', $data);
     }
@@ -639,10 +639,10 @@ class RecibosController extends Controller
         $xModel = new RecibopgtModel();
         $repete = $this->request->getVar('frepete');
         $vencto = $this->request->getVar('fvencto');
-        $pgto = $this->request->getVar('fpgto');
+        $pgto = $this->request->getVar('fpgto'); 
         $venc = new \DateTime($vencto);
         if ($pgto != null) 
-        {
+        { dd($pgto);
           if ($repete != "não") 
           { 
             if ($repete == "semestral") { $venc->add(new \DateInterval("P6M")); }
@@ -657,7 +657,7 @@ class RecibosController extends Controller
                 'repete'  => $this->request->getVar('frepete'),
                 'total'  => $this->request->getVar('fvalor')+$this->request->getVar('iva'),
                 'nome'  => $this->request->getVar('nome'),
-                //'pgtoIVA'  => $this->request->getVar('fpgto')
+                'pgtoIVA'  => null
             ];
             $xModel->insert($datax);
           }
@@ -714,7 +714,7 @@ class RecibosController extends Controller
         $data = [
                  'idRec' => $idrec, 
                  'venct' => $data_atual->format('Y/m/d'),
-                 'nome' => 'nom',  
+                 'nome' => $nom,  
                  'tipo' => 'honorários', 
                  'valor' => number_format($valor_parc, 2, '.', ''),
                  'iva' => $iva,
@@ -727,17 +727,17 @@ class RecibosController extends Controller
         // Acessa o IF quando é última parcela para corrigir o valor da compra
         if ($controle == $tip) {
             $valor_ultima_parc = $valor_parc - $soma_valor_parc;  // corrigir a diferença 
-            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => $valor_parc, 'iva' => $iva,'total' => $total];
+            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorários', 'valor' => $valor_parc, 'iva' => $iva,'total' => $total, 'nome' => $nom];
             $xRecibopgt->insert($data);
         } else {
             $valor_ultima_parc = $hon - $soma_valor_parc; 
-            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorário', 'valor' => $valor_parc, 'iva' => $iva,'total' => $total];
+            $data = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'honorário', 'valor' => $valor_parc, 'iva' => $iva,'total' => $total, 'nome' => $nom];
             $xRecibopgt->insert($data);
             $soma_valor_parc += number_format($valor_parc, 2, '.', '');  // Somar o valor das parcelas
         }
         $controle++;  // Incrementar a variável após imprimir a parcela
         }
-        $data2 = ['idRec' => $idrec, 'venct' => $dataf, 'tipo' => 'emolumento', 'valor' => $emo,'iva' => $iva, 'total' => $emo];
+        $data2 = ['idRec' => $idrec, 'venct' => $data_atual->format('Y/m/d'), 'tipo' => 'emolumento', 'valor' => $emo,'iva' => $iva, 'total' => $emo, 'nome' => $nom];
         $xRecibopgt->insert($data2);
         return $this->response->redirect(site_url('/recibo/'.$idrec));
     }
