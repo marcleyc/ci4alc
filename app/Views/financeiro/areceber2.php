@@ -19,15 +19,12 @@
   data-url="<?= base_url('financeiroarj2/');?>">
   <thead>
     <tr>
-      <th data-field="idc" data-sortable="true">IDC</th>
+      <th data-field="venct" data-width="110" data-sortable="true">Vencto</th>
       <th data-field="nome" data-sortable="true">Nome</th>
       <th data-field="serv" data-sortable="true">Serviço</th>
-      <th data-field="venct" data-width="110" data-sortable="true">Vencto</th>
       <th data-field="repete" data-sortable="true">Repetição</th>
-      <th data-field="valor">Valor</th>
-      <th data-field="iva">IVA</th>
       <th data-field="total">Total</th>
-      
+      <th data-field="idc" data-sortable="true">IDC</th>
       <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">@</th>
     </tr>
   </thead>
