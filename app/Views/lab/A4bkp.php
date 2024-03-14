@@ -27,7 +27,7 @@
           <tr>
              <td class="col-sm-1"><?php echo $user['venct']; ?></td>
              <td class="col-sm-3"><?php echo $user['nome']; ?></td>
-             <td class="col-sm-3"><?php echo $user['serv']; ?></td>
+             <td class="col-sm-1"><?php echo $user['serv']; ?></td>
              <td class="col-sm-1"><?php echo $user['repete']; ?></td>
              <td class="col-sm-1"><?php echo $user['total']; ?></td>
           </tr>
@@ -48,7 +48,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #FAFAFA;
-  font: 10pt "Tahoma";
+  font: 12pt "Tahoma";
 }
 * {
   box-sizing: border-box;
@@ -58,9 +58,9 @@ body {
   width: 210mm;
   min-height: 297mm;
   padding: 2mm;
-  margin: 2mm auto;
+  margin: 10mm auto;
   border: 1px #D3D3D3 solid;
-  border-radius: 2px;
+  border-radius: 5px;
   background: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
