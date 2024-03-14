@@ -93,6 +93,7 @@ $routes->get('/processosj', 'RecibosController::processosj');
 // - TRAMITANDO
 $routes->get('/tramitando', 'RecibosController::tramitando');
 $routes->get('/tramitandoj', 'RecibosController::tramitandoj');  // tramitando json
+$routes->get('/tramitandoj4', 'RecibosController::tramitandoj4');  // tramitando json
 $routes->post('/tramitandou', 'RecibosController::tramitandou'); // update tramitando
 $routes->get('tramitandoet/(:num)', 'RecibosController::tramitandoet/$1'); //edit page tramitando
 

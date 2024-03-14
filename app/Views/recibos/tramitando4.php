@@ -1,7 +1,7 @@
 <?= $this->extend('main'); ?> 
 <?= $this->section('conteudo'); ?>
  
-<div class=container> <center> <h3 style="color:#878787">Processos tramitando nas conservatórias</h3> </center>
+<div class=container> <center> <h3 style="color:#878787">Processos tramitando nas conservatórias ordenados por serviço</h3> </center>
  
 <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
@@ -12,7 +12,7 @@
   data-search="true"
   data-search-align="left"
   data-row-style="rowStyle"
-  data-url="<?= base_url('tramitandoj/');?>">
+  data-url="<?= base_url('tramitandoj4/');?>">
   <thead>
     <tr>
       <th data-field="locals" data-width="175">Local</th>
@@ -22,6 +22,7 @@
       <th data-field="nprocesso">nº Processo</th>
       <th data-field="codigo" data-width="150">Código</th>
       <th data-field="sit">Sit</th>
+      <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">@</th>
     </tr>
   </thead>
 </table>
@@ -37,6 +38,23 @@
       }
     })
   })
+</script>
+
+<script> <!-- "script do campo menu" -->
+  var $table = $('#table')
+
+  function operateFormatter(value, row, index) {
+    return [
+      '<a class="edit" href="javascript:void(0)" title="Editar">',
+      '<img src="<?= base_url("assets/icon/pencil-square.svg")?>" height="17" width="17" style="margin-right: 5px;">',
+      '</a>'
+    ].join('')
+  }
+
+  window.operateEvents = {
+    'click .edit': function (e, value, row, index) 
+      { window.location.href = "<?= base_url('/tramitandoet/');?>"+row.id }
+  }
 </script>
 
 <script>

@@ -2,7 +2,8 @@
 <center>    
 <div class="container bg-white shadow-sm m-1 border border-light rounded">
     <div class="mt-2">
-        <div class="text-center"><h3>T R A M I T A N D O</h3></div>  
+        <?php $qtd=count($recibosub); ?>
+        <div class="text-center"><h3><?= $qtd; ?> PROCESSOS TRAMITANDO</h3></div>  
 	  </div>
     
     <?php if(isset($_SESSION['msg'])){ echo $_SESSION['msg']; } ?>

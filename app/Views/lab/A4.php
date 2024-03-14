@@ -7,6 +7,12 @@
     </head>
     <body>  
 
+    <?php 
+      $data_atual = new \DateTime();
+      $data_atual = $data_atual->format('Y-m-d'); 
+      //echo $data_atual; 
+    ?>
+
     <div class="book">
       <div class="page">
       <div class="mt-1">
@@ -22,14 +28,18 @@
           </tr>
        </thead>
        <tbody>
-          <?php if($financeiro): ?>
+          <?php if($financeiro): ?>  
           <?php foreach($financeiro as $user): ?>
           <tr>
-             <td class="col-sm-1"><?php echo $user['venct']; ?></td>
-             <td class="col-sm-3"><?php echo $user['nome']; ?></td>
-             <td class="col-sm-3"><?php echo $user['serv']; ?></td>
-             <td class="col-sm-1"><?php echo $user['repete']; ?></td>
-             <td class="col-sm-1"><?php echo $user['total']; ?></td>
+            <?php if($data_atual > $user['venct']): ?>
+              <td class="col-sm-1 text-danger"><?php echo $user['venct']; ?></td>
+            <?php else: ?>
+              <td class="col-sm-1"><?php echo $user['venct']; ?></td>
+            <?php endif; ?>   
+              <td class="col-sm-3"><?php echo $user['nome']; ?></td>
+              <td class="col-sm-3"><?php echo $user['serv']; ?></td>
+              <td class="col-sm-1"><?php echo $user['repete']; ?></td>
+              <td class="col-sm-1"><?php echo $user['total']; ?></td>
           </tr>
          <?php endforeach; ?>
          <?php endif; ?>

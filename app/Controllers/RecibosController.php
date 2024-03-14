@@ -319,6 +319,7 @@ class RecibosController extends Controller
 
 // =========== T  R  A  M  I  T  A  N  D  O  ===============================================
 
+
     public function tramitando()  // ------------------------ tramitando com sql
     {  
         return view('recibos/tramitando');
@@ -334,6 +335,23 @@ class RecibosController extends Controller
                              ORDER BY recibosub.inicio DESC ');                
         $results = $query->getResultArray();
         echo json_encode($results);
+    }
+    
+    public function tramitando4()  // ------------ tramitando com vuetify
+    {  
+        return view('recibos/tramitando4');
+    }
+
+    public function tramitandoj4()  // ------------------------ tramitando com sql
+    {  
+        $cli = new RecibosubModel();
+        $results = $cli->select('*')
+                        ->like('locals', 'IRN', 'after')
+                        ->where('ok','F')->where('inicio >','2017-01-01')
+                        ->orderby('servicos ASC, inicio ASC, locals ASC')->findAll();
+        $data['recibosub'] = $results;
+        echo json_encode($results);
+        //return view('recibos/tramitando');
     }
 
     public function tramitandoet($id = null) // ------------------- edit page tramitando
@@ -442,11 +460,6 @@ class RecibosController extends Controller
         $data['recibosub'] = $results;
         //dd($data);
         return view('recibos/tramitando3', $data);
-    }
-
-    public function tramitando4()  // ------------ tramitando com vuetify
-    {  
-        return view('recibos/tramitando4');
     }
 
     public function tramitando5()  // ------------ report das conservatorias
@@ -583,7 +596,7 @@ class RecibosController extends Controller
         return $this->response->redirect(site_url('/recibos/'));   
     }
 
-    // =========== R  E  C  I  B  O  P  G  T ======================================================
+// =========== R  E  C  I  B  O  P  G  T ======================================================
 
     public function recibopgta($idc = null)  // -----------------form inclusão recibosub
     {
@@ -643,7 +656,7 @@ class RecibosController extends Controller
         $pgto = $this->request->getVar('fpgto'); 
         $venc = new \DateTime($vencto);
         if ($pgto != null) 
-        { dd($pgto);
+        { 
           if ($repete != "não") 
           { 
             if ($repete == "semestral") { $venc->add(new \DateInterval("P6M")); }
