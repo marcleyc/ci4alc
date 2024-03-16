@@ -379,6 +379,31 @@ class RecibosController extends Controller
         return view('recibos/tramitando-edt', $data);
     }
 
+    public function tramitandoet2($id = null) // ------------------- edit page tramitando
+    {
+        $xModel = new RecibosubModel();
+        $dados = $xModel->where('id', $id)->first();
+        $data['recibosub'] = $dados;
+        $idRec = $dados['idRec'];
+        
+        $xRecibo = new RecibosModel();
+        $recibo = $xRecibo->where('id', $idRec)->first();
+        $data['recibo'] = $recibo;
+        $idc = $recibo['idc'];
+
+        $xModel2 = new ClientesModel();
+        $data['clientes'] = $xModel2->where('idc', $idc)->findAll();
+        $data['clientess'] = $xModel2->where('idc', $idc)->select('nome')->findAll();
+        
+        $xModel3 = new ServicosModel();
+        $data['servicos'] = $xModel3->findAll();
+
+        $xModel4 = new ReclocalModel();
+        $data['local'] = $xModel4->findAll();
+        //dd($data);
+        return view('recibos/tramitando-edt2', $data);
+    }
+
     public function tramitandou()  // --------------------------- update tramitando
     {       
         $xModel = new RecibosubModel();
@@ -398,6 +423,7 @@ class RecibosController extends Controller
             'termino'  => $this->request->getVar('ftermino'),
             'ok'  => $this->request->getVar('fok'),
             'periodicidade'  => $this->request->getVar('fperiodicidade'),
+            'verificado'  => $this->request->getVar('fverificado'),
         ];
         //dd($data);
         $id = $this->request->getVar('fid');
@@ -417,7 +443,7 @@ class RecibosController extends Controller
         ];
         $xRecibo = new RecibosModel();
         $xRecibo->update($id, $datar);
-        return $this->response->redirect(site_url('tramitando/'));
+        return $this->response->redirect(site_url('tramitando4/'));
         //return $this->response->redirect(site_url('/recibo/'.$idrec));
     }
 

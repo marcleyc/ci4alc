@@ -18,7 +18,13 @@ Bootstrap-Table (os melhores)
 
 ( )colocar no sitema data para eliminar os arquivos físicos
 (x)atualizar serviços para boottable
-( )login - https://www.mywebtuts.com/blog/codeigniter-4-authentication-login-and-registration-tutorial
+(x)login - https://www.mywebtuts.com/blog/codeigniter-4-authentication-login-and-registration-tutorial
 
 <img src="<?= base_url("assets/icon/add24.png")?>" height="17" width="17" alt="">
 <?php echo base_url('clientesa/'.$cliente['idc']);?>
+
+<?php $qtd=count($recibosub); ?>
+<div class="text-center"><h3><?= $qtd; ?>
+
+$data_atual = new \DateTime($dataf);
+$hoje = $data_atual->format('Y/m/d');

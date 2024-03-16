@@ -1,7 +1,7 @@
 <?= $this->extend('main'); ?> 
 <?= $this->section('conteudo'); ?>
  
-<div class=container> <center> <h3 style="color:#878787">Processos tramitando nas conservatórias ordenados por serviço</h3> </center>
+<div class=container> <center> <h3 style="color:#878787">Atualizar processos </h3> </center>
  
 <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
@@ -19,7 +19,7 @@
       <th data-field="servicos">Serviço</th>
       <th data-field="inicio" data-width="110">Início</th>
       <th data-field="nome">Nome</th>
-      <th data-field="nprocesso">nº Processo</th>
+      <th data-field="verificado">Verificado</th>
       <th data-field="codigo" data-width="150">Código</th>
       <th data-field="sit">Sit</th>
       <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">@</th>
@@ -53,7 +53,7 @@
 
   window.operateEvents = {
     'click .edit': function (e, value, row, index) 
-      { window.location.href = "<?= base_url('/tramitandoet/');?>"+row.id }
+      { window.location.href = "<?= base_url('/tramitandoet2/');?>"+row.id }
   }
 </script>
 

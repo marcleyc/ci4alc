@@ -96,6 +96,7 @@ $routes->get('/tramitandoj', 'RecibosController::tramitandoj');  // tramitando j
 $routes->get('/tramitandoj4', 'RecibosController::tramitandoj4');  // tramitando json
 $routes->post('/tramitandou', 'RecibosController::tramitandou'); // update tramitando
 $routes->get('tramitandoet/(:num)', 'RecibosController::tramitandoet/$1'); //edit page tramitando
+$routes->get('tramitandoet2/(:num)', 'RecibosController::tramitandoet2/$1'); //edit page processos
 
 $routes->get('/tramitando1', 'RecibosController::tramitando1'); // em teste
 $routes->get('/tramitando2', 'RecibosController::tramitando2'); // em teste
