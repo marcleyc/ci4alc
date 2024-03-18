@@ -492,12 +492,27 @@ class RecibosController extends Controller
     {  
         $cli = new RecibosubModel();
         $results = $cli->select('*')->orderBy('locals', 'servicos','inicio')
-                        ->like('locals', 'IRN', 'after')
+                        ->like('locals', 'IRN Coimbra', 'after')
                         ->where('ok','F')->where('inicio >','2017-01-01')
                         ->orderby('locals ASC, servicos ASC, inicio ASC')->findAll();
         $data['recibosub'] = $results;
         //dd($data);
-        return view('recibos/tramitando7', $data);
+        return view('recibos/tramitando5', $data);
+    }
+
+    public function tramitando5b()  // ----------------------- tramitando json
+    {
+        $db = db_connect();          
+        $query = $db->query('SELECT recibosub.*, recibo.idc
+                             FROM recibosub
+                             INNER JOIN recibo ON recibo.id = recibosub.idRec
+                             WHERE recibosub.locals LIKE "IRN Coimbra" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01"
+                             ORDER BY recibosub.inicio DESC ');                
+        $results = $query->getResultArray();
+        $data['recibosub'] = $results;
+        //dd($data);
+        return view('recibos/tramitando5', $data);
+        echo json_encode($results);
     }
 
     public function tramitando8()  // ------------ report por serviços

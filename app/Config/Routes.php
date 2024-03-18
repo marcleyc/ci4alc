@@ -168,6 +168,9 @@ $routes->get('files/(:num)', 'FilesController::index2/$1'); // funciona
 $routes->get('files3/', 'FilesController::index3');
 $routes->get('filee/(:segment)', 'FilesController::filee/$1');
 $routes->get('files/open/(:segment)', 'FilesController::open/$1');
+
+$routes->get('open/(:segment)', 'Files3Controller::openFile/$1');
+$routes->get('list/', 'Files3Controller::listFiles');
 //----------
 $routes->get('myfile/', 'Files2Controller::filetest2');  
 

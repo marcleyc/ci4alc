@@ -55,9 +55,10 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="<?= site_url('/tramitando') ?>">Tramitando</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando2') ?>">Relatório por local</a></li>
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando8') ?>">Relatório por serviço</a></li>
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando3') ?>">Relatório c/filtro</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando2') ?>">Tramitando por local</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando5') ?>">Tramitando em Coimbra</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando8') ?>">Tramitando por serviço</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando3') ?>">Tramitando c/filtro</a></li>
                                 <li><a class="dropdown-item" href="<?= site_url('/tramitando4') ?>">Verificar processos</a></li>
                             </ul>
                         </li>
