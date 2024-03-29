@@ -61,6 +61,8 @@
 			<div class="input-group-text">Pagto</div><input type="date" class="form-control" name="fpgto" id="fpgto" value="<?=$recibopgt['pgtoIVA']?>" />
 		</div>
 
+    <div class="input-group-text d-none">Serviço</div><input type="text" class="form-control" name="fserv" placeholder="Serviço" id="fid" hidden value="<?= $recibopgt['serv']; ?>"/>
+
     <!-- ----------------------------------------B U T T O N------------------------------------------------------- -->
 		<div class="col-12 mt-3">
 		    <button type="submit" id="submit" class="btn btn-primary" >Enviar</button>

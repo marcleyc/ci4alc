@@ -705,7 +705,7 @@ class RecibosController extends Controller
             $datax = [
                 'idRec'  => $this->request->getVar('fidrec'),  
                 'venct' => $venc->format('Y/m/d'),
-                'servicos' => $this->request->getVar('fs'),
+                'serv' => $this->request->getVar('fserv'),
                 'valor'  => $this->request->getVar('fvalor'),
                 'iva'  => $this->request->getVar('fiva'),
                 'tipo'  => $this->request->getVar('ftipo'),
