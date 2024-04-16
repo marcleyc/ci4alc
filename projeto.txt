@@ -16,6 +16,14 @@ Bootstrap-Table (os melhores)
 - https://examples.bootstrap-table.com/#extensions/toolbar.html - busca avançada
 - https://examples.bootstrap-table.com/#issues/4214.html - baixar a tabela em json ou xml
 
+samsung note 9     - cam:107 - video:094 - bat:000
+samsung A50        - cam:076 - video:067 - bat:000
+samsung A54        - cam:107 - video:115 - bat:113
+xiaomi note pro 5g - cam:121 - video:117 - bat:000
+Xiaomi 13T         - cam:123 - video:132 - bat:114
+Google Pixel 7a    - cam:133 - video:133 - bat:96
+iphon 15 pro       - cam:134 - video:000 - bat:113 
+
 ( )colocar no sitema data para eliminar os arquivos físicos
 (x)atualizar serviços para boottable
 (x)login - https://www.mywebtuts.com/blog/codeigniter-4-authentication-login-and-registration-tutorial
@@ -28,3 +36,4 @@ Bootstrap-Table (os melhores)
 
 $data_atual = new \DateTime($dataf);
 $hoje = $data_atual->format('Y/m/d');
+
