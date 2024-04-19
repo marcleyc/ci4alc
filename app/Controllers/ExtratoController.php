@@ -2,12 +2,18 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
+
+use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\API\ResponseTrait;
+
 use App\Models\ExtratoModel;
 
 // https://www.positronx.io/codeigniter-import-csv-file-data-to-mysql-database-tutorial/
 
 class ExtratoController extends Controller
 {
+    use ResponseTrait;
+
     public function index()
     {
         return view('extrato/index');
@@ -65,5 +71,33 @@ class ExtratoController extends Controller
             }
         }
         return redirect()->route('/');         
+    }
+
+    public function resumo()
+    {
+        $db = \Config\Database::connect();
+        $query   = $db->query("SELECT tipo, YEAR(data) As ano, MONTH(data) As mes, SUM(valor) As total FROM extrato GROUP BY tipo, ano, mes ORDER BY ano,mes,tipo");
+        $results = $query->getResult();
+        $data['dados'] = $results;
+        //echo json_encode($data);
+        return view('extrato/resumo', $data);
+    }
+
+    public function resumoanual()
+    {
+        $db = \Config\Database::connect();
+        $query   = $db->query("SELECT tipo, YEAR(data) As ano, SUM(valor) As total FROM extrato GROUP BY tipo, ano ORDER BY ano, tipo");
+        $results = $query->getResult();
+        $data['dados'] = $results;
+        //echo json_encode($results);
+        return view('extrato/resumoanual', $data);
+    }
+
+    public function resumoj()
+    {
+        $db = \Config\Database::connect();
+        $query   = $db->query("SELECT tipo, YEAR(data) As ano, MONTH(data) As mes, SUM(valor) As total FROM extrato GROUP BY tipo, ano, mes");
+        $data['dados'] = $query->getResult();
+        return $this->respond($data);
     }
 }

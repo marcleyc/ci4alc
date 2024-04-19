@@ -107,10 +107,10 @@ class Lab extends BaseController
 
     public function vuetifyOld()   // ----------------- vuetify
     {
-    $userModel = new ContatosModel();
-    $data['contatos'] = $userModel->orderBy('id', 'DESC')->findAll();
-    dd($data);
-    return view('lab/vuetify', $data);
+        $userModel = new ContatosModel();
+        $data['contatos'] = $userModel->orderBy('id', 'DESC')->findAll();
+        dd($data);
+        return view('lab/vuetify', $data);
     }
 
     public function clientes()  // ------------------ php object array to datatable
