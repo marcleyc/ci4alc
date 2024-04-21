@@ -30,6 +30,21 @@
                         <li class="nav-item"><a class="nav-link" href="<?= site_url('/clientes') ?>">Clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?= site_url('/servicos') ?>">Serviços</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?= site_url('/recibos') ?>">Recibos</a></li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Processos</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="<?= site_url('/processos') ?>">Processos</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando') ?>">Tramitando</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando2') ?>">Tramitando por local</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando5') ?>">Tramitando em Coimbra</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando8') ?>">Tramitando por serviço</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando3') ?>">Tramitando c/filtro</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/tramitando4') ?>">Verificar processos</a></li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Financeiro</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,7 +55,19 @@
                                 <li class="nav-item"><a class="nav-link" href="<?= site_url('/financeiroar') ?>">Temporários</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="<?= site_url('/processos') ?>">Processos</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Extrato</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="<?= site_url('/extratol') ?>">Extrato</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/extrato') ?>">Upload CSV</a></li> 
+                                <li><a class="dropdown-item" href="<?= site_url('/tiposi') ?>">Tipos add</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/resumoanual/2023') ?>">Extrato resumo anual</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/resumo') ?>">Extrato resumo</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('/extratov') ?>">Verifica</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Lab</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -48,18 +75,6 @@
                                 <li><hr class="dropdown-divider" /></li>
                                 <li class="nav-item"><a class="nav-link" href="<?= site_url('/files') ?>">Files</a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?= site_url('/contrato2') ?>">Contrato</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tramitando</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando') ?>">Tramitando</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando2') ?>">Tramitando por local</a></li>
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando5') ?>">Tramitando em Coimbra</a></li>
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando8') ?>">Tramitando por serviço</a></li>
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando3') ?>">Tramitando c/filtro</a></li>
-                                <li><a class="dropdown-item" href="<?= site_url('/tramitando4') ?>">Verificar processos</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="<?= site_url('/logout') ?>">Logout</a></li>

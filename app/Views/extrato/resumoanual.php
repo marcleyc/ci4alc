@@ -5,7 +5,7 @@
 <center>    
 <div class="container bg-white shadow-sm m-1 border border-light rounded">
     <div class="mt-2">
-        <div> RESUMO FINANCEIRO ANUAL</div>  
+        <div style="font-size:22; color:gray; padding:4px"> RESUMO FINANCEIRO ANUAL</div>  
 	  </div> <br>
 
       <?php //print_r($dados); ?>
@@ -17,9 +17,8 @@
           <tr>  
                 <th>Tipo</th>
                 <th>Ano</th>
-                
                 <th>Total</th>
-                
+                <th>Mensal</th>
           </tr>
        </thead>
        <tbody>
@@ -28,9 +27,8 @@
           <tr>
              <td class="col-sm-1"><?php echo $user->tipo; ?></td>
              <td class="col-sm-1"><?php echo $user->ano; ?></td>
-        
-             <td class="col-sm-1"><?php echo $user->total; ?></td>
-             
+             <td class="col-sm-1"><?php echo number_format($user->total, 2, ',', '.'); ?></td>
+             <td class="col-sm-1"><?php echo number_format($user->total/12, 2, ',', '.'); ?></td>
           </tr>
          <?php endforeach; ?>
          <?php endif; ?>
@@ -46,7 +44,7 @@ body {background-color: white; color: blue;}
 
 h1 {text-align:center;}
 
-th, td {border: 1px solid grey; border-radius: 10px; padding: 3px;}
+th, td {border: 1px solid grey; border-radius: 10px; padding: 5px; text-align: center; font-size: 18}
 
 .flex-container {
   display: flex;

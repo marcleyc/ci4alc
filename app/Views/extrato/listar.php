@@ -5,7 +5,7 @@
 <center>    
 <div class="container bg-white shadow-sm m-1 border border-light rounded">
     <div class="mt-2">
-        <div style="font-size:22; color:gray; padding:4px"> RESUMO FINANCEIRO </div>  
+        <div style="font-size:22; color:gray; padding:4px"> EXTRATO </div>  
 	  </div> <br>
 
       <?php //print_r($dados); ?>
@@ -15,22 +15,24 @@
      <table class="table table-sm" id="users-list">
        <thead>
           <tr>  
+                <th>Data</th>
+                <th>Banco</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Saldo</th>
                 <th>Tipo</th>
-                <th>Ano</th>
-                <th>Mês</th>
-                <th>Total</th>
-                
           </tr>
        </thead>
        <tbody>
           <?php if($dados): ?>
           <?php foreach($dados as $user): ?>
           <tr>
+             <td class="col-sm-1"><?php echo $user->data; ?></td>
+             <td class="col-sm-1"><?php echo $user->banco; ?></td>
+             <td class="col-sm-3"><?php echo $user->descricao; ?></td>
+             <td class="col-sm-1"><?php echo number_format($user->valor, 2, ',', '.'); ?></td>
+             <td class="col-sm-1"><?php echo number_format($user->saldo, 2, ',', '.'); ?></td>
              <td class="col-sm-1"><?php echo $user->tipo; ?></td>
-             <td class="col-sm-1"><?php echo $user->ano; ?></td>
-             <td class="col-sm-3"><?php echo $user->mes; ?></td>
-             <td class="col-sm-1"><?php echo number_format($user->total, 2, ',', '.'); ?></td>
-             
           </tr>
          <?php endforeach; ?>
          <?php endif; ?>
@@ -46,7 +48,7 @@ body {background-color: white; color: blue;}
 
 h1 {text-align:center;}
 
-th, td { border: 1px solid grey; border-radius: 10px; padding: 5px; text-align: center; font-size: 18}
+th, td { border: 1px solid grey; border-radius: 10px; padding: 5px; text-align: center; font-size: 16}
 
 .flex-container {
   display: flex;

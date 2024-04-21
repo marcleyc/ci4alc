@@ -178,10 +178,15 @@ $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
 
 // - E X T R A T O S
      $routes->get('extrato/', 'ExtratoController::index');
+     $routes->get('extratol/', 'ExtratoController::listar');
+     $routes->get('extratot/', 'ExtratoController::tipos');
+     $routes->get('extratov/', 'ExtratoController::extratov'); // verifica automaticamente os tipos 
+     $routes->get('tiposi/', 'ExtratoController::tiposi');
+     $routes->post('tiposs', 'ExtratoController::tiposs'); 
      $routes->match(['get', 'post'], 'StudentController/importCsvToDb', 'ExtratoController::importCsvToDb');
      $routes->get('resumo/', 'ExtratoController::resumo');
      $routes->get('resumoj/', 'ExtratoController::resumoj');
-     $routes->get('resumoanual/', 'ExtratoController::resumoanual');      
+     $routes->get('resumoanual/(:num)', 'ExtratoController::resumoanual/$1');      
 
 // - A P I  R E S T F U L L    
      $routes->get('api/clientes', 'ApiController::index'); // list clientes

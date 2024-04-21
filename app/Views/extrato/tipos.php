@@ -5,7 +5,7 @@
 <center>    
 <div class="container bg-white shadow-sm m-1 border border-light rounded">
     <div class="mt-2">
-        <div style="font-size:22; color:gray; padding:4px"> RESUMO FINANCEIRO </div>  
+        <div style="font-size:22; color:gray; padding:4px"> TIPOS </div>  
 	  </div> <br>
 
       <?php //print_r($dados); ?>
@@ -16,21 +16,15 @@
        <thead>
           <tr>  
                 <th>Tipo</th>
-                <th>Ano</th>
-                <th>Mês</th>
-                <th>Total</th>
-                
+                <th>Descrição</th>
           </tr>
        </thead>
        <tbody>
           <?php if($dados): ?>
           <?php foreach($dados as $user): ?>
           <tr>
-             <td class="col-sm-1"><?php echo $user->tipo; ?></td>
-             <td class="col-sm-1"><?php echo $user->ano; ?></td>
-             <td class="col-sm-3"><?php echo $user->mes; ?></td>
-             <td class="col-sm-1"><?php echo number_format($user->total, 2, ',', '.'); ?></td>
-             
+             <td class="col-sm-1"><?php echo $user->ttipo; ?></td>
+             <td class="col-sm-1"><?php echo $user->tdescricao; ?></td>
           </tr>
          <?php endforeach; ?>
          <?php endif; ?>
@@ -46,7 +40,7 @@ body {background-color: white; color: blue;}
 
 h1 {text-align:center;}
 
-th, td { border: 1px solid grey; border-radius: 10px; padding: 5px; text-align: center; font-size: 18}
+th, td { border: 1px solid grey; border-radius: 10px; padding: 5px; text-align: center; font-size: 16}
 
 .flex-container {
   display: flex;
