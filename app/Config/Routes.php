@@ -135,6 +135,7 @@ $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
 
 // - L A B 
     $routes->get('lab', 'Lab::index');
+    $routes->get('test', 'Lab::test');
     $routes->get('laba4', 'FinanceiroController::arecebera4');
     $routes->get('contatosx', 'Lab::contatos');
     $routes->add('labs', 'Lab::cadastro');

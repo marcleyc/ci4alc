@@ -13,6 +13,11 @@ class Lab extends BaseController
     {
        echo '<h1>Página Index</h1>';
     }
+
+    public function test()
+    {
+        return view('lab/test.php');
+    }
     
     public function cadastro($id)
     {
