@@ -8,7 +8,7 @@
     <title>Lista de Arquivos</title>
 </head>
 <body>
-
+    <?php dd($filesList); ?>
     <h1>Lista de Arquivos</h1>
 
     <?php if ($filesList): ?>

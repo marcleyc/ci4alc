@@ -135,6 +135,10 @@ $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
 
 // - L A B 
     $routes->get('lab', 'Lab::index');
+
+    $routes->get('listar-arquivos', 'FileTiny::index');
+    $routes->get('listar-arquivos/(:any)', 'FileTiny::index/$1');
+
     $routes->get('test', 'Lab::test');
     $routes->get('laba4', 'FinanceiroController::arecebera4');
     $routes->get('contatosx', 'Lab::contatos');
@@ -166,11 +170,15 @@ $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
 // - F I L E S 
     $routes->get('files/', 'FilesController::index');            // funciona
     $routes->get('files/(:num)', 'FilesController::index2/$1'); // funciona
+    
     $routes->get('files3/', 'FilesController::index3');
-    $routes->get('filee/(:segment)', 'FilesController::filee/$1');
+    $routes->get('files3p/(:num)', 'FilesController::index3p/$1');
+
     $routes->get('files/open/(:segment)', 'FilesController::open/$1');
+    $routes->get('files/open/(:num)/(:segment)', 'FilesController::opend/$1/$2');
 
     $routes->get('open/(:segment)', 'Files3Controller::openFile/$1');
+    $routes->get('filee/(:segment)', 'FilesController::filee/$1');
     $routes->get('list/', 'Files3Controller::listFiles');
 // - F I L E S  U P L O A D S
     $routes->get('myfile/', 'Files2Controller::filetest2'); 

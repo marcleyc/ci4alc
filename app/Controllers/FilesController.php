@@ -26,20 +26,69 @@ class FilesController extends BaseController // está funcionando
     public function index3()
     {
      // https://www.devmedia.com.br/listando-arquivos-de-pastas-com-php/17716
-        $path = FCPATH . 'clientes/';
-        $diretorio = dir($path);
+        //$path = FCPATH . 'clientes/';
+        //$diretorio = dir($path);
+        //echo "Lista de Arquivos do cliente '<strong>".$path."</strong>':<br />";
+        //while($arquivo = $diretorio -> read()){ echo "<a href='".$path.$arquivo."'>".$arquivo."</a><br />"; }
+        //$diretorio -> close();
 
-        echo "Lista de Arquivos do cliente '<strong>".$path."</strong>':<br />";
-        while($arquivo = $diretorio -> read()){ echo "<a href='".$path.$arquivo."'>".$arquivo."</a><br />"; }
-        $diretorio -> close();
+    // -------------------------------------------------------------------------- N E W
+        $caminho_da_pasta = '/Users/marcley/Music/ci4alc/public/clientes';
+        $itens = scandir($caminho_da_pasta); // Obtém uma lista de todos os itens na pasta
+
+        // Itera sobre cada item
+        foreach ($itens as $item) 
+        {
+            // Ignora os diretórios . e ..
+            if ($item == '.' || $item == '..') {continue;}
+
+            $caminho_completo = $caminho_da_pasta . DIRECTORY_SEPARATOR . $item;
+
+            // Verifica se é um arquivo
+            if (is_file($caminho_completo)) {
+                echo "Arquivo: <a href='files/open/$item'>$item</a> '<br>' "; 
+            }
+
+            // Verifica se é uma pasta
+            if (is_dir($caminho_completo)) {
+                echo "Pasta: <a href='files3p/$item'>$item</a> '<br>' "; 
+            }
+        }
+
+    }
+
+    public function index3p($path=null)
+    {
+        $caminho_da_pasta = '/Users/marcley/Music/ci4alc/public/clientes';
+        $itens = scandir($caminho_da_pasta.'/'.$path); // Obtém uma lista de todos os itens na pasta
+        // Itera sobre cada item
+        foreach ($itens as $item) 
+        {
+            // Ignora os diretórios . e ..
+            if ($item == '.' || $item == '..') {continue;}
+
+            $caminho_completo = $caminho_da_pasta . DIRECTORY_SEPARATOR . $item;
+
+            // Verifica se é um arquivo
+            if (is_file($caminho_completo)) {
+                echo "Arquivo: <a href='files/open/$path/$item'>$item</a> '<br>' "; 
+            }
+
+            // Verifica se é uma pasta
+            if (is_dir($caminho_completo)) {
+                echo "Pasta: <a href='files/open/$path/$item'>$item</a> '<br>' "; 
+            }
+        }
+
     }
 
     public function open($fileName)  // método para abrir o arquivo selecionado
     {
-    $filePath = FCPATH . './clientes/' . urldecode($fileName);
+        $filePath = FCPATH . './clientes/' . urldecode($fileName);
 
-    // Verifique se o arquivo existe antes de tentar abri-lo
-        if (file_exists($filePath)) {
+        // Verifique se o arquivo existe antes de tentar abri-lo
+        if (file_exists($filePath)) 
+        {
             // Defina os cabeçalhos apropriados
             header('Content-Type: application/pdf');
             header('Content-Disposition: inline; filename="' . basename($filePath) . '"');
@@ -53,7 +102,36 @@ class FilesController extends BaseController // está funcionando
             // Leitura e saída do arquivo binário
             readfile($filePath);
             exit; // Importante para garantir que nenhum outro conteúdo seja enviado após o arquivo
-        } else {
+        } 
+        else 
+        {
+            echo 'Arquivo não encontrado.';
+        }
+    }
+
+    public function opend($path=null,$fileName=null)  // método para abrir o arquivo selecionado
+    {
+        $filePath = FCPATH . './clientes/'. $path . urldecode($fileName);
+
+        // Verifique se o arquivo existe antes de tentar abri-lo
+        if (file_exists($filePath)) 
+        {
+            // Defina os cabeçalhos apropriados
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: inline; filename="' . basename($filePath) . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . filesize($filePath));
+            header('Accept-Ranges: bytes');
+
+            // Limpe o buffer de saída para garantir que não haja saída anterior
+            ob_clean();
+
+            // Leitura e saída do arquivo binário
+            readfile($filePath);
+            exit; // Importante para garantir que nenhum outro conteúdo seja enviado após o arquivo
+        } 
+        else 
+        {
             echo 'Arquivo não encontrado.';
         }
     }
