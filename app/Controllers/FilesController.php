@@ -8,7 +8,8 @@ class FilesController extends BaseController // está funcionando
 {
     public function index()
     {   
-        $caminho = $_ENV['MYFILE']; // criar no .env o MYFILE com caminho '/Users/marcley/Downloads' 
+        //$caminho = $_ENV['MYFILE']; // criar no .env o MYFILE com caminho '/Users/marcley/Downloads' 
+        $caminho = $filePath = FCPATH . 'clientes/'; //dd($caminho);
         $directoryPath = $caminho;
         $filesList = scandir($directoryPath); // Obtenha uma matriz de arquivos na pasta
         // Passe a lista de arquivos e o caminho da pasta para a view
@@ -35,8 +36,10 @@ class FilesController extends BaseController // está funcionando
     // -------------------------------------------------------------------------- N E W
         $caminho_da_pasta = '/Users/marcley/Music/ci4alc/public/clientes';
         $itens = scandir($caminho_da_pasta); // Obtém uma lista de todos os itens na pasta
-
+        echo "<center><h1>Listar Clientes</h1></center>"; 
         // Itera sobre cada item
+        echo "<div style='display: flex; justify-content: center; align-items: center; '>";
+        echo "<div style='border: 1px solid grey; border-radius: 10px; padding: 10px; width: 750px; '>";
         foreach ($itens as $item) 
         {
             // Ignora os diretórios . e ..
@@ -46,15 +49,15 @@ class FilesController extends BaseController // está funcionando
 
             // Verifica se é um arquivo
             if (is_file($caminho_completo)) {
-                echo "Arquivo: <a href='files/open/$item'>$item</a> '<br>' "; 
+                echo "<b>Arquivo:</b> <a href='files/open/$item' style='line-height: 25px;'>$item</a> '<br>' "; 
             }
 
             // Verifica se é uma pasta
             if (is_dir($caminho_completo)) {
-                echo "Pasta: <a href='files3p/$item'>$item</a> '<br>' "; 
+                echo "<b style='color:green'>Pasta:</b> <a href='files3p/$item' style='line-height: 25px; '>$item</a> '<br>' "; 
             }
         }
-
+        echo "</div></div>";
     }
 
     public function index3p($path=null)
@@ -69,14 +72,15 @@ class FilesController extends BaseController // está funcionando
 
             $caminho_completo = $caminho_da_pasta . DIRECTORY_SEPARATOR . $item;
 
-            // Verifica se é um arquivo
+            // Verifica se é um arquivo   <?//php echo base_url('opend/'.$path.'/'.$item);//
             if (is_file($caminho_completo)) {
-                echo "Arquivo: <a href='files/open/$path/$item'>$item</a> '<br>' "; 
+                echo "Arquivo: <a href=".site_url('opend/'.$path.'/'.$item).">$item</a> '<br>' ";
+                //echo "Arquivo: <a href='files/opend/$path/$item'>$item</a> '<br>' "; 
             }
 
             // Verifica se é uma pasta
             if (is_dir($caminho_completo)) {
-                echo "Pasta: <a href='files/open/$path/$item'>$item</a> '<br>' "; 
+                echo "Pasta: <a href='files/opend/$path/$item'>$item</a> '<br>' "; 
             }
         }
 
@@ -84,7 +88,7 @@ class FilesController extends BaseController // está funcionando
 
     public function open($fileName)  // método para abrir o arquivo selecionado
     {
-        $filePath = FCPATH . './clientes/' . urldecode($fileName);
+        $filePath = FCPATH . './clientes/' . urldecode($fileName); //dd($filePath);
 
         // Verifique se o arquivo existe antes de tentar abri-lo
         if (file_exists($filePath)) 
@@ -111,7 +115,7 @@ class FilesController extends BaseController // está funcionando
 
     public function opend($path=null,$fileName=null)  // método para abrir o arquivo selecionado
     {
-        $filePath = FCPATH . './clientes/'. $path . urldecode($fileName);
+        $filePath = FCPATH . './clientes/'. $path .'/'. urldecode($fileName); //dd($filePath);
 
         // Verifique se o arquivo existe antes de tentar abri-lo
         if (file_exists($filePath)) 

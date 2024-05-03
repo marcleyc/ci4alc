@@ -5,12 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Arquivos 2</title>
+    <title>Lista de Arquivos</title>
 </head>
 <body>
     <?php //dd($filesList); ?>
     <h1>Lista de Arquivos</h1>
-    <div>
+
     <?php if ($filesList): ?>
         <ul>
             <?php foreach ($filesList as $file): ?>
@@ -27,33 +27,6 @@
     <?php else: ?>
         <p>Nenhum arquivo encontrado na pasta.</p>
     <?php endif; ?>
-    </div>
+
 </body>
-
-<style> 
-body {background-color: white; color: blue;}
-
-h1 {text-align:center;}
-
-a, th, td {border: 1px solid grey; border-radius: 10px; padding: 5px;}
-th {background-color: blue; color:white;}
-
-td:hover {
-  background-color: #3e8e41;
-  color: white;
-}  
-
-.flex-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 17px;
-  margin: 10px;
-  border-radius: 10px;
-  font-size: 20px;
-  line-height: 25px;
-}
-</style>   
-
 </html>

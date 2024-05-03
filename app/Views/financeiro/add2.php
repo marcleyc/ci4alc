@@ -87,12 +87,12 @@ body {
     width: 100%;
     min-height: 100vh;
     
-	display: flex;
+	  display: flex;
     justify-content: center;
     align-items: center;
 
     font-family: Arial, sans-serif;
-	font-size:16px;
+	  font-size:16px;
     margin: 0;
     padding: 0;
     background-color: #696969;
