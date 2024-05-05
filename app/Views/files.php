@@ -17,7 +17,7 @@
                 <?php //if ($file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'pdf'): ?>
                 <?php if ($file !== '.' && $file !== '..'): ?>
                     <li>
-                        <a href="<?php echo base_url('files/open/' . urlencode($file)); ?>" target="_blank">
+                        <a href="<?php echo base_url('open/' . urlencode($file)); ?>" target="_blank">
                             <?php echo $file; ?>
                         </a>
                     </li>

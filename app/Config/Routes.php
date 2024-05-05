@@ -168,13 +168,13 @@ $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
     $routes->get('autcontrato', 'ReportController::autcontrato');
     $routes->get('autcontrato/(:num)', 'ReportController::autcontrato/$1');
 // - F I L E S 
-    $routes->get('files/', 'FilesController::index');            // funciona
-    $routes->get('files/(:num)', 'FilesController::index2/$1'); // funciona
+    $routes->get('files2/', 'FilesController::index');            // funciona
+    $routes->get('files2/(:num)', 'FilesController::index2/$1'); // funciona
     
-    $routes->get('files3/', 'FilesController::index3'); // file oficial
-    $routes->get('files3p/(:num)', 'FilesController::index3p/$1'); // file oficial - abre subpasta
-    $routes->get('files/open/(:segment)', 'FilesController::open/$1'); // file oficial - abre o arquivo
-    $routes->get('opend/(:num)/(:segment)', 'FilesController::opend/$1/$2'); // file oficial - abre o arquivo da subpasta
+    $routes->get('files/', 'FilesController::files'); // file oficial
+    $routes->get('open/(:segment)', 'FilesController::open/$1'); // file oficial - abre o arquivo
+    $routes->get('filessub/(:num)', 'FilesController::filessub/$1'); // file oficial - abre subpasta
+    $routes->get('opensub/(:num)/(:segment)', 'FilesController::opensub/$1/$2'); // file oficial - abre o arquivo da subpasta
 
     $routes->get('open/(:segment)', 'Files3Controller::openFile/$1');
     $routes->get('filee/(:segment)', 'FilesController::filee/$1');

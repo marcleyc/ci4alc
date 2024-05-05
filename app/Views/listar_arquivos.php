@@ -6,7 +6,7 @@
     <title>Listar Arquivos</title>
 </head>
 <body>
-    <?php dd($data->itens); ?>
+    <?php //dd($data->itens); ?>
     <h1>Conteúdo da Pasta: <?php echo $caminho_da_pasta; ?></h1>
     <div class="flex-container">
     <ul>

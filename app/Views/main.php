@@ -73,7 +73,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li class="nav-item"><a class="nav-link" href="<?= site_url('/cadonline') ?>">Cadastro</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li class="nav-item"><a class="nav-link" href="<?= site_url('/files3') ?>">Files</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= site_url('/files') ?>">Files</a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?= site_url('/contrato2') ?>">Contrato</a></li>
                             </ul>
                         </li>
