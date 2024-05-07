@@ -1,3 +1,7 @@
+<head>
+  <title>Tramitando</title>  
+  <link rel="icon" type="image/x-icon" href="<?= base_url("assets/icon/logo-ico.ico") ?>">
+</head>
 <div>
 <center>    
 <div class="container bg-white shadow-sm m-1 border border-light rounded">
@@ -15,6 +19,7 @@
                 <th>serviço</th>
                 <th>nome</th>
                 <th>início</th>
+                <th>nº processo</th>
                 <th>senha</th>
                 <th>sit</th>
           </tr>
@@ -27,6 +32,7 @@
              <td class="col-sm-1"><?php echo $user['servicos']; ?></td>
              <td class="col-sm-1"><?php echo $user['nome']; ?></td>
              <td class="col-sm-3"><?php echo $user['inicio']; ?></td>
+             <td class="col-sm-1"><?php echo $user['nprocesso']; ?></td>
              <td class="col-sm-1"><?php echo $user['codigo']; ?></td>
              <td class="col-sm-1"><?php echo $user['sit']; ?></td>
           </tr>
@@ -40,11 +46,15 @@
 </div>
 
 <style> 
+* {font-size:10px;}
+
 body {background-color: white; color: blue;}
 
 h1 {text-align:center;}
 
-th, td {border: 1px solid grey; border-radius: 10px; padding: 8px;}
+h3 {font-size: 14px;}
+
+th, td {border: 1px solid grey; border-radius: 10px; padding: 6px;}
 
 .flex-container {
   display: flex;

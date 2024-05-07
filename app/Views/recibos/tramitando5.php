@@ -1,3 +1,7 @@
+<head>
+  <title>Tramitando</title>  
+  <link rel="icon" type="image/x-icon" href="<?= base_url("assets/icon/logo-ico.ico") ?>">
+</head>
 <div>
 <?php $qtd = count($recibosub); ?>
 
