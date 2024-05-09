@@ -142,11 +142,11 @@ class RecibosController extends Controller
 
     public function recibosubstore()  // ------------------ inserir recibosub
     {   
-        $servico = $this->request->getVar('fservico'); //dd($servico);
+        $servico = $this->request->getVar('fservico'); 
         $xModel = new RecibosubModel();
         $data = [
             'nome' => $this->request->getVar('nome'),
-            'serv' => $servico,
+            'servicos' => $servico,
             'locals'  => $this->request->getVar('flocal'),
             'honorarios'  => $this->request->getVar('fhonorarios'),
             'custas'  => $this->request->getVar('fcustas'),
@@ -198,7 +198,7 @@ class RecibosController extends Controller
     {
         {
             $xModel = new RecibosubModel();
-            $dados = $xModel->where('id', $id)->first();
+            $dados = $xModel->where('id', $id)->first(); 
             $data['recibosub'] = $dados;
             $idRec = $dados['idRec'];
             
@@ -212,7 +212,7 @@ class RecibosController extends Controller
             $data['clientess'] = $xModel2->where('idc', $idc)->select('nome')->findAll();
             
             $xModel3 = new ServicosModel();
-            $data['servicos'] = $xModel3->findAll();
+            $data['servicos'] = $xModel3->orderby('descricao')->findAll();
     
             $xModel4 = new ReclocalModel();
             $data['local'] = $xModel4->findAll();
