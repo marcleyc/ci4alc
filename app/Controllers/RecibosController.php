@@ -196,29 +196,27 @@ class RecibosController extends Controller
 
     public function recibosube($id = null) // ------------------- edit page recibosub
     {
-        {
-            $xModel = new RecibosubModel();
-            $dados = $xModel->where('id', $id)->first(); 
-            $data['recibosub'] = $dados;
-            $idRec = $dados['idRec'];
-            
-            $xRecibo = new RecibosModel();
-            $recibo = $xRecibo->where('id', $idRec)->first();
-            $data['recibo'] = $recibo;
-            $idc = $recibo['idc'];
-    
-            $xModel2 = new ClientesModel();
-            $data['clientes'] = $xModel2->where('idc', $idc)->findAll();
-            $data['clientess'] = $xModel2->where('idc', $idc)->select('nome')->findAll();
-            
-            $xModel3 = new ServicosModel();
-            $data['servicos'] = $xModel3->orderby('descricao')->findAll();
-    
-            $xModel4 = new ReclocalModel();
-            $data['local'] = $xModel4->findAll();
-            //dd($data);
-            return view('recibos/recibosub-edt', $data);
-        }
+        $xModel = new RecibosubModel();
+        $dados = $xModel->where('id', $id)->first(); 
+        $data['recibosub'] = $dados;
+        $idRec = $dados['idRec'];
+        
+        $xRecibo = new RecibosModel();
+        $recibo = $xRecibo->where('id', $idRec)->first();
+        $data['recibo'] = $recibo;
+        $idc = $recibo['idc'];
+
+        $xModel2 = new ClientesModel();
+        $data['clientes'] = $xModel2->where('idc', $idc)->findAll();
+        $data['clientess'] = $xModel2->where('idc', $idc)->select('nome')->findAll();
+        
+        $xModel3 = new ServicosModel();
+        $data['servicos'] = $xModel3->orderby('descricao')->findAll();
+
+        $xModel4 = new ReclocalModel();
+        $data['local'] = $xModel4->findAll();
+        //dd($data);
+        return view('recibos/recibosub-edt', $data);   
     }    
 
     public function recibosubu()  // --------------------------- update recibosub
