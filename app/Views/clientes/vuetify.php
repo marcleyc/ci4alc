@@ -116,7 +116,6 @@
 
 <script>
   var ddd = <?php echo json_encode($cliente) ?>;
-  //name: 'Frozen Yogurt',calories: 159,fat: 6.0,carbs: 24,protein: 4.0,iron: '1%'
 </script>
 
   <script>

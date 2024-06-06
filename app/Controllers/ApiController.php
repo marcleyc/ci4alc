@@ -11,7 +11,7 @@ class ApiController extends ResourceController
     // all users
     public function index(){
       $model = new ClientesModel();
-      $data['clientes'] = $model->orderBy('idc', 'nome')->findAll();
+      $data['clientes'] = $model->select('idc,nome')->orderBy('idc', 'nome')->findAll();
       return $this->respond($data);
     }
     // create

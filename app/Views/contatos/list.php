@@ -3,8 +3,12 @@
 
 <link href="<?= base_url("assets/css/bootstrap-table.min.css") ?>" rel="stylesheet">
 <script src="<?= base_url("assets/js/bootstrap-table.min.js") ?>"></script>
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<div class=container> <center> <h3 style="color:#878787">C O N T A T O S</h3> </center>
+<div class=container> <center> <h2 style="color:#878787">C O N T A T O S</h2> </center>
+
+<div id="tabela">
 
 <div id="toolbar">
   <button id="button" class="btn btn-secondary"> Novo </button>
@@ -13,10 +17,10 @@
 <table
   id="table"
   data-search="true"
-  data-search-accent-neutralise="true"
+  data-search-align="left"
   data-toggle="table"
   data-toolbar="#toolbar"
-  data-height="475"
+  data-height="575"
   data-url="<?= base_url('contatosj/');?>">
   <thead>
     <tr>
@@ -27,6 +31,8 @@
     </tr>
   </thead>
 </table>
+
+</div>
 
 <script>
   var $table = $('#table')

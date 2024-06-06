@@ -53,7 +53,16 @@
               <?php foreach($local as $x): ?>
                  <option value="<?php echo $x['locals']; ?>"><?php echo $x['locals']; ?></option>
               <?php endforeach; ?>      
-            </datalist>             
+            </datalist> 
+            
+      <div class="input-group-text">Apensado</div>
+      <select class="form-select" name="fapensado">
+			  <option selected><?= $recibosub['apensado']; ?></option>
+          <?php $oks=['T','F'] ?>
+          <?php foreach($oks as $s): ?>
+            <option value="<?= $s; ?>"><?= $s; ?></option>
+          <?php endforeach; ?> 
+			</select>      
 		</div>
 
     <!-- HONORARIOS - CUSTAS - TOTAL --> 

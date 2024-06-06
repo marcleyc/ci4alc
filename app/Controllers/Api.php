@@ -8,7 +8,7 @@ use CodeIgniter\RESTful\ResourceController;
 
 class Api extends ResourceController
 {
-    protected $modelName = 'App\Models\ContatosModel';
+    protected $modelName = 'App\Models\ClientesModel';
     protected $format = 'json';
 
     /**
@@ -20,7 +20,7 @@ class Api extends ResourceController
         return $this->respond([
             'statusCode' => 200,
             'message'    => 'OK',
-            'data'       => $this->model->orderBy('id', 'DESC')->findAll()
+            'data'       => $this->model->select('idc,nome')->orderBy('id', 'ASC')->findAll()
         ], 200);
     }
 

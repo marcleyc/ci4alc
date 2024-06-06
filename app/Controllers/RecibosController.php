@@ -151,9 +151,11 @@ class RecibosController extends Controller
             'honorarios'  => $this->request->getVar('fhonorarios'),
             'custas'  => $this->request->getVar('fcustas'),
             'total'  => $this->request->getVar('fhonorarios')+$this->request->getVar('fcustas'),
-            'idRec'  => $this->request->getVar('fidrec'),               
+            'idRec'  => $this->request->getVar('fidrec'),
+            'periodicidade' => $this->request->getVar('fperiodicidade'),
+            'apensado'  => $this->request->getVar('fapensado'),               
         ];
-        
+        //dd($data);
         $xModel->insert($data);
         //$novoid = $xModel->insertID; // id da última inserção no contatos
         $id = $this->request->getVar('fidrec');
@@ -238,6 +240,7 @@ class RecibosController extends Controller
             'termino'  => $this->request->getVar('ftermino'),
             'ok'  => $this->request->getVar('fok'),
             'periodicidade'  => $this->request->getVar('fperiodicidade'),
+            'apensado'  => $this->request->getVar('fapensado'),  
         ];
         //dd($data);
         $id = $this->request->getVar('fid');

@@ -36,6 +36,11 @@ $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
     $routes->get('/signin', 'SigninController::index');
     $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
     $routes->get('/logout', 'SigninController::logout');
+// - B O N J O U R
+$routes->get('main', 'BonjourController::main'); // bonjour
+$routes->get('bonjour', 'BonjourController::index'); // bonjour
+$routes->get('global/(:num)', 'BonjourController::global/$1'); // global clientes
+$routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clientes
 // - C O N T A T O S
     $routes->get('contatos', 'ContatosController::index', ['filter'=> 'authGuard']); // list
     $routes->get('contatosj', 'ContatosController::contatosj'); // list json
@@ -231,5 +236,3 @@ $routes->get('cadonline', 'Home::index');  //cadastro online de clientes
     if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
         require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
     }
-
-// alterado no M1 às 23hs

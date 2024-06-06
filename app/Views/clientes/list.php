@@ -1,4 +1,5 @@
 <?php echo $this->extend('main'); ?> 
+
 <?= $this->section('conteudo'); ?>
 
 <!-- link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet" -->
@@ -7,26 +8,30 @@
 <link href="<?= base_url("assets/css/bootstrap-table.min.css") ?>" rel="stylesheet">
 <script src="<?= base_url("assets/js/bootstrap-table.min.js") ?>"></script>
 
-<div class=container> <center> <h3 style="color:#878787">C L I E N T E S</h3> </center>
+  <center> <h2 style="color:#878787; ">C L I E N T E S</h2> </center> 
 
-<table
-  id="table"
-  data-search="true"
-  data-search-align="left"
-  data-search-accent-neutralise="true"
-  data-toggle="table"
-  data-height="475"
-  data-virtual-scroll="true"
-  data-url="<?= base_url('clientesj/');?>">
-  <thead>
-    <tr>
-      <th data-field="idc" data-sortable="true">IDC</th>
-      <th data-field="nome" data-sortable="true">Nome</th>
-      <th data-field="email" data-sortable="true">e-mail</th>
-      <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">menu</th>
-    </tr>
-  </thead>
-</table>
+<div id="tabela">
+
+  <table
+    id="table"
+    data-search="true"
+    data-search-align="left"
+    data-search-accent-neutralise="true"
+    data-toggle="table"
+    data-height="575"
+    data-virtual-scroll="true"
+    data-url="<?= base_url('clientesj/');?>">
+    <thead>
+      <tr>
+        <th data-field="idc" data-sortable="true">IDC</th>
+        <th data-field="nome" data-sortable="true">Nome</th>
+        <th data-field="email" data-sortable="true">e-mail</th>
+        <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">menu</th>
+      </tr>
+    </thead>
+  </table>
+
+</div>
 
 <script>
   var $table = $('#table')
@@ -60,8 +65,6 @@
   }
   
 </script>
-
-</div>
 
 <?= $this->endSection('conteudo'); ?>
 

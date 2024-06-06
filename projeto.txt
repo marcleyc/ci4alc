@@ -37,3 +37,36 @@ iphon 15 pro       - cam:134 - video:000 - bat:113
 $data_atual = new \DateTime($dataf);
 $hoje = $data_atual->format('Y/m/d');
 
+<?php foreach($recibo as $r): ?>
+   <?php echo $item['nome']; ?>
+<?php endif; ?>  
+
+// S U B M E N U
+<li class="dropdown"><a><i class='bx bx-collection'></i>Processos</a>
+   <div class="dropdown-sub" id="dropdown-sub">
+         <a class="dropdown-item" href="<?= site_url('/processos') ?>">Processos</a>
+         <a class="dropdown-item" href="<?= site_url('/processos') ?>">Processos</a>
+         <a class="dropdown-item" href="<?= site_url('/tramitando') ?>">Tramitando</a>
+         <hr class="dropdown-divider" />
+         <a class="dropdown-item" href="<?= site_url('/tramitando2') ?>">Tramitando por local</a>
+         <a class="dropdown-item" href="<?= site_url('/tramitando5') ?>">Tramitando em Coimbra</a>
+   </div>
+</li>
+
+{ name: 'Apple', url: 'https://www.apple.com' },
+            { name: 'Banana', url: 'https://en.wikipedia.org/wiki/Banana' },
+            { name: 'Cherry', url: 'https://en.wikipedia.org/wiki/Cherry' },
+            { name: 'Date', url: 'https://en.wikipedia.org/wiki/Date_palm' },
+            { name: 'Elderberry', url: 'https://en.wikipedia.org/wiki/Sambucus' },
+            { name: 'Fig', url: 'https://en.wikipedia.org/wiki/Common_fig' },
+            { name: 'Grape', url: 'https://en.wikipedia.org/wiki/Grape' },
+            { name: 'Ferrari', url: 'https://en.wikipedia.org/wiki/Ferrari' },
+            { name: 'Honeydew', url: 'https://en.wikipedia.org/wiki/Honeydew_(melon)' }
+
+ fetch('http://localhost:8080/contatosapi')
+    .then(response => response.json())
+    //.then(data => console.log(data.data))
+    .then(data => dados=data)
+    .catch(error => console.error('Erro:', error));
+    console.log('console',dados);            
+

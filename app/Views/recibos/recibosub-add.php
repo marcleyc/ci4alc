@@ -50,13 +50,19 @@
     <div class="input-group input-group mt-2">
 			<label class="input-group-text" for="inputGroupSelect01">Periodicidade</label>
 			<select class="form-select" name="fperiodicidade">
-			  <option selected>Selecione</option>
+			  <option selected value="N">Não</option>
             <option value="N">Não</option>
             <option value="M">Mensal</option>
             <option value="S">Semestral</option>
             <option value="A">Anual</option>
 			</select>
-		</div>
+      
+      <label class="input-group-text" for="inputGroupSelect01">Apensado</label>
+			<select class="form-select" name="fapensado">
+			  <option selected value="F">Não</option>
+            <option value="T">Sim</option>
+			</select>
+    </div>
  
     <!-- div class="input-group input-group mt-2" -->
 		   <!-- div class="input-group-text">nº do recibo</div --><input type="hidden" class="form-control" name="fidrec" value="<?php echo $recibo; ?>"/>

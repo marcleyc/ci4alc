@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" type="image/x-icon" href="<?= base_url("assets/icon/logo-ico.ico") ?>">
+
     <!-- link href="<//?= base_url("assets/css/bootstrap5.css") ?>" rel="stylesheet" -->
     <link href="<?= base_url("assets/css/datatables.min.css") ?>" rel="stylesheet">
     <script src="<?= base_url("assets/js/datatables.min.js") ?>" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="<?= base_url("assets/css/dashboard.css") ?>" rel="stylesheet">
-    <script src="https://unpkg.com/vue@3.2.0/dist/vue.global.js"></script>
 
     <title>ALC Advocacia</title>
 </head>
@@ -19,6 +19,7 @@
 <body>
 
 <!--------------------------------------------------- Sidebar -->
+
 <div class="sidebar">
     <a href="<?= site_url('/bonjour') ?>" class="logo">
         <!-- i class='bx bx-code-alt'></i -->
@@ -29,11 +30,15 @@
     <ul class="side-menu"> 
         <li><a href="<?= site_url('/contatos') ?>"><i class='bx bx-user'></i>Contatos</a></li>
         <li><a href="<?= site_url('/clientes') ?>"><i class='bx bx-group'></i>Clientes</a></li>
-        <li><a href="<?= site_url('/recibos') ?>"><i class='bx bx-money-withdraw'></i>Recibos</a></li>
-        <li><a href="<?= site_url('/processos') ?>"><i class='bx bx-collection'></i>Processos</a>
-        <li><a href="<?= site_url('/financeiro') ?>"><i class='bx bx-euro'></i>Financeiro</a></li>
-        <li><a href="<?= site_url('/global/200') ?>"><i class='bx bx-globe'></i>Global</a></li>
-        <li><a href="<?= site_url('/servicos') ?>"><i class='bx bx-analyse'></i>Serviços</a></li>
+        <li><a href="#"><i class='bx bx-collection'></i>Processos</a></li>
+        <li class="active"><a href="#"><i class='bx bx-analyse'></i>Serviços</a></li>
+        <li><a href="#"><i class='bx bx-money-withdraw'></i>Recibos</a></li>
+        <li class="menu-item"><a href="#" onclick="toggleSubmenu(event)"><i class='bx bx-user'></i>Processos</a></li>
+        <ul id="sublinks" class="submenu">
+            <li><a href="#"><i class='bx bx-group'></i>pro1</a></li>
+            <li><a href="#"><i class='bx bx-collection'></i>pro2</a></li>
+        </ul>
+        <li><a href="#"><i class='bx bx-euro'></i>Financeiro</a></li>
         <li><a href="#"><i class='bx bx-git-branch'></i>Lab</a></li>
     </ul>
     
@@ -43,40 +48,38 @@
         </li>
     </ul>
 </div>
-<!---------------------------------------------------End of Sidebar -->
 
-<div class="content" id="app">
-        <!-- ------------------------- Navbar ------------------------------- -->
+<!---------------------------------------------------End of Sidebar -->
+<!-- Main Content -->
+
+<div class="content">
+        <!-- Navbar -->
         <nav>
             <i id="bx-menu" class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" v-model="query" placeholder="Search...">
+                    <input type="search" placeholder="Search...">
                     <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
             <a href="#" class="notif"> <i class='bx bx-bell'></i> <span class="count">12</span> </a>
             <a href="#" class="profile"> <img src="<?= base_url("assets/img/logo-50.png") ?>"> </a>
         </nav>
-        <!-- ------------------------- End Navbar ------------------------------- -->
-        <div class="results" v-if="query">
-                <ul>
-                    <li v-for="item in filteredItems" :key="item.name" @click="openLink(item.idc)">
-                    {{ item.nome }} - {{ item.idc }} 
-                    </li>
-                </ul>
-        </div>
+
+        <!-- End of Navbar -->
+
     <main>
     <!------------------------------------- Main Content --------------------------------------->
+ 
        <?= $this->renderSection('conteudo') ?>
-    <!------------------------------------- Main Content End ----------------------------------->
+
+    <!------------------------------------- Main Content End --------------------------------------->
     </main>
 
 </div>
-<script src="<?= base_url("assets/js/dashboard.js") ?>" ></script>   
+    <script src="<?= base_url("assets/js/dashboard.js") ?>" ></script>    
 </body>
 
 </html>

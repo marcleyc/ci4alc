@@ -9,7 +9,7 @@
 <div class="container">
 
 <div id="toolbar" class="">
-  <button id="button" class="btn btn-secondary mx-2"> Novo </button>
+  <button id="button-nr" class="btn btn-secondary mx-2"> Novo </button>
 </div>
 
 <table
@@ -65,7 +65,7 @@
     'click .edit': function (e, value, row, index) { window.location.href = "<?= base_url('recibo/');?>"+row.id }
   }
 
-  var $button = $('#button')
+  var $button = $('#button-nr')
     $(function() {$button.click(function () { window.location.href = "<?= site_url('/reciboadd') ?>" }, )})  
 
   function priceFormatter(value) {
