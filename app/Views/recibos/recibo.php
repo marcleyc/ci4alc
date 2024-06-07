@@ -2,6 +2,11 @@
 
 <?= $this->section('conteudo'); ?>
 
+<style>
+  .row{display:flex; flex-wrap: nowrap; justify-content: space-around;}
+  .col{background-color:gray; border-radius:20px; padding:8px; margin:5px;}
+</style>
+
 <center><h3 style="color:#878787">R E C I B O</h3></center>
 
 <div class="container m-8">
@@ -11,17 +16,17 @@
 <div class="container">
 <?php foreach($recibo as $r): ?>  
   <div class="row">
-    <div class="col shadow rounded m-2" id="myshadow">
+    <div class="col" style="flex-grow: 3" id="myshadow">
       <div style="margin:7px"> <span class="titulo"> data: </span> <?=$r['dataf'];?></div> 
       <div style="margin:7px"> <span class="titulo"> nº recibo: </span> <?=$r['id'];?> </div> 
       <div style="margin:7px"> <span class="titulo"> idc: </span> <?=$r['idc'];?> </div>
     </div>
-    <div class="col-6 shadow rounded m-2">
+    <div class="col" style="flex-grow: 5">
       <div style="margin:7px"> <span class="titulo">advogada:</span> <?=$r['prestador'];?> </div>
       <div style="margin:7px"> <span class="titulo">cliente:</span> <?=$r['nome'];?> </div>
       <div style="margin:7px"> <span class="titulo">tipo pagto:</span> <?=$r['tipo_pgto'];?> </div>
     </div>
-    <div class="col shadow rounded m-2">
+    <div class="col" style="flex-grow: 3">
       <div style="margin:7px" > <span class="titulo">total de honorários:</span> <?=$r['tothonorarios'];?> </div>
       <div style="margin:7px"> <span class="titulo">total de custas:</span> <?=$r['totcustas'];?> </div>
       <div style="margin:7px"> <span class="titulo">total:</span> <?=$r['tothonorarios']+$r['totcustas'];?> </div> 

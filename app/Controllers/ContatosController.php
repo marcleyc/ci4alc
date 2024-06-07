@@ -8,7 +8,9 @@ class ContatosController extends Controller
 {
     public function index(){  // ------------------------- list of contatos
         //echo "<h1>olá</h1>";
-        return view('contatos/list');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        return view('contatos/list',$data);
     }
 
     public function contatosj() // ------------------------ list of contatos json

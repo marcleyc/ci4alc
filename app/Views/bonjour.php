@@ -4,9 +4,9 @@
 
         <main>
 
-            <!-- Insights -->
+            <!-- ------------------------ menu de resumo ---------------------------- -->
             <ul class="insights">
-                <li>
+                <li onclick="financeiroAR()">
                     <i class='bx bx-calendar-check'></i>
                     <span class="info">
                         <h3>
@@ -23,12 +23,12 @@
                         <p>Venda Mensal</p>
                     </span>
                 </li>
-                <li><i class='bx bx-show-alt'></i>
+                <li onclick="tramitando()"><i class='bx bx-show-alt'></i>
                     <span class="info">
                         <h3>
-                            3,944
+                            <?= $tramitando; ?>
                         </h3>
-                        <p>Site Visit</p>
+                        <p>Tramitando</p>
                     </span>
                 </li>
                 <li><i class='bx bx-euro'></i>

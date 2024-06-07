@@ -11,7 +11,7 @@ class BonjourController extends Controller
     public function index() // ------------------------- list dashboard
     {  
         $dataModel = new ClientesModel();
-        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll(); 
         
         // A receber nesse mês
         $db = db_connect();          
@@ -36,7 +36,16 @@ class BonjourController extends Controller
 
         // total das vendas mensais
         $totalvenda = $query2->getResultArray();
-        $data['totalv'] = array_sum ( array_column($totalvenda, 'total') );  //dd($data);
+        $data['totalv'] = array_sum ( array_column($totalvenda, 'total') );  
+
+        // tramitando
+        $db = db_connect();          
+        $query3 = $db->query('SELECT COUNT(recibosub.inicio) AS qtd
+                             FROM recibosub
+                             INNER JOIN recibo ON recibo.id = recibosub.idRec
+                             WHERE recibosub.locals LIKE "IRN%" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01" ');                
+        $result = $query3->getResultArray(); 
+        $data['tramitando'] = $result[0]['qtd']; //dd($data);
 
         return view('bonjour',$data);
     }
@@ -44,10 +53,10 @@ class BonjourController extends Controller
     public function global($id = null) // ---- global clientes pelo IDC 
     {
         $dataModel = new ClientesModel();
-        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll(); 
 
         $dataModel = new ClientesModel();
-        $data['clientes'] = $dataModel->select('idc,nome')->where('idc', $id)->findAll();
+        $data['clientes'] = $dataModel->select('idc,nome')->where('idc', $id)->findAll(); 
 
         $dataModel2 = new RecibosubModel();
         $data['processos'] = $dataModel2->select('recibosub.*')

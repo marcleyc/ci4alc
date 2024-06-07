@@ -3,11 +3,11 @@
 
         <main>     
 
-            <!-- Insights -->
+            <!-- --------------------- Familiares -------------------- -->
             <ul class="family">
-                <li>
+                <li onclick="newFamily()">
                     <i class='bx bx-user-plus'></i>
-                    <span class="info"> Novo Cliente </span>
+                    <span class="info"> Novo Familiar - cód: <b><?= $clientes[0]['idc']; ?></b></span>
                 </li>
             <?php foreach($clientes as $x): ?>
                 <li>
@@ -18,7 +18,6 @@
                 </li>
                 <?php endforeach; ?> 
             </ul>
-            <!-- End of Insights -->
             
             <!-- --------------------- Processos -------------------- -->
             <div class="bottom-data">

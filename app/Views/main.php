@@ -39,7 +39,7 @@
     
     <ul class="side-menu">
         <li>
-            <a href="#" class="logout"> <i class='bx bx-log-out-circle'></i> Logout </a>
+            <a href="<?= site_url('/logout') ?>" class="logout"> <i class='bx bx-log-out-circle'></i> Logout </a>
         </li>
     </ul>
 </div>

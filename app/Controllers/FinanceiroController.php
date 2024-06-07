@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\FinanceiroModel;
+use App\Models\ClientesModel;
 
 //https://mfikri.com/en/blog/codeigniter-vuejs-crud 
 use CodeIgniter\RESTful\ResourceController;
@@ -11,10 +12,9 @@ class FinanceiroController extends BaseController
 {
     public function index()
     {
-        //$uModel = new FinanceiroModel();
-        //$data['financeiro'] = $uModel->orderBy('dataf', 'DESC')->findAll();
-        //dd($data);
-        return view('financeiro/list');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        return view('financeiro/list',$data);
     }
 
     public function financeiroj() // ------------------------ list of financeiro json
@@ -99,7 +99,9 @@ class FinanceiroController extends BaseController
     
     public function areceber()  // ------------------------ page a receber
     {
-        return view('financeiro/areceber');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        return view('financeiro/areceber',$data);
     }
 
     public function areceber2()  // ------------------------ page a receber

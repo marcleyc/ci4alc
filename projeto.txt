@@ -68,5 +68,13 @@ $hoje = $data_atual->format('Y/m/d');
     //.then(data => console.log(data.data))
     .then(data => dados=data)
     .catch(error => console.error('Erro:', error));
-    console.log('console',dados);            
+    console.log('console',dados);     
+
+    <?= $clientes[0]['idc']; ?>
+
+    openLink(url) {
+          var urls = "/global/" + url;
+          //window.open(urls), "_self"; // abre uma pagina em outra aba
+          window.location.href = urls;  // abre uma pagina na mesma aba
+        },          
 

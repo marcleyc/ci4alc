@@ -10,9 +10,9 @@ console.log('js',ddd)
       },
       computed: {
         filteredItems() {
-          return this.items.filter(item => 
-            item.nome.toLowerCase().includes(this.query.toLowerCase())
-          );
+          return this.items.filter(
+            item => item.nome.toLowerCase().includes(this.query.toLowerCase())
+          )
         },
       },
       methods: {
@@ -20,12 +20,10 @@ console.log('js',ddd)
           console.log('Itens filtrados:', this.filteredItems);
         },
         openLink(url) {
-          var uidc = 200;
-          var urls = "";
-          var urls = "global/" + url;
-          window.open(urls);
-        },        
-
+          var urls = "/global/" + url;
+          //window.open(urls), "_self"; // abre uma pagina em outra aba
+          window.location.href = urls;  // abre uma pagina na mesma aba
+        },       
       }
     });
 

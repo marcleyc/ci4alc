@@ -7,7 +7,9 @@ class ClientesController extends Controller
 {
     public function index() // ---------------------------- page listar clientes
     {
-        return view('clientes/list');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        return view('clientes/list',$data);
     }
 
     public function clientesj() // ------------------------ json de clientes to boottable page
