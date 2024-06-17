@@ -106,7 +106,9 @@ class FinanceiroController extends BaseController
 
     public function areceber2()  // ------------------------ page a receber
     {
-        return view('financeiro/areceber2');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        return view('financeiro/areceber2',$data);
     }
 
     public function areceberj()  // ----------------------- a receber json

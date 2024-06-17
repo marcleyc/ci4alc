@@ -51,7 +51,7 @@
             <i id="bx-menu" class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" v-model="query" placeholder="Search...">
+                    <input type="search" v-model="query" @input="filterData" placeholder="Search...">
                     <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -76,7 +76,12 @@
     </main>
 
 </div>
-<script src="<?= base_url("assets/js/dashboard.js") ?>" ></script>   
+<script> 
+   var urll = <?= site_url('/financeiroar2') ?>;
+   console.log(urll)
+</script>
+<script src="<?= base_url("assets/js/dashboard.js") ?>" ></script> 
+  
 </body>
 
 </html>

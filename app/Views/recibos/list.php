@@ -9,7 +9,7 @@
 <div class="container">
 
 <div id="toolbar" class="">
-  <button id="button-nr" class="btn btn-secondary mx-2"> Novo </button>
+  <button id="button" class="button" onclick="reciboAdd()"> Novo </button>
 </div>
 
 <table
@@ -73,5 +73,8 @@
     return valor;
   }
 </script>
+
+<script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
+<script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script>                   
  
 <?= $this->endSection('conteudo'); ?>

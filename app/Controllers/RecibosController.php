@@ -15,11 +15,9 @@ class RecibosController extends Controller
 // =========== R  E  C  I  B  O              ===============================================    
     public function index()  
     {  
-        #$db = db_connect();          
-        #$query   = $db->query("SELECT * FROM recibo ORDER BY id DESC");
-        #$results = $query->getResultArray();
-        #$data['recibos'] = $results;
-        return view('recibos/list');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        return view('recibos/list',$data);
     }
 
     public function recibosj()  // --------- recibos json
@@ -47,7 +45,10 @@ class RecibosController extends Controller
         return view('recibos/recibo-add', $data);
     }
 
-    public function recibo($id = null){  
+    public function recibo($id = null){
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+          
         $db = db_connect();          
         $query = $db->query("SELECT * FROM recibo WHERE id = $id ORDER BY id DESC LIMIT 1");
         $query2 = $db->query("SELECT * FROM recibosub WHERE idRec = $id ORDER BY id ASC");
@@ -323,7 +324,9 @@ class RecibosController extends Controller
 
     public function tramitando()  // ------------------------ tramitando com sql
     {  
-        return view('recibos/tramitando');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll(); 
+        return view('recibos/tramitando',$data);
     }
 
     public function tramitandoj()  // ----------------------- tramitando json

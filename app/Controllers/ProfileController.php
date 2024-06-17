@@ -47,6 +47,15 @@ class ProfileController extends Controller
         $totalvenda = $query2->getResultArray();
         $data['totalv'] = array_sum ( array_column($totalvenda, 'total') );  //dd($data);
 
+        // tramitando
+        $db = db_connect();          
+        $query3 = $db->query('SELECT COUNT(recibosub.inicio) AS qtd
+                             FROM recibosub
+                             INNER JOIN recibo ON recibo.id = recibosub.idRec
+                             WHERE recibosub.locals LIKE "IRN%" AND recibosub.ok = "F" AND recibosub.inicio >= "2017-01-01" ');                
+        $result = $query3->getResultArray(); 
+        $data['tramitando'] = $result[0]['qtd'];
+
         return view('bonjour',$data);
     }
 }

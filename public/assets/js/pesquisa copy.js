@@ -1,25 +1,22 @@
-//console.log('js',ddd)
+console.log('js',ddd)
  
 // Definindo o aplicativo Vue
     const app = Vue.createApp({
       data() {
         return {
           query: '',
-          items: ddd,
-          filteredItems:[],
+          items: ddd
         }
       },
       computed: {
+        filteredItems() {
+          return this.items.filter(item => item.nome.toLowerCase().includes(this.query.toLowerCase())) &&
+                 this.items.filter(item => item.idc.toString().includes(this.query.toString())) 
+        },
       },
       methods: {
-        filterData() {
-          const qqq = this.query.toLowerCase();
-          this.filteredItems = this.items.filter(item => {
-            return (
-              item.nome.toLowerCase().includes(qqq) ||
-              item.idc.toLowerCase().includes(qqq)
-            );
-          });
+        search() {
+          console.log('Itens filtrados:', this.filteredItems);
         },
         openLink(url) {
           var urls = "/global/" + url;

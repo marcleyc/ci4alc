@@ -204,7 +204,7 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
 // - A P I  R E S T F U L L    
      $routes->get('api/clientes', 'ApiController::index'); // list clientes
 // - A P I
-    $routes->get('contatosapi', 'Api::index');
+    $routes->get('api/contatos', 'Api::index',['filter' => 'cors']);
     $routes->get('contatosapix/(:num)', 'Api::show/$1');
     $routes->get('contatosapi2', 'ControllerApi::index');
     $routes->get('contatosapix2/(:num)', 'ControllerApi::show/$1');

@@ -76,5 +76,39 @@ $hoje = $data_atual->format('Y/m/d');
           var urls = "/global/" + url;
           //window.open(urls), "_self"; // abre uma pagina em outra aba
           window.location.href = urls;  // abre uma pagina na mesma aba
-        },          
+        },
+
+onclick="financeiroAR()"
+
+$dataModel = new ClientesModel();
+$data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+
+<script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
+<script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script>                   
+
+computed: {
+        filteredItems() {
+          return this.items.filter(item => item.nome.toLowerCase().includes(this.query.toLowerCase())) ||
+                 this.items.filter(item => item.idc.toString().includes(this.query.toString())) 
+        },
+
+<script> // pegar dados com fetchapi
+  fetch('<?= site_url('/api/clientes') ?>')
+	.then((response) => response.json())
+	.then((data) => {console.log(data.clientes)})
+</script>        
+
+https://www.imovirtual.com/pt/anuncio/apartamento-t2-com-vista-mar-box-para-2-viaturas-em-condominio-fechad-ID1ePI9
+50/50
+
+https://www.imovirtual.com/pt/anuncio/apartamento-t2-em-condominio-privado-oasis-mar-ID1cAjx
+4% 50/50 916985330 João Santana 
+
+https://www.imovirtual.com/pt/anuncio/apartamento-t3-no-condominio-oasis-mar-ID1aIWH
+
+https://www.imovirtual.com/pt/anuncio/apartamento-de-luxo-3-quartos-frente-mar-praia-da-rocha-portimao-ID157k1
+
+https://www.imovirtual.com/pt/anuncio/apartamento-t2-em-faro-de-207-00-m2-ID1dZwP
+
+
 

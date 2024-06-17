@@ -74,12 +74,17 @@ function newFamily() {
 }
 
 function financeiroAR() { 
-    var urls = "/financeiroar/"; 
+    var urls = "/financeiroar2/"; 
     window.location.href = urls; 
 }
 
 function tramitando() { 
     var urls = "/tramitando/"; 
+    window.location.href = urls; 
+}
+
+function reciboAdd() { 
+    var urls = "/reciboadd/"; 
     window.location.href = urls; 
 }
 

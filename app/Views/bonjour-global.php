@@ -130,10 +130,7 @@
 
         </main>
 
-        <script> 
-            var ddd = <?php echo json_encode($clientesp); ?>; 
-            console.log('bonjour',ddd);
-        </script> 
+        <script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
         <script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script> 
 
 <?= $this->endSection('conteudo'); ?>  
