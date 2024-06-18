@@ -6,6 +6,7 @@
         return {
           query: '',
           items: ddd,
+          uuu : xurls,
           filteredItems:[],
         }
       },
@@ -22,8 +23,9 @@
           });
         },
         openLink(url) {
+          //var urls = this.uuu + url;
           var urls = "/global/" + url;
-          //window.open(urls), "_self"; // abre uma pagina em outra aba
+          //window.open(urls), "_self"; // abre uma pagina em outra aba 
           window.location.href = urls;  // abre uma pagina na mesma aba
         },       
       }

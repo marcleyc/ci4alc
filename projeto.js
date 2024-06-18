@@ -84,7 +84,7 @@ $dataModel = new ClientesModel();
 $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
 
 <script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
-<script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script>                   
+<script src="<?= base_url('assets/js/pesquisa.js') ?>" ></script>                   
 
 computed: {
         filteredItems() {
@@ -96,7 +96,10 @@ computed: {
   fetch('<?= site_url('/api/clientes') ?>')
 	.then((response) => response.json())
 	.then((data) => {console.log(data.clientes)})
-</script>        
+</script>
+
+
+
 
 https://www.imovirtual.com/pt/anuncio/apartamento-t2-com-vista-mar-box-para-2-viaturas-em-condominio-fechad-ID1ePI9
 50/50

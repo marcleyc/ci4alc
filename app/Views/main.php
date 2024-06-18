@@ -69,6 +69,7 @@
                     </li>
                 </ul>
         </div>
+
     <main>
     <!------------------------------------- Main Content --------------------------------------->
        <?= $this->renderSection('conteudo') ?>
@@ -76,10 +77,7 @@
     </main>
 
 </div>
-<script> 
-   var urll = <?= site_url('/financeiroar2') ?>;
-   console.log(urll)
-</script>
+
 <script src="<?= base_url("assets/js/dashboard.js") ?>" ></script> 
   
 </body>

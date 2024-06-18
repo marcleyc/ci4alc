@@ -15,7 +15,7 @@
                         <p>A Receber</p>
                     </span>
                 </li>
-                <li><i class='bx bx-line-chart'></i>
+                <li onclick="recibos()"><i class='bx bx-line-chart'></i>
                     <span class="info">
                         <h3>
                             <?= $totalv; ?>
@@ -104,11 +104,38 @@
 
     </div>     
     
-    <script> 
+    <script> // pegar dados com php
         var ddd = <?php echo json_encode($clientesp); ?>; 
         //console.log('bonjour',ddd);
-    </script> 
+        var xurls = "<?= site_url('/global'); ?>/";
+    </script>
+
     <script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script> 
+
+    <script> // pegar dados com fetchapi
+      //var ddd = '';
+      //fetch('?= //site_url('/api/clientes') ?>')
+    	//.then((response) => response.json())
+	    //.then((data) => {console.log(data.clientes)})
+        //.then((data) => {this.ddd = data.clientes})
+    </script> 
+
+    <script>
+        function financeiroAR() { 
+          var urls = "<?= site_url('/financeiroar2'); ?>";
+          window.location.href = urls;
+        }
+        
+        function tramitando() { 
+            var urls = "<?= site_url('tramitando'); ?>"; 
+            window.location.href = urls; 
+        }
+
+        function recibos() { 
+            var urls = "<?= site_url('recibos'); ?>"; 
+            window.location.href = urls; 
+        }
+    </script>
 
 <?= $this->endSection('conteudo'); ?>   
  

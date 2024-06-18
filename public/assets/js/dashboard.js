@@ -68,18 +68,13 @@ function toggleSubmenu(event) {
     //submenu.classList.toggle('open');
 }
 
-function newFamily() { 
-    var urls = "/clientesa/" + 20; 
-    window.location.href = urls; 
-}
-
-function financeiroAR() { 
+/* function financeiroAR() { 
     var urls = "/financeiroar2/"; 
     window.location.href = urls; 
-}
+} */
 
-function tramitando() { 
-    var urls = "/tramitando/"; 
+function newFamily() { 
+    var urls = "/clientesa/" + 20; 
     window.location.href = urls; 
 }
 
