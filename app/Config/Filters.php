@@ -8,7 +8,6 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
-use CodeIgniter\Config\Filters as BaseFilters;
 
 class Filters extends BaseConfig
 {
@@ -87,14 +86,4 @@ class Filters extends BaseConfig
         'maxAge'                 => 7200,
     ];
 
-}
-
-class Filters extends BaseFilters
-{
-    public array $filters = [
-        'cors' => [
-            'before' => ['api/*'],
-            'after'  => ['api/*'],
-        ],
-    ];
 }
