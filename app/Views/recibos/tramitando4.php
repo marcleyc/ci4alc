@@ -15,13 +15,13 @@
   data-url="<?= base_url('tramitandoj4/');?>">
   <thead>
     <tr>
-      <th data-field="locals" data-width="175">Local</th>
-      <th data-field="servicos">Serviço</th>
-      <th data-field="inicio" data-width="110">Início</th>
-      <th data-field="nome">Nome</th>
-      <th data-field="verificado">Verificado</th>
-      <th data-field="codigo" data-width="150">Código</th>
-      <th data-field="sit">Sit</th>
+      <th data-field="locals" data-width="175" data-sortable="true">Local</th>
+      <th data-field="servicos" data-sortable="true">Serviço</th>
+      <th data-field="inicio" data-width="110" data-sortable="true">Início</th>
+      <th data-field="nome" data-sortable="true">Nome</th>
+      <th data-field="verificado" data-sortable="true">Verificado</th>
+      <th data-field="codigo" data-width="150" data-sortable="true">Código</th>
+      <th data-field="sit" data-sortable="true">Sit</th>
       <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">@</th>
     </tr>
   </thead>
@@ -66,5 +66,9 @@
       return { css: {color: 'blue'}}
   }   
 </script>
+
+<script> var ddd = <?php echo json_encode($clientesp); ?>; </script>
+<script> var xurls = "<?= base_url('/global'); ?>/"; </script>
+<script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script>
  
 <?= $this->endSection('conteudo'); ?>

@@ -32,7 +32,7 @@
         <li><a href="<?= site_url('/recibos') ?>"><i class='bx bx-money-withdraw'></i>Recibos</a></li>
         <li><a href="<?= site_url('/processos') ?>"><i class='bx bx-collection'></i>Processos</a>
         <li><a href="<?= site_url('/financeiro') ?>"><i class='bx bx-euro'></i>Financeiro</a></li>
-        <li><a href="<?= site_url('/global/200') ?>"><i class='bx bx-globe'></i>Global</a></li>
+        <li><a href="<?= site_url('/tramitando4') ?>"><i class='bx bx-check-circle'></i>Global</a></li>
         <li><a href="<?= site_url('/servicos') ?>"><i class='bx bx-analyse'></i>Serviços</a></li>
         <li><a href="#"><i class='bx bx-git-branch'></i>Lab</a></li>
     </ul>

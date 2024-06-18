@@ -343,7 +343,9 @@ class RecibosController extends Controller
     
     public function tramitando4()  // ------------ tramitando com vuetify
     {  
-        return view('recibos/tramitando4');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        return view('recibos/tramitando4',$data);
     }
 
     public function tramitandoj4()  // ------------------------ tramitando com sql

@@ -12,8 +12,6 @@
   id="table"
   data-search="true"
   data-search-align="left"
-  data-search-accent-neutralise="true"
- 
   
   data-url="<?= base_url('tramitandoj/');?>">
   <thead>

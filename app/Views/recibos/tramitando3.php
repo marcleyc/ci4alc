@@ -105,6 +105,7 @@
           { text: 'senha', value: 'codigo' },
           { text: 'nº', value: 'nprocesso' },
           { text: 'sit', value: 'sit' },
+          { text: 'alterado', value: 'verificado' },
         ],
         desserts: ddd,
       }

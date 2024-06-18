@@ -61,5 +61,6 @@
       $('#users-list').DataTable();
   } );
 </script>
+<script> var xurls = "<?= base_url('/global'); ?>/"; </script> 
 
 <?= $this->endSection('conteudo'); ?>

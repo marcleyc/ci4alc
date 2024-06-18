@@ -107,7 +107,7 @@
     <script> // pegar dados com php
         var ddd = <?php echo json_encode($clientesp); ?>; 
         //console.log('bonjour',ddd);
-        var xurls = "<?= site_url('/global'); ?>/";
+        var xurls = "<?= base_url('/global'); ?>/";
     </script>
 
     <script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script> 
