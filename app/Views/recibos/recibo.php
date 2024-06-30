@@ -8,7 +8,7 @@
   .mybuttons{background-color:white;}
   .table-table-sm tr td{background-color:white;}
   #btt{border-radius: 5px; border: 1px solid #333; background-color: Teal; color: #fff;height: 30px;width: 80px;margin:5px;}
-  #orderform{background-color:white; border-radius:20px; box-shadow: 0 4px 4px grey; padding:8px; margin:5px;}   
+  /* #orderform{background-color:white; border-radius:20px; box-shadow: 0 4px 4px grey; padding:8px; margin:5px;}  */ 
 </style>
 
 <center><h3 style="color:#878787">R E C I B O</h3></center>
@@ -170,7 +170,16 @@
     #button1 {position:absolute;}
 </style>
 
+<script> // apagar o campo de pesquisa  
+  function esconderDiv() {document.getElementById('results').style.display = 'none';};
+  esconderDiv();
+  function esconderPes() {document.getElementById('pesqCliente').style.display = 'none';};
+  esconderPes();
+  function esconderLog() {document.getElementById('logo').style.display = 'none';};
+  esconderLog();
+</script>
+
 <script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
-<script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script>
+<script src="<?= base_url("assets/js/pesquisa2.js") ?>" ></script>
 
 <?= $this->endSection('conteudo'); ?>

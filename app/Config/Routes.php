@@ -137,6 +137,7 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
     $routes->get('financeiroar2', 'FinanceiroController::areceber2');
     $routes->get('financeiroarj', 'FinanceiroController::areceberj');
     $routes->get('financeiroarj2', 'FinanceiroController::areceberj2');
+    $routes->get('mobile', 'FinanceiroController::mobile');
 
 // - L A B 
     $routes->get('lab', 'Lab::index');

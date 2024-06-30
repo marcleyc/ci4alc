@@ -34,7 +34,7 @@
         <li><a href="<?= site_url('/financeiro') ?>"><i class='bx bx-euro'></i>Financeiro</a></li>
         <li><a href="<?= site_url('/tramitando4') ?>"><i class='bx bx-check-circle'></i>Global</a></li>
         <li><a href="<?= site_url('/servicos') ?>"><i class='bx bx-analyse'></i>Serviços</a></li>
-        <li><a href="#"><i class='bx bx-git-branch'></i>Lab</a></li>
+        <li><a href="<?= site_url('/mobile') ?>"><i class='bx bx-git-branch'></i>Mobile</a></li>
     </ul>
     
     <ul class="side-menu">
@@ -49,9 +49,9 @@
         <!-- ------------------------- Navbar ------------------------------- -->
         <nav>
             <i id="bx-menu" class='bx bx-menu'></i>
-            <form action="#">
+            <form action="#" id="pesqCliente">
                 <div class="form-input">
-                    <input type="search" v-model="query" @input="filterData" placeholder="Search...">
+                    <input type="search" v-model="query" @input="filterData" placeholder="Pesquisar o cliente...">
                     <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -59,10 +59,10 @@
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
             <a href="#" class="notif"> <i class='bx bx-bell'></i> <span class="count">12</span> </a>
-            <a href="#" class="profile"> <img src="<?= base_url("assets/img/logo-50.png") ?>"> </a>
+            <a href="#" class="profile" id="logo"> <img src="<?= base_url("assets/img/logo-50.png") ?>"> </a>
         </nav>
         <!-- ------------------------- End Navbar ------------------------------- -->
-        <div class="results" v-if="query">
+        <div class="results" v-if="query" id="results">
                 <ul>
                     <li v-for="item in filteredItems" :key="item.name" @click="openLink(item.idc)">
                     {{ item.nome }} - {{ item.idc }} 

@@ -7,7 +7,7 @@
 <div class=container> <center> <h3 style="color:#878787">F I N A N C E I R O</h3> </center>
 
 <div id="toolbar">
-  <button id="button" class="btn btn-secondary mx-2"> Novo </button>
+  <button id="button" onclick="Nfinanceiro()"> Novo </button>
 </div>
 
 <table class="table table-sm"
@@ -67,9 +67,10 @@
   var $table = $('#table')
   var $button = $('#button')
 
-  $(function() {
-    $button.click(function () { window.location.href = "<?= site_url('/financeiroc') ?>" }, )
-  })
+  function Nfinanceiro() { 
+    var urls = "<?= site_url('financeiroc'); ?>"; 
+    window.location.href = urls; 
+  }
 </script>
 
 <script>
@@ -80,10 +81,7 @@
 
 </div>
 
-<script> 
-    var ddd = <?php echo json_encode($clientesp); ?>; 
-    console.log('bonjour',ddd);
-</script> 
+<script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
 <script> var xurls = "<?= base_url('/global'); ?>/"; </script> 
 <script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script>
 

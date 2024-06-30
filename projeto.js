@@ -83,8 +83,10 @@ onclick="financeiroAR()"
 $dataModel = new ClientesModel();
 $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
 
+
 <script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
-<script src="<?= base_url('assets/js/pesquisa.js') ?>" ></script>                   
+<script> var xurls = "<?= base_url('/global'); ?>/"; </script> 
+<script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script>
 
 computed: {
         filteredItems() {
@@ -113,5 +115,13 @@ https://www.imovirtual.com/pt/anuncio/apartamento-de-luxo-3-quartos-frente-mar-p
 
 https://www.imovirtual.com/pt/anuncio/apartamento-t2-em-faro-de-207-00-m2-ID1dZwP
 
+Policlinica de Condeixa
+Rua Dr. Alfredo Pires de Miranda, 14
+Condeixa-a-Nova,
+3150-135 Condeixa-a-Nova
+Telf: 351 239945985
+Exames Oftalmologia
+
+//( ) "configurar as paginas add e edt dos servicos";
 
 

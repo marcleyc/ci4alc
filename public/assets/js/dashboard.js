@@ -3,9 +3,7 @@ const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logou
 sideLinks.forEach(item => {
     const li = item.parentElement;
     item.addEventListener('click', () => {
-        sideLinks.forEach(i => {
-            i.parentElement.classList.remove('active');
-        })
+        sideLinks.forEach(i => {i.parentElement.classList.remove('active');})
         li.classList.add('active');
     })
 });
@@ -15,9 +13,7 @@ const sideBar = document.querySelector('.sidebar');
 
 menuBar.addEventListener('click', () => { sideBar.classList.toggle('close'); });
 
-document.addEventListener('DOMContentLoaded', function() {
-    sideBar.classList.toggle('close'); ;
-});
+document.addEventListener('DOMContentLoaded', function() {sideBar.classList.toggle('close'); ;});
 
 const searchBtn = document.querySelector('.content nav form .form-input button');
 const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');

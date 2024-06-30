@@ -158,4 +158,16 @@ class FinanceiroController extends BaseController
     {
         return view('cliente_cadastro');
     }
+
+    public function mobile()  // ----------------- resumo mensal das finanças
+    {
+        $ano = date("Y"); // Pega o ano atual com quatro dígitos
+        $mes = date("m"); // Pega o mês atual com dois dígitos
+        $db = \Config\Database::connect();
+        $query   = $db->query("SELECT tipo, YEAR(dataf) As ano, MONTH(dataf) As mes, SUM(valor) As total FROM financeiro WHERE YEAR(dataf)='$ano' and MONTH(dataf)='$mes' GROUP BY tipo, ano, mes ORDER BY ano,mes,tipo");
+        $results = $query->getResultArray();
+        $data['dados'] = $results;
+        echo json_encode($data);
+        return view('financeiro/mobile',$data);
+    }
 }

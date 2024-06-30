@@ -6,7 +6,7 @@
   <link href="<?= base_url("assets/css/form.css") ?>" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="<?= base_url("assets/icon/logo-ico.ico") ?>">
   <style>
-    .container { max-width: 800px; }
+    .container { max-width: 800px;}
   </style>
 </head>
 <body>

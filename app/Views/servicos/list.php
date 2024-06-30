@@ -6,10 +6,12 @@
 <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
 
+<link href="<?= base_url("assets/css/modal.css") ?>" rel="stylesheet">
+
 <div class="container">
 
 <div id="toolbar" class="px-2">
-  <button id="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTable"> Novo </button>
+  <button type="button" id="button" class="btn btn-primary" onclick="openModal()"> Novo </button>
   <button id="button2" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTable2"> Edit </button>
 </div>
 
@@ -34,57 +36,10 @@
   </thead>
 </table>
 </div>
-
-<!-- -------------------M O D A L  A D D---------------------------------------------------------------- -->
-
-<div id="modalTable" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">A D I C I O N A R</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-    <!-- C O N T E U D O -->
-    <form class="row row-cols-lg-auto g-3 align-items-center mt-3 needs-validation m-2" novalidate method="post" id="add" name="add_create" action="<?= site_url('servicoss') ?>">  
-    <div class="col-12">
-	  	  
-		<div class="input-group input-group">
-	       <div class="input-group-text">Descrição</div> <input type="text" class="form-control" name="fdescricao" required />
-		</div>
-		 
-		<div class="input-group input-group mt-2">
-		   <div class="input-group-text">Honorários</div> <input type="number" class="form-control" name="fhonorarios" id="fhonorarios" onchange="somar()" required />
-		</div>
-
-    <div class="input-group input-group mt-2">
-		   <div class="input-group-text">Emolumentos</div> <input type="number" class="form-control" name="femolumentos" id="femolumentos" onchange="somar()" required />
-		</div>
-
-    <div class="input-group input-group mt-2">
-		   <div class="input-group-text">Total</div> <input type="number" class="form-control" name="ftotal" id="ftotal" required />
-		</div>
-
-		<div class="input-group input-group mt-2">
-			<label class="input-group-text" for="inputGroupSelect01">Local</label>
-			<select class="form-select" name="fobs">
-			  <option selected>selecione</option>
-			  <option value="IRN Coimbra">IRN Coimbra</option>
-			  <option value="IRN Lisboa">IRN Lisboa</option>
-			</select>
-		</div>
-
-    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
-  </form>
-  <!-- F I M   D O   C O N T E U D O -->
-
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Enviar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-  <!-- S C R I P T   M O D A L-->
+    
+</div> <!-- Fim do Container -->
+  
+<!-- S C R I P T   M O D A L-->
 <script>
     function somar() { ftotal.value = parseFloat(fhonorarios.value) + parseFloat(femolumentos.value);  }  
 
@@ -92,58 +47,10 @@
 </script>
 </div>  
 
-<!-- -------------------M O D A L  A D D  E N D-------------------------------- -->  
 
-<!-- -------------------M O D A L  E D I T------------------------------------------------------------ -->
+<!-- ------------------------------ F I M   D O   C O N T E U D O ----------------------------------------->
 
-<div id="modalTable2" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">E D I T A R</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-    <!-- C O N T E U D O -->
-    <form class="row row-cols-lg-auto g-3 align-items-center mt-3 needs-validation m-2" novalidate method="post" id="medit" name="medit" action="<?= site_url('servicoss') ?>">  
-    <div class="col-12">
-	  	  
-		<div class="input-group input-group">
-	       <div class="input-group-text">Descrição</div> <input type="text" class="form-control" name="fdescricaoe" required />
-		</div>
-		 
-		<div class="input-group input-group mt-2">
-		   <div class="input-group-text">Honorários</div> <input type="number" class="form-control" name="fhonorariose" id="fhonorariose" onchange="somar()" required />
-		</div>
-
-    <div class="input-group input-group mt-2">
-		   <div class="input-group-text">Emolumentos</div> <input type="number" class="form-control" name="femolumentose" id="femolumentose" onchange="somar()" required />
-		</div>
-
-    <div class="input-group input-group mt-2">
-		   <div class="input-group-text">Total</div> <input type="number" class="form-control" name="ftotale" id="ftotale" required />
-		</div>
-
-		<div class="input-group input-group mt-2">
-			<label class="input-group-text" for="inputGroupSelect01">Local</label>
-			<select class="form-select" name="fobs">
-			  <option selected>selecione</option>
-			  <option value="IRN Coimbra">IRN Coimbra</option>
-			  <option value="IRN Lisboa">IRN Lisboa</option>
-			</select>
-		</div>
-
-  </form>
-  <!-- F I M   D O   C O N T E U D O -->
-
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Enviar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>  
-  <!-- -------------------M O D A L  E D I T  E N D-------------------------------- -->
+      
 
 
 <!-- ----------------------S C R I P T-------------------------------- -->
@@ -197,6 +104,12 @@
     minhaModa2.show();
 }
 </script>
+
+<script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
+<script> var xurls = "<?= base_url('/global'); ?>/"; </script> 
+<script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script>
+
+<script src="<?= base_url("assets/js/modal.js") ?>" ></script>
 
  
 <?= $this->endSection('conteudo'); ?>

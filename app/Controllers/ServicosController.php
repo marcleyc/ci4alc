@@ -2,12 +2,15 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\ServicosModel;
+use App\Models\ClientesModel;
 
 class ServicosController extends Controller
 {
     public function index() // ---------------------------- list page
     {
-        return view('servicos/list');
+        $dataModel = new ClientesModel();
+        $data['clientesp'] = $dataModel->select('idc,nome')->findAll();
+        return view('servicos/list',$data);
     }
 
     public function servicosj() // ------------------------ list json
