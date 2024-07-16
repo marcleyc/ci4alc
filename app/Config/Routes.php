@@ -173,7 +173,7 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
     $routes->get('boottablef/(:num)', 'Lab::porfamilia/$1'); // filtra familiares
 
     $routes->get('portugues', 'PesquisaController::index');
-    $routes->get('pesquisas', 'PesquisaController::pesquisa');
+    $routes->get('irn', 'PesquisaController::irn');
 // - C O N T R A T O S
     $routes->get('autcontrato', 'ReportController::autcontrato');
     $routes->get('autcontrato/(:num)', 'ReportController::autcontrato/$1');

@@ -9,12 +9,12 @@ class PesquisaController extends BaseController
         return view('/pesquisa/portugues');
     }
 
-    public function pesquisa()
+    public function irn()
     {
         $nomef = $this->request->getVar('nome');
         $nome = str_replace(' ', '+', $nomef); 
         $data = ['nome' => $nome];
-        dd($data);
-        return view('/pesquisa/pesquisa',$data);            
+        //dd($data);
+        return view('/pesquisa/irn',$data);            
     }
 }

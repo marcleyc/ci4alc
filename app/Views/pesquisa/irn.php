@@ -1,11 +1,7 @@
+<style> center{color:green;} </style>
 <?php
-// Verifica se o formulário foi enviado
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Coleta os dados do formulário
-    //$nomef = $_POST['nome'];
-    //$nome = str_replace(' ', '+', $nomef); 
-    $nome = "antonio+silva"; 
-    echo "Nome: " . $nome . "<br>";
+// Coleta os dados do formulário 
+    echo "<center><h3>Nome: " . $nome . "</h3></center><br>";
 // -------------------------------------------------- V I L A  R E A L
 echo "<h3>----------------------------- VILA - REAL -----------------------------</h3>"."\n"."<br>";
 $html = file_get_contents('https://digitarq.advrl.arquivos.pt/results?p0=ScopeContent&o0=3&v0='.$nome);

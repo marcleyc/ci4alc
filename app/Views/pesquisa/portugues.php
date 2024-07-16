@@ -16,7 +16,7 @@
         <h2>Pesquisa de português</h2>
       </div>
 
-      <form id="form" class="form" action="<?= site_url('/pesquisas') ?>" method="post">
+      <form id="form" class="form" action="<?= site_url('/irn') ?>" method="get">
         <div class="form-control">
           <label for="username">Nome de usuário</label>
           <input type="text" id="nome" name="nome" placeholder="Digite seu nome de português..."/>         
