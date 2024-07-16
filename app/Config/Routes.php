@@ -138,6 +138,7 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
     $routes->get('financeiroarj', 'FinanceiroController::areceberj');
     $routes->get('financeiroarj2', 'FinanceiroController::areceberj2');
     $routes->get('mobile', 'FinanceiroController::mobile');
+    $routes->get('mobile2', 'FinanceiroController::mobile2');
 
 // - L A B 
     $routes->get('lab', 'Lab::index');
@@ -170,6 +171,9 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
     $routes->get('fpublic', 'MpdfController::fpublic');
     $routes->get('a4', 'MpdfController::geraa4');
     $routes->get('boottablef/(:num)', 'Lab::porfamilia/$1'); // filtra familiares
+
+    $routes->get('portugues', 'PesquisaController::index');
+    $routes->get('pesquisas', 'PesquisaController::pesquisa');
 // - C O N T R A T O S
     $routes->get('autcontrato', 'ReportController::autcontrato');
     $routes->get('autcontrato/(:num)', 'ReportController::autcontrato/$1');

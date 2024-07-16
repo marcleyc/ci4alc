@@ -68,7 +68,8 @@ class ExtratoController extends Controller
         $rtabela2 = $query2->getResult();
 
         foreach ($rtabela1 as $linha) {
-            $descricao = strtolower($linha->descricao); $id = $linha->id;  
+            $descricao = strtolower($linha->descricao); 
+            $id = $linha->id;  
             
             foreach ($rtabela2 as $x) 
             {

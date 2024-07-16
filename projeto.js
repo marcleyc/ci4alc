@@ -124,4 +124,41 @@ Exames Oftalmologia
 
 //( ) "configurar as paginas add e edt dos servicos";
 
+foreach ($results2 as $xx) 
+            {
+                $xtipo = $xx->tipo;
+                if (strpos($tipo, $xtipo) !== false)
+                   { $data[] = ['tipo' => $xx->tipo, 'total' => $xx->total]; } 
+                else 
+                   { $data[] = ['tipo' => $tipo, 'total' => 0]; }
+            } 
 
+$query3 = $db->query(" SELECT tipo, YEAR(dataf) AS ano, MONTH(dataf) AS mes, SUM(valor) AS total,
+CASE 
+      WHEN EXISTS (SELECT 1 FROM fintipo WHERE fintipo.tipo = financeiro.tipo) 
+      THEN 'valor'
+      ELSE '0'
+      END AS total
+      FROM financeiro 
+      WHERE YEAR(dataf) = '$ano' AND MONTH(dataf) = '$mes'
+      GROUP BY tipo, ano, mes 
+      ORDER BY ano, mes, tipo ");
+$results3 = $query3->getResultArray();
+
+for ($y = 0; $y < sizeof($tipos); $y++) 
+        { 
+            $data[] = ['tipo' => $tipos[$y]["tipo"], 'total' => 0, 'id' => $y];
+            for($i = 0; $i < sizeof($results); $i++)
+            { 
+              $tipox = $tipos[$y]["tipo"];
+              $tipo = $results[$i]["tipo"];
+              $total = $results[$i]["total"];
+    
+            if (strpos($tipo, $tipox) !== false) 
+               { 
+                $lastKey = array_key_last($data); //pega ultimo item inserido no array
+                unset($data[$lastKey]); // apaga o registo pela key array
+                $data[] = ['tipo' => $tipo, 'total' => $total, 'id' => $lastKey]; 
+               } 
+            }           
+        }

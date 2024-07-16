@@ -170,4 +170,42 @@ class FinanceiroController extends BaseController
         echo json_encode($data);
         return view('financeiro/mobile',$data);
     }
+
+    public function mobile2()  // ----------------- resumo mensal das finanças
+    {
+        $ano = date("Y"); // Pega o ano atual com quatro dígitos
+        $mes = date("m"); // Pega o mês atual com dois dígitos
+        $db = \Config\Database::connect();
+        
+        $query  = $db->query("SELECT tipo, YEAR(dataf) As ano, MONTH(dataf) As mes, SUM(valor) As total FROM financeiro WHERE YEAR(dataf)='$ano' and MONTH(dataf)='$mes' GROUP BY tipo, ano, mes ORDER BY ano,mes,tipo");
+        $results = $query->getResultArray();
+        
+        $query2   = $db->query("SELECT tipo, ID as total from fintipo ORDER BY ordenar");
+        $tipos = $query2->getResultArray();
+
+        //dd($tipos);
+
+        $data = [];
+        for ($y = 0; $y < sizeof($tipos); $y++) 
+        { 
+            $data[] = ['tipo' => $tipos[$y]["tipo"], 'total' => 0, 'id' => $y];
+            for($i = 0; $i < sizeof($results); $i++)
+            { 
+              $tipox = $tipos[$y]["tipo"];
+              $tipo = $results[$i]["tipo"];
+              $total = $results[$i]["total"];
+    
+            if (strpos($tipo, $tipox) !== false) 
+               { 
+                $lastKey = array_key_last($data); //pega ultimo item inserido no array
+                unset($data[$lastKey]); // apaga o registo pela key array
+                $data[] = ['tipo' => $tipo, 'total' => $total, 'id' => $lastKey]; 
+               } 
+            }           
+        }
+        $data['dados'] = $data;
+        //dd($data);
+        //echo json_encode($data);
+        return view('financeiro/mobile',$data);
+    }    
 }
