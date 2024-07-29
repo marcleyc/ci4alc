@@ -28,7 +28,7 @@ class BonjourController extends Controller
         
         // vendas do mês
         $db = db_connect();          
-        $query2 = $db->query('SELECT dataf, nome, total
+        $query2 = $db->query('SELECT id, dataf, nome, total
                              FROM recibo
                              WHERE dataf >= "2017-01-01" AND MONTH(dataf) = MONTH(CURRENT_DATE) AND YEAR(dataf) = YEAR(CURRENT_DATE)
                              ORDER BY dataf DESC');

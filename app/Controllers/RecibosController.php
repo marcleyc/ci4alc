@@ -500,7 +500,7 @@ class RecibosController extends Controller
         $results = $cli->select('*')->orderBy('locals', 'servicos','inicio')
                         ->like('locals', 'IRN Coimbra', 'after')
                         ->where('ok','F')->where('inicio >','2017-01-01')
-                        ->orderby('locals ASC, servicos ASC, inicio ASC')->findAll();
+                        ->orderby('servicos ASC, inicio ASC')->findAll();
         $data['recibosub'] = $results;
         //dd($data);
         return view('recibos/tramitando5', $data);

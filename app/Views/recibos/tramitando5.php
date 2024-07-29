@@ -20,6 +20,7 @@
                 <th>nome</th>
                 <th>início</th>
                 <th>Nº Processo</th>
+                <th>Senha</th>
                 <th>sit</th>
           </tr>
        </thead>
@@ -27,10 +28,11 @@
           <?php if($recibosub): ?>
           <?php foreach($recibosub as $user): ?>
           <tr>
-             <td class="col-sm-1"><?php echo $user['servicos']; ?></td>
-             <td class="col-sm-1"><?php echo $user['nome']; ?></td>
+             <td class="col-sm-1"><?php echo substr($user['servicos'],-7); ?></td>
+             <td class="col-sm-1" style="text-align:left"><?php echo $user['nome']; ?></td>
              <td class="col-sm-3"><?php echo $user['inicio']; ?></td>
              <td class="col-sm-1"><?php echo $user['nprocesso']; ?></td>
+             <td class="col-sm-1"><?php echo $user['codigo']; ?></td>
              <td class="col-sm-1"><?php echo $user['sit']; ?></td>
           </tr>
          <?php endforeach; ?>
@@ -47,7 +49,7 @@ body {background-color: white; color: blue;}
 
 h1 {text-align:center;}
 
-th, td {border: 1px solid grey; border-radius: 10px; padding: 3px;}
+th, td {border: 1px solid grey; border-radius: 10px; padding: 3px; text-align:center}
 
 .flex-container {
   display: flex;

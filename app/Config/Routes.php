@@ -139,6 +139,7 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
     $routes->get('financeiroarj2', 'FinanceiroController::areceberj2');
     $routes->get('mobile', 'FinanceiroController::mobile');
     $routes->get('mobile2', 'FinanceiroController::mobile2');
+    $routes->get('mobileadd', 'FinanceiroController::mobileadd');
 
 // - L A B 
     $routes->get('lab', 'Lab::index');
@@ -178,9 +179,6 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
     $routes->get('autcontrato', 'ReportController::autcontrato');
     $routes->get('autcontrato/(:num)', 'ReportController::autcontrato/$1');
 // - F I L E S 
-    $routes->get('files2/', 'FilesController::index');            // funciona
-    $routes->get('files2/(:num)', 'FilesController::index2/$1'); // funciona
-    
     $routes->get('files/', 'FilesController::files'); // file oficial
     $routes->get('open/(:segment)', 'FilesController::open/$1'); // file oficial - abre o arquivo
     $routes->get('filessub/(:num)', 'FilesController::filessub/$1'); // file oficial - abre subpasta
@@ -189,6 +187,9 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
     $routes->get('open/(:segment)', 'Files3Controller::openFile/$1');
     $routes->get('filee/(:segment)', 'FilesController::filee/$1');
     $routes->get('list/', 'Files3Controller::listFiles');
+
+    $routes->get('files2/', 'FilesController::index');            // funciona
+    $routes->get('files2/(:num)', 'FilesController::index2/$1'); // funciona
 // - F I L E S  U P L O A D S
     $routes->get('myfile/', 'Files2Controller::filetest2'); 
     $routes->get('upload/', 'UploadController::index');

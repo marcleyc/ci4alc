@@ -5,11 +5,11 @@
 
             <!-- --------------------- Familiares -------------------- -->
             <ul class="family">
-                <li onclick="newFamily()">
-                    <i class='bx bx-user-plus'></i>
-                    <span class="info"> Novo Familiar - cód: <b><?= $clientes[0]['idc']; ?></b></span>
+                <li onclick="newFamily('<?= $clientes[0]['idc']; ?>')">
+                    <i class='bx bx-user-plus' style="color:blue"></i>
+                    <span class="info"> Novo Familiar - cód: <b style="color:blue"><?= $clientes[0]['idc']; ?></b></span>
                 </li>
-            <?php foreach($clientes as $x): ?>
+            <?php foreach($clientes as $x): ?> 
                 <li>
                     <i class='bx bx-user'></i>
                     <span class="info">
@@ -40,14 +40,14 @@
                         <tbody>
                             <?php foreach($processos as $x): ?>
                             <?php if ($x['ok'] == 'F'){ ?>
-                            <tr style="font-size: 14px;">
+                            <tr style="font-size: 14px;" onclick="linkProcesso('<?= $x['id']; ?>')" >
                                 <td><?= $x['inicio']; ?></td>
                                 <td><?= $x['nome']; ?></td>
                                 <td><span class="status process"><?= $x['servicos']; ?></span></td>
                                 <td><?= $x['total']; ?></td>
                             </tr>
                             <?php } else { ?>
-                            <tr style="font-size: 14px;">
+                            <tr style="font-size: 14px;" onclick="linkProcesso('<?= $x['id']; ?>')" >
                                 <td><?= $x['inicio']; ?></td>
                                 <td><?= $x['nome']; ?></td>
                                 <td><span class="status pending"><?= $x['servicos']; ?></span></td>
@@ -69,7 +69,7 @@
                     </div>
                     <ul class="task-list">
                         <?php foreach($processos as $x): ?>
-                        <li class="completed" style="font-size: 14px;">
+                        <li class="completed" style="font-size: 14px;" onclick="linkReceber()">
                             <div class="task-title">
                                 <p><?= $x['nome']; ?></p>
                             </div>
@@ -129,6 +129,21 @@
             </div>
 
         </main>
+
+        <script>
+            function newFamily(id) { 
+                var urls = "<?= site_url('clientesa'); ?>"+"/"+`${id}`;
+                window.location.href = urls; 
+            }
+            function linkProcesso(id) { 
+                var urls = "<?= site_url('tramitandoet'); ?>"+"/"+`${id}`;
+                window.location.href = urls; 
+            }
+            function linkReceber(id) { 
+                var urls = "<?= site_url('financeiroar2'); ?>";
+                window.location.href = urls; 
+            }
+        </script>
 
         <script> var ddd = <?php echo json_encode($clientesp); ?>; </script> 
         <script> var xurls = "<?= base_url('/global'); ?>/"; </script> 

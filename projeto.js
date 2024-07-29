@@ -162,3 +162,17 @@ for ($y = 0; $y < sizeof($tipos); $y++)
                } 
             }           
         }
+
+        <div class="item" id="tipo" onclick="allert(<?= $dados[$i]['tipo']; ?>)">
+        <h4 id="tip"><?= $dados[$i]['tipo']; ?></h4>
+        <p><?= $dados[$i]['total']; ?></p>
+        </div> 
+
+<div class="container">
+<?php foreach($dados as $x): ?>  
+  <div class="item" id="tipo" onclick="allert()">
+      <h4 id="tip"><?= $x['tipo']; ?></h4>
+      <p><?= $x['total']; ?></p>
+  </div>
+  <?php endforeach; ?>  
+</div>

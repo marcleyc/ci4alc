@@ -45,13 +45,18 @@
 <body> 
 
 <div class="container">
-<?php foreach($dados as $x): ?>  
-  <div class="item" id="tipo" onclick="npag('<?= $x['tipo']; ?>')">
-      <h4 id="tip"><?= $x['tipo']; ?></h4>
-      <p><?= $x['total']; ?></p>
+  <div v-for="dado in dados" :key="dado.id">
+    <ul>
+    <li class="item" id="app" onclick="allert()">
+      <h4 id='tip'>{{ dado.tipo }}</h4>;
+      <p>{{ dado.total }}</p>
+    </li> 
+    </ul>
   </div>
-  <?php endforeach; ?>  
 </div>
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 <script>
    let valor = 1234.56;
@@ -61,10 +66,33 @@
 
    const val = document.getElementById("tip").innerHTML;
    console.log(val);
-   
-  function allert(x) {alert(`The button was clicked! ${x}`)};
-  function npag(x) {location.href = `mobileadd?id=${x}`};
+   //const button = document.getElementById("tipo");
+   //button.addEventListener("click", function() { alert(`The button was clicked! ${val}`); });
 
+  function allert() {alert(`The button was clicked! ${val}`)};
+</script>
+
+<!-- script> var ddd =  < //json_encode($dados); ?> </script --> 
+<script>
+    var itens = JSON.parse('<?php echo json_encode($dados) ?>'); 
+    console.log(itens);
+    const { createApp } = Vue
+    createApp({
+        data() 
+        {
+            return { dados: itens,}
+        },
+        methods: 
+        {
+           increment() { this.count2++ },
+           allert() { console.log('dados',this.dados) },
+           filtra() { this.dados = itens.filter((x)=>x.cor=="primary"); },
+        },
+        computed:
+        {
+           //O COMPUTED é executado quando o vue e carregado com a página 
+        },
+    }).mount('#app')
 </script>
 
 </body>

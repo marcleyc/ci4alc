@@ -6,24 +6,6 @@ use CodeIgniter\Files\File;
 
 class FilesController extends BaseController // está funcionando
 {
-    public function index()
-    {   
-        //$caminho = $_ENV['MYFILE']; // criar no .env o MYFILE com caminho '/Users/marcley/Downloads' 
-        $caminho = $filePath = FCPATH . 'clientes/'; //dd($caminho);
-        $directoryPath = $caminho;
-        $filesList = scandir($directoryPath); // Obtenha uma matriz de arquivos na pasta
-        // Passe a lista de arquivos e o caminho da pasta para a view
-        return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
-    }
-
-    public function index2($idc = null)
-    {
-        //$directoryPath = FCPATH . 'clientes/'.$idc;
-        $directoryPath = $_ENV['MYFILE'] .'/'. $idc; //dd($directoryPath);
-        $filesList = scandir($directoryPath);        //dd($filesList);
-        return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
-    }
-
     public function files()
     {
         //$caminho_da_pasta = '/Users/marcley/Music/ci4alc/public/clientes';
@@ -52,6 +34,24 @@ class FilesController extends BaseController // está funcionando
             }
         }
         echo "</div></div>";
+    }
+    
+    public function index()
+    {   
+        //$caminho = $_ENV['MYFILE']; // criar no .env o MYFILE com caminho '/Users/marcley/Downloads' 
+        $caminho = $filePath = FCPATH . 'clientes/'; //dd($caminho);
+        $directoryPath = $caminho;
+        $filesList = scandir($directoryPath); // Obtenha uma matriz de arquivos na pasta
+        // Passe a lista de arquivos e o caminho da pasta para a view
+        return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
+    }
+
+    public function index2($idc = null)
+    {
+        //$directoryPath = FCPATH . 'clientes/'.$idc;
+        $directoryPath = $_ENV['MYFILE'] .'/'. $idc; //dd($directoryPath);
+        $filesList = scandir($directoryPath);        //dd($filesList);
+        return view('files', ['directoryPath' => $directoryPath, 'filesList' => $filesList]);
     }
 
     public function open($fileName)  // método para abrir o arquivo selecionado

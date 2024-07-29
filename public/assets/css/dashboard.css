@@ -179,7 +179,7 @@ body{
     transition: all 0.3s ease;
 }
 
-.sidebar.close~.content{
+.sidebar.close~.content{  
     width: calc(100% - 60px);
     left: 60px;
 }
@@ -537,7 +537,7 @@ body{
 }
 
 .content main .bottom-data .orders table tr td .status.pending{
-    background: var(--warning);
+    background: var(--success);
 }
 
 .content main .bottom-data .reminders{
@@ -801,7 +801,7 @@ table {
   }
 
     #button:hover{
-        width: 70px;
+        width: 70px;  
         height: 35px;
         color: var(--primary);
         background: var(--light);

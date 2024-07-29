@@ -42,7 +42,7 @@
             </ul>
             <!-- End of Insights -->
             
-            <!-- --------------------- Vendas do Mês -------------------- -->
+            <!-- --------------------- Vendas Recentes -------------------- -->
             <div class="bottom-data">
                 <div class="orders">
                     <div class="header">
@@ -61,7 +61,7 @@
                         </thead>
                         <tbody>
                         <?php foreach($recibos as $x): ?>
-                            <tr onclick="linkRecibo('<?= $x['id']; ?>') ">
+                            <tr>
                                 <td>
                                   <i class='bx bx-euro'></i>
                                   <p><?= $x['nome']; ?></p>
@@ -80,11 +80,11 @@
                         <i class='bx bx-note'></i>
                         <h3>A Receber</h3>
                         <i class='bx bx-filter'></i>
-                        <i class='bx bx-plus' onclick="linkReceber()"></i>
+                        <i class='bx bx-plus'></i>
                     </div>
                     <ul class="task-list">
                     <?php foreach($areceber as $x): ?>
-                        <li class="completed" onclick="linkReceber()">
+                        <li class="completed">
                             <div class="task-title">
                                 <i class='bx bx-check-circle'></i>
                                 <p> <?= $x['nome']; ?> </p>
@@ -135,20 +135,7 @@
             var urls = "<?= site_url('recibos'); ?>"; 
             window.location.href = urls; 
         }
-
-        function linkRecibo(id) { 
-            var urls = "<?= site_url('recibo'); ?>"+"/"+`${id}`;
-            console.log(urls); 
-            window.location.href = urls; 
-        }
-
-        function linkReceber() { 
-            var urls = "<?= site_url('financeiroar2'); ?>";
-            window.location.href = urls; 
-        }
     </script>
-    
-
 
 <?= $this->endSection('conteudo'); ?>   
  

@@ -64,19 +64,7 @@ function toggleSubmenu(event) {
     //submenu.classList.toggle('open');
 }
 
-/* function financeiroAR() { 
-    var urls = "/financeiroar2/"; 
-    window.location.href = urls; 
-} */
-
-function newFamily() { 
-    var urls = "/clientesa/" + 20; 
-    window.location.href = urls; 
-}
-
 function reciboAdd() { 
     var urls = "/reciboadd/"; 
     window.location.href = urls; 
 }
-
-    
