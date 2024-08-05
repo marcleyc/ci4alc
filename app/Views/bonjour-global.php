@@ -44,14 +44,14 @@
                                 <td><?= $x['inicio']; ?></td>
                                 <td><?= $x['nome']; ?></td>
                                 <td><span class="status process"><?= $x['servicos']; ?></span></td>
-                                <td><?= $x['total']; ?></td>
+                                <td><?= $x['honorarios']; ?></td>
                             </tr>
                             <?php } else { ?>
                             <tr style="font-size: 14px;" onclick="linkProcesso('<?= $x['id']; ?>')" >
                                 <td><?= $x['inicio']; ?></td>
                                 <td><?= $x['nome']; ?></td>
                                 <td><span class="status pending"><?= $x['servicos']; ?></span></td>
-                                <td><?= $x['total']; ?></td>
+                                <td><?= $x['honorarios']; ?></td>
                             </tr>
                             <?php }; ?>    
                             <?php endforeach; ?> 

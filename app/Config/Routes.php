@@ -187,6 +187,7 @@ $routes->get('global2/(:num)', 'BonjourController::global2/$1'); // global clien
     $routes->get('open/(:segment)', 'Files3Controller::openFile/$1');
     $routes->get('filee/(:segment)', 'FilesController::filee/$1');
     $routes->get('list/', 'Files3Controller::listFiles');
+    $routes->get('files3/', 'FilesController::info');  
 
     $routes->get('files2/', 'FilesController::index');            // funciona
     $routes->get('files2/(:num)', 'FilesController::index2/$1'); // funciona

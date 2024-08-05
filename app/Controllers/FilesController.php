@@ -35,6 +35,86 @@ class FilesController extends BaseController // está funcionando
         }
         echo "</div></div>";
     }
+
+    public function filessub($path=null)
+    {
+        $caminho_da_pasta = FCPATH . './clientes/';
+        $itens = scandir($caminho_da_pasta.'/'.$path); //dd($itens);// Obtém uma lista de todos os itens na pasta
+        echo "<center><h1 style='color: white;'>Listar arquivos</h1></center>"; 
+        echo "<style> body {background-color: #696969;} </style>";
+        // Itera sobre cada item
+        echo "<div style='display: flex; justify-content: center; align-items: center; '>";
+        echo "<div style='border: 1px solid grey; border-radius: 10px; padding: 10px; width: 750px; background-color: white; '>";
+        
+        foreach ($itens as $item) 
+        {
+            // Ignora os diretórios . e ..
+            if ($item == '.' || $item == '..' || $item == '.DS_Store') {continue;}
+
+            $caminho_completo = $caminho_da_pasta . DIRECTORY_SEPARATOR . $item;
+            $tamanho = filesize($caminho_completo)/1000;  
+            $data_modificacao = date('d/m/Y', filemtime($caminho_completo));
+            echo $data_modificacao;
+
+            echo "<b>Arquivo:</b> <a style='line-height: 25px;' href= ".site_url('opensub/'.$path.'/'.$item)." '>$item</a> ' <br> ";
+        }
+        echo "</div></div>";
+    }
+    
+    public function info()
+    {
+        $caminho_arquivo = FCPATH . './clientes/';
+        $itens = scandir($caminho_arquivo); // Obtém uma lista de todos os itens na pasta
+
+        foreach ($itens as $item) 
+        {
+            // Ignora os diretórios . e ..
+            if ($item == '.' || $item == '..' || $item == '.DS_Store') {continue;}
+
+            $caminho_completo = $caminho_arquivo . DIRECTORY_SEPARATOR . $item;
+            $tamanho = filesize($caminho_completo)/1000;           
+            $data_modificacao = date('d/m/Y', filemtime($caminho_completo));
+
+            // opção de enviar dados para view
+            $dados = [
+                'nome' => $caminho_completo,
+                'tamanho' => $tamanho,
+                'data_modificacao' => $data_modificacao
+            ];
+
+            // Verifica se é um arquivo
+            if (is_file($caminho_completo)) {
+                echo "<b>Arquivo:</b> <a href='open/$item' style='line-height: 25px;'>$item</a> ' - ";
+                echo "<b>Tamanho:</b> $tamanho bytes - ";
+                echo "<b>Data:</b> $data_modificacao<br>";   
+            }
+
+            // Verifica se é uma pasta
+            if (is_dir($caminho_completo)) {
+                echo "<b style='color:green'>Pasta:</b> <a href='filessub/$item' style='line-height: 25px; '>$item</a> <br> "; 
+            }
+        }
+    }
+
+    public function infoOld()
+    {
+        $caminho_arquivo = FCPATH . './clientes/';
+        $itens = scandir($caminho_da_pasta); // Obtém uma lista de todos os itens na pasta
+
+        // Verifica se o arquivo existe e é legível
+        if (!file_exists($caminho_arquivo) || !is_readable($caminho_arquivo)) {
+            return 'Arquivo não encontrado ou não pode ser lido.';
+        }
+
+        // Obtém informações do arquivo
+        $tamanho = filesize($caminho_arquivo);
+        $data_modificacao = date('d/m/Y H:i:s', filemtime($caminho_arquivo));
+
+        // Exibe as informações
+        echo 'Nome do arquivo: ' . basename($caminho_arquivo) . '<br>';
+        echo 'Tamanho: ' . $tamanho . ' bytes<br>';
+        echo 'Última modificação: ' . $data_modificacao;
+    }
     
     public function index()
     {   
@@ -84,28 +164,6 @@ class FilesController extends BaseController // está funcionando
         {
             echo 'Arquivo não encontrado.';
         }
-    }
-
-    public function filessub($path=null)
-    {
-        $caminho_da_pasta = FCPATH . './clientes/';
-        $itens = scandir($caminho_da_pasta.'/'.$path); //dd($itens);// Obtém uma lista de todos os itens na pasta
-        echo "<center><h1>Listar arquivos</h1></center>"; 
-        // Itera sobre cada item
-        echo "<div style='display: flex; justify-content: center; align-items: center; '>";
-        echo "<div style='border: 1px solid grey; border-radius: 10px; padding: 10px; width: 750px; '>";
-        
-        foreach ($itens as $item) 
-        {
-            // Ignora os diretórios . e ..
-            if ($item == '.' || $item == '..' || $item == '.DS_Store') {continue;}
-
-            $caminho_completo = $caminho_da_pasta . DIRECTORY_SEPARATOR . $item;
-
-            echo "<b>Arquivo:</b> <a style='line-height: 25px;' href= ".site_url('opensub/'.$path.'/'.$item)." '>$item</a> ' <br> ";
-        }
-        echo "</div></div>";
-
     }
 
     public function opensub($path=null,$fileName=null)  // método para abrir o arquivo selecionado

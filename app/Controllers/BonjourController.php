@@ -58,13 +58,13 @@ class BonjourController extends Controller
         $dataModel = new ClientesModel();
         $data['clientes'] = $dataModel->select('idc,nome')->where('idc', $id)->findAll(); 
 
-        $dataModel2 = new RecibosubModel();
+        $dataModel2 = new RecibosubModel(); // Processos
         $data['processos'] = $dataModel2->select('recibosub.*')
                                          ->join('recibo', 'recibo.id = recibosub.idRec')
                                          ->where('recibo.idc',$id)
                                          ->orderby('inicio DESC')->findAll();
 
-        $dataModel3 = new FinanceiroModel();
+        $dataModel3 = new FinanceiroModel();  // a Receber
         $data['financeiro'] = $dataModel3->select('dataf,historico,numero,valor')->where('cliente', $id)->findAll();                                 
         //dd($data);                                                
         //echo json_encode($data); 
