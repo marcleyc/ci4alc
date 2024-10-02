@@ -407,11 +407,14 @@ class RecibosController extends Controller
         $xModel4 = new ReclocalModel();
         $data['local'] = $xModel4->findAll();
         //dd($data);
-        return view('recibos/tramitando-edt2', $data);
+        //return view('recibos/tramitando-edt2', $data);
+        return view('recibos/tramitando-edt', $data);
     }
 
     public function tramitandou()  // --------------------------- update tramitando
     {       
+        $referente = $this->request->getHeader('Referer'); // pega a url da request
+        //dd($referente);
         $xModel = new RecibosubModel();
         $data = [
             'id'  => $this->request->getVar('fid'),

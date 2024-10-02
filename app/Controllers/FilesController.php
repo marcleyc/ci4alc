@@ -52,9 +52,9 @@ class FilesController extends BaseController // está funcionando
             if ($item == '.' || $item == '..' || $item == '.DS_Store') {continue;}
 
             $caminho_completo = $caminho_da_pasta . DIRECTORY_SEPARATOR . $item;
-            $tamanho = filesize($caminho_completo)/1000;  
-            $data_modificacao = date('d/m/Y', filemtime($caminho_completo));
-            echo $data_modificacao;
+            //$tamanho = filesize($caminho_completo);  
+            //$data_modificacao = date('d/m/Y', filemtime($caminho_completo));
+            //echo $data_modificacao;
 
             echo "<b>Arquivo:</b> <a style='line-height: 25px;' href= ".site_url('opensub/'.$path.'/'.$item)." '>$item</a> ' <br> ";
         }

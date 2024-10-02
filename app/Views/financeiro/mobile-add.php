@@ -13,7 +13,7 @@
 <div class="container">
   <form method="post" id="add_create" name="add_create" action="<?= site_url('financeiros') ?>">  
     
-    <div class="material-textfield">
+    <div class="material-textfield" style="display:none">
       <input placeholder="placeholder" type="number" value="" />
       <label> ID</label>
     </div>

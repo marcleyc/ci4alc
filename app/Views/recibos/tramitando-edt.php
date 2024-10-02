@@ -67,7 +67,7 @@
 		<div class="input-group input-group mt-2">
 		   <div class="input-group-text">nº Processo</div><input type="string" class="form-control" value="<?= $recibosub['nprocesso']; ?>" name="fnprocesso" required />
 		   <div class="input-group-text">Código</div><input type="string" class="form-control" value="<?= $recibosub['codigo']; ?>" name="fcodigo" />
-       <div class="input-group-text">Situação</div><input type="string" class="form-control" value="<?= $recibosub['sit']; ?>" name="fsit" />
+       <div class="input-group-text">Situação</div><input type="string" class="form-control" value="<?= $recibosub['sit']; ?>" name="fsit" onchange="mudaSituacao()" />
 		</div>
     
     <!-- TERMINO - PERIODICIDADE - OK -->
@@ -142,6 +142,24 @@
        // if (conditions) { inputName.classList.remove('is-danger'), inputName.classList.add('is-success')}
         
   </script>
+
+<?php 
+  $data_atual = new \DateTime();  
+  $hoje = $data_atual->format('Y-m-d'); 
+?>
+
+<script>
+  var hoje = "<?= $hoje ?>";
+  function mudaSituacao() {
+    console.log(hoje);
+    var verf = document.getElementById("fverif").value;
+    console.log("2º",verf);
+    document.getElementById("fverif").value = hoje;
+    //verf.value = "2007";
+    var verf2 = document.getElementById("fverif").value;
+    console.log("3º",verf2);
+  }  
+</script>
 
 </body>
 </html>

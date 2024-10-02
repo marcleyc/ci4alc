@@ -27,6 +27,7 @@
       <th data-field="nprocesso">nº Processo</th>
       <th data-field="codigo" data-width="150">Senha</th>
       <th data-field="sit" data-sortable="true">Sit</th>
+      <th data-field="verificado" data-sortable="true">Verificado</th>
       <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">@</th>
     </tr>
   </thead>

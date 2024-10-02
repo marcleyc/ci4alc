@@ -112,9 +112,10 @@
 
     <script src="<?= base_url("assets/js/pesquisa.js") ?>" ></script> 
 
-    <script> // pegar dados com fetchapi
-      //var ddd = '';
-      //fetch('?= //site_url('/api/clientes') ?>')
+    <script> 
+        // pegar dados com fetchapi
+        //var ddd = '';
+        //fetch('?= //site_url('/api/clientes') ?>')
     	//.then((response) => response.json())
 	    //.then((data) => {console.log(data.clientes)})
         //.then((data) => {this.ddd = data.clientes})

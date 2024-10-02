@@ -144,7 +144,11 @@
         
   </script>
   
-  <?php $data_atual = new \DateTime();  $hoje = $data_atual->format('Y-m-d'); ?>
+  <?php 
+    $data_atual = new \DateTime();  
+    $hoje = $data_atual->format('Y-m-d'); 
+  ?>
+
   <script>
     var hoje = "<?= $hoje ?>";
     function mudaSituacao() {
@@ -155,8 +159,7 @@
       //verf.value = "2007";
       var verf2 = document.getElementById("fverif").value;
       console.log("3º",verf2);
-    } 
-    
+    }  
   </script>
 
 </body>
