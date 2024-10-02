@@ -35,7 +35,7 @@
 database.default.hostname = localhost
 database.default.database = carvalhosdb
 database.default.username = root
-database.default.password = 2007
+database.default.password = 2007021
 database.default.DBDriver = MySQLi
 database.default.DBPrefix =
 database.default.port = 3306
